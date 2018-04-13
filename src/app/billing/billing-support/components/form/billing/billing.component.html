@@ -1,0 +1,125 @@
+<form [formGroup]="billingForm" (ngSubmit)="next()">
+  <div class="billing-navigation">
+      <span>
+          <select #pc class="product-selection" (change)="productChoice(pc.value)" formControlName="productType">
+              <option value="BE">Booking Engine</option>
+              <option value="CM">Channel Manager</option>
+          </select>
+      </span>
+      <span class="single-invoice-checkbox" *ngIf="isDefault != 'DEFAULT'" >
+          <input type="checkbox" formControlName="singleInvoice">
+          <p> <span *ngIf="billingForm.value.singleInvoice" >Single</span> <span *ngIf="!billingForm.value.singleInvoice">Multiple</span> Invoice(s) </p>
+      </span>
+      <span class="align-right-flex">
+          <select formControlName="transactionCurrency" class="currency-select" name="currency" id="">
+              <option value="INR">Indian Rupee</option>
+              <option value="USD">US Dollar</option>
+              <option value="EUR">Euro</option>
+              <option value="LKR">Sri Lankan Rupee</option>
+              <option value="THB">Thai Baht</option>
+              <option value="GBP">British Pound</option>
+              <option value="SGD">Singapore Dollar</option>
+              <option value="CHF">Swiss Franc</option>
+              <option value="ZAR">South African Rand</option>
+              <option value="CLP">Chilean Peso</option>
+              <option value="GTQ">Guatemalan Quetzal</option>
+              <option value="AED">United Arab Emirates Dirham</option>
+              <option value="IDR">Indonesian Rupiah</option>
+              <option value="OMR">Omani Rial</option>
+              <option value="PLN">Polish Zloty</option>
+              <option value="MXN">Mexican Pesos</option>
+              <option value="MYR">Malaysian Ringgit</option>
+              <option value="BRL">Brazil Real</option>
+              <option value="ARS">Argentine Peso</option>
+              <option value="PHL">Philippine peso</option>
+              <option value="COP">Colombian peso</option>
+              <option value="PHP">Philippines Peso</option>
+              <option value="AUD">Australian Dollar</option>
+              <option value="MVR">Maldivian Rufiyaa</option>
+              <option value="HKD">Hong Kong Dollar</option>
+              <option value="RUB">Russian Ruble</option>
+              <option value="CRC">Costa Rican Colon</option>
+              <option value="CNY">Chinese Yuan</option>
+              <option value="TWD">Taiwan Dollar</option>
+          </select>
+      </span>
+  </div>
+  
+  <div class="modal-form">
+      <div class="rule-addition-area">
+          <div class="rules" formArrayName="ruleDetails" *ngFor="let rule of billingForm.controls.ruleDetails['controls']; let i = index">
+              <div class="rule" [formGroupName]="i">
+                  <div class="input-element" [hidden]="isDefault == 'DEFAULT'">
+                      <p *ngIf="!this.billingForm.value.ruleDetails[i].connectedHotels.length" >All Hotels Selected</p> 
+                      <p *ngIf="this.billingForm.value.ruleDetails[i].connectedHotels.length" > {{this.billingForm.value.ruleDetails[i].connectedHotels.length}} Hotel(s) selected</p>
+                      <input type="text" class="hotel-list-input" #searchHotelInput (keyup)="searchQueryEntered(searchHotelInput.value,i)" (focus)="searchFocused(i)" placeholder="Leave empty for all hotels"/>
+                  </div>
+                  <span class="hotel-list-overlay" (click)="this.billingForm.value.ruleDetails[i].hotelDropdownList =[]; searchHotelInput.value = ''"  *ngIf="this.billingForm.value.ruleDetails[i].hotelDropdownList.length"></span>
+                  <div class="hotel-list"  *ngIf="this.billingForm.value.ruleDetails[i].hotelDropdownList.length">
+                      <div class="hotel-list-functionality" >
+                          <p (click)="selectAll(true,i)" >Select All</p>
+                          <p (click)="selectAll(false,i)" >Deselect All</p>
+                      </div>
+                      <span class="hotel-list-hotels" *ngFor="let hotel of this.billingForm.value.ruleDetails[i].hotelDropdownList">
+                          <input (change)="hotelChecked(hotel,i)" type="checkbox" id="{{hotel.productId}}" [checked]="isSelected(hotel,i)" /> <p>{{hotel.productName}} [{{hotel.productId}}]</p>
+                      </span>
+                  </div>
+                  <div class="input-element">
+                      <p>Duration</p>
+                      <select formControlName="recurring">
+                          <option value=true>Recurring</option>
+                          <option value=false>One Time</option>
+                      </select>
+                  </div>
+                  <div class="input-element">
+                      <p>Payment Type</p>
+                      <select formControlName="paymentType" (change)="paymentTypeChange(i)" >
+                          <option value="FIXED">Fixed</option>
+                          <option value="TRANSACTION_BASED">Tansaction Based</option>
+                      </select>
+                  </div>
+                  <div [hidden]="billingForm.value.ruleDetails[i].paymentType != 'TRANSACTION_BASED'" class="input-element">
+                      <p>Transactions</p>
+                      <select formControlName="trasactionBase">
+                          <option value="ROOM_NIGHTS_CHECK_IN_DATE">Room Nights - Check In Date</option>
+                          <option value="ROOM_NIGHTS_BOOKING_DATE">Room Nights - Booking Date</option>
+                          <option value="TOTAL_REVENUE_CHECK_IN_DATE">Total Revenue - Check In Date</option>
+                          <option value="TOTAL_REVENUE_BOOKING_DATE">Total Revenue - Booking Date</option>
+                          <option value="TOTAL_REVENUE_WITHOUT_TAX_CHECK_IN_DATE">Total Revenue Without Tax - Check In Date</option>
+                          <option value="TOTAL_REVENUE_WITHOUT_TAX_BOOKING_DATE">Total Revenue Without Tax - Booking Date</option>
+                      </select>
+                  </div>
+                  <div [hidden]="billingForm.value.ruleDetails[i].paymentType != 'TRANSACTION_BASED'" class="input-element">
+                      <p>Charge Type</p>
+                      <select formControlName="chargeType">
+                          <option value='PERCENTAGE'>percentage</option>
+                          <option value="FIXED">fixed</option>
+                      </select>
+                  </div>
+                  <div class="input-element">
+                      <p *ngIf="billingForm.value.ruleDetails[i].chargeType != 'PERCENTAGE'" >Charge Value</p>
+                      <p *ngIf="billingForm.value.ruleDetails[i].chargeType == 'PERCENTAGE'" >Charge Percentage</p>
+                      <input formControlName="chargeValue" type="text" placeholder="Value">
+                  </div>
+                  <div class="input-element">
+                      <p>Cycle</p>
+                      <select formControlName="paymentCycle">
+                          <option value=1>Montly</option>
+                          <option value=3>Quarterly</option>
+                          <option value=6>Half Yearly</option>
+                          <option value=12>Yearly</option>
+                      </select>
+                  </div>
+
+                  <div class="add-rule">
+                      <img (click)="removeRule(i)" *ngIf="i != 0" src="../../../../assets/close-icon-black.png" alt="Close Icon" class="icon remove-rule">
+                      <img (click)="addRulesForm()" class="icon add-icon" src="../../../../assets/plus-circle-outline.png" alt="Add Rule Icon">
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="save-button">
+          <button type="submit" [disabled]="billingForm.invalid">Next</button>
+      </div>
+  </div>
+</form>

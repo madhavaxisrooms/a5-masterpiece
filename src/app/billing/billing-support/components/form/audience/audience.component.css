@@ -1,0 +1,32 @@
+.searchable-dropdown {
+    position: relative;
+  }
+  
+  .users-dropdown-overlay{
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 3;
+  }
+  
+  .users-dropdown {
+    position: absolute;
+    left: 230px;
+    top: 25px;
+    width: 290px;
+    z-index: 5;
+  }
+  
+  .users-dropdown ul {
+    list-style: none;
+    padding-left: 15px;
+    background: white;
+  }
+  
+  .users-dropdown ul li {
+    padding: 5px 0;
+    cursor: pointer;
+  }
+  

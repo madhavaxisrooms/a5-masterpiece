@@ -3,16 +3,35 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { LoadingIndicatorComponent } from './shared/components/loading-indicator/loading-indicator.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { ToasterComponent } from './shared/components/toaster/toaster.component';
+import { ToasterService } from './shared/services/toaster.service';
+import { WindowRefService } from './shared/services/window-ref.service';
+import { LoadingIndicatorService } from './shared/services/loading-indicator.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent,
+    LoadingIndicatorComponent,
+    HeaderComponent,
+    FooterComponent,
+    ToasterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    ToasterService,
+    WindowRefService,
+    LoadingIndicatorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

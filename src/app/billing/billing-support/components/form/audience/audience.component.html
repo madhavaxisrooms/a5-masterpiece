@@ -1,0 +1,92 @@
+<!-- <app-loading-indicator [hidden]="loader" ></app-loading-indicator> -->
+<form [formGroup]="audienceForm" (ngSubmit)="next()">
+
+  <div class="modal-form">
+
+      <div class="form-element">
+          <div class="default-values">
+              <select style="width: 100%;" formControlName="templateType" (change)="templateTypeChange()" >
+                  <option value='CUSTOM'> CUSTOM </option>
+                  <option value='DEFAULT'> DEFAULT </option>
+              </select>
+          </div>
+      </div>
+      <div class="form-element">
+          <p>Enter Rule Name</p>
+          <input formControlName="ruleName" #ruleName type="text" placeholder="Rule Name">
+      </div>
+
+      <!-- Default Form -->
+      <span [hidden]="audienceForm.value.templateType != 'DEFAULT'">
+          <div class="form-element">
+              <p>Select Country</p>
+              <select formControlName="country">
+                  <option *ngFor="let country of countries" value="{{country.countryValue}}">{{country.countryValue}}</option>
+              </select>
+          </div>
+
+          <!-- <div class="form-element">
+              <p>Rating</p>
+              <select formControlName="starRating">
+                  <option value=0> Any </option>
+                  <option value=1> &#9733; </option>
+                  <option value=2> &#9733;&#9733; </option>
+                  <option value=3> &#9733;&#9733;&#9733; </option>
+                  <option value=4> &#9733;&#9733;&#9733;&#9733; </option>
+                  <option value=5> &#9733;&#9733;&#9733;&#9733;&#9733; </option>
+              </select>
+          </div> -->
+
+          <div class="form-element">
+              <p>Belongs To</p>
+              <select #btc (change)="btc.value; fillAggregators(btc.value)">
+                  <option value="axr"> Axisrooms </option>
+                  <option value="agg"> Aggregator | Whitelabel </option>
+              </select>
+          </div>
+
+          <div class="form-element" *ngIf="btc.value == 'axr'">
+              <p>User Type</p>
+              <select formControlName="userRole">
+                  <option value="SUPPLIER"> Supplier </option>
+                  <!-- <option value="SUPPLIER_ADMIN"> Supplier Admin </option> -->
+              </select>
+          </div>
+      </span>
+
+      <!-- Custom Form -->
+      <span [hidden]="audienceForm.value.templateType != 'CUSTOM'">
+          <div class="form-element">
+              <p>Belongs custom To</p>
+              <select #btc1 (change)="btc1.value; fillAggregators(btc1.value); ">
+                  <option value="axr"> Axisrooms </option>
+                  <option value="agg"> Aggregator | Whitelabel </option>
+              </select>
+          </div>
+
+          <div class="form-element" *ngIf="btc1.value == 'axr'">
+              <p>User Type</p>
+              <select formControlName="userRole" (change)="getUserIds();">
+                  <option value="SUPPLIER"> Supplier </option>
+                  <!-- <option value="SUPPLIER_ADMIN"> Supplier Admin </option> -->
+              </select>
+          </div>
+
+          <div class="form-element searchable-dropdown ">
+              <p>Choose User</p>
+              <input type="text" placeholder="Type to search" [ngClass]="{'ng-invalid': audienceForm.value.userId == null}" [value]="selectedUser" (focus)="searchUser(searchUserQuery.value)"  #searchUserQuery (keyup)="searchUser(searchUserQuery.value) "/>
+              <div class="users-dropdown"  *ngIf="usersSearchedList">
+                  <ul>
+                      <li *ngFor="let user of usersSearchedList" (click)="userSelected(user);" > {{user.userName}} [{{user.userId}}] </li>
+                  </ul>
+              </div>
+            
+          </div>
+      </span>
+
+
+  </div>
+  <div class="next-button">
+      <button type="submit" [disabled]="audienceForm.invalid">Next</button>
+  </div>
+</form>

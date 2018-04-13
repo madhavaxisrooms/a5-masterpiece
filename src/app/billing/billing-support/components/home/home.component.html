@@ -1,0 +1,126 @@
+<billing-support-form *ngIf='!formHidden'></billing-support-form>
+<div class="body-content">
+  <div class="client-nav">
+    <button routerLinkActive="active" routerLink="../home">All Templates</button>
+    <!-- <button>Promotions</button>
+    <span class="icon-container">
+      <img src="../../../../assets/filter-icon.png" class="filter-icon icon" />
+    </span>
+
+    <select name="type">
+      <option value="#">Axisrooms</option>
+      <option value="#">Hotel Linkage</option>
+      <option value="#">Staydilly</option>
+    </select> -->
+    <button routerLinkActive="active" routerLink="../invoices">Invoices</button>
+  </div>
+  <div class="search-options">
+    <input type="text" class="search-bar" placeholder="Search">
+    <button class="create-new" (click)='showForm()'>Create Template</button>
+    <button class="create-new" (click)='assignTemplateVisibility = !assignTemplateVisibility'>Assign Template</button>
+    <button class="create-new" (click)='sendInvoicesVisibility = !sendInvoicesVisibility'>Send Invoice</button>
+  </div>
+  <div class="cards-area">
+
+    <div class="info-card" *ngFor="let template of templateData?.templateDetails.reverse();let i = index" [ngClass]="{'blue-border': template.templateType == 'Custom' }">
+       <billing-support-template-details (hideTemplate)="hideTemplateDetails($event)" [hidden]="templateDetailsHidden[i]" [templateDetails]="template"
+        [index]="i"></billing-support-template-details> 
+
+      <span class="edit-button">
+        <img (click)='templateDetailsHidden[i] = false' src="../../../../assets/plus-circle-outline.png" alt="Edit Icon" class="edit icon">
+      </span>
+
+      <div class="card-data">
+        <h3 class="title"> Rule Name</h3>
+        <p class="content">({{template.templateType}}) {{template.ruleName}} </p>
+      </div>
+
+      <div class="card-data">
+        <h3 class="title"> Type </h3>
+        <p class="content"> <span  *ngIf="template.templateType == 'Custom'"> {{template.userName}} [{{template.userId}}] - </span> {{template.productType}} </p>
+      </div>
+
+      <!-- <div class="card-data" *ngIf="template.templateType == 'Custom'">
+        <h3 class="title"> User Name</h3>
+        <p class="content">{{template.userName}} [{{template.userId}}] </p>
+      </div> -->
+
+      <!-- <div class="card-data" *ngIf="template.templateType != 'Custom'">
+        <h3 class="title">Country</h3>
+        <p class="content">{{template.country}} </p>
+      </div> -->
+
+      <!-- <div class="card-data">
+        <h3 class="title">Type</h3>
+        <p class="content">{{template.templateType}} </p>
+      </div> -->
+
+      <!-- <div class="card-data">
+        <h3 class="title">Star Rating</h3>
+        <p class="content" *ngIf="template.starRating == 0" > ANY </p>
+        <p class="content" *ngIf="template.starRating != 0" >{{template.starRating}} </p>
+      </div> -->
+
+      <!-- <div class="card-data bottom-right ">
+        <h3 class="title">Currency</h3>
+        <p class="content">{{template.transactionCurrency}} </p>
+      </div> -->
+
+      <h4 class="bottom-right" >{{template.transactionCurrency}} </h4>
+
+      <!-- <div class="card-data">
+        <h3 class="title">Product</h3>
+        <p class="content">{{template.productType | productName}} </p>
+      </div> -->
+
+    </div>
+
+  </div>
+  <!-- <div class="pagination">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </div> -->
+</div>
+
+<!-- Assign Template Modal -->
+<div class="modal-wrapper" *ngIf="assignTemplateVisibility">
+  <div class="modal-overlay" (click)="assignTemplateVisibility = !assignTemplateVisibility"></div>
+  <div class="modal-content change-due-date">
+    <div class="close icon">
+      <img (click)="assignTemplateVisibility = !assignTemplateVisibility" src="../../../../assets/close-icon-white.png" alt="Close Icon"
+        class="icon">
+    </div>
+    <div class="navigation-tabs">
+      <h3 class="modal-heading">Assign Template</h3>
+    </div>
+    <div class="modal-body-content">
+      <input type="text" #supplierId placeholder="Enter Supplier Id" (keyup)="supplierId.value">
+      <button (click)="assignTemplate(supplierId.value);assignTemplateVisibility = !assignTemplateVisibility " [disabled]="supplierId.value == '' ">Send</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Send Invoices Modal -->
+<div class="modal-wrapper" *ngIf="sendInvoicesVisibility">
+  <div class="modal-overlay" (click)="sendInvoicesVisibility = !sendInvoicesVisibility"></div>
+  <div class="modal-content change-due-date">
+    <div class="close icon">
+      <img (click)="sendInvoicesVisibility = !sendInvoicesVisibility" src="../../../../assets/close-icon-white.png" alt="Close Icon"
+        class="icon">
+    </div>
+    <div class="navigation-tabs">
+      <h3 class="modal-heading">Send Invoices</h3>
+    </div>
+    <div class="modal-body-content">
+      <input type="date" #date (change)="date.value">
+      <button (click)="sendInvoices(date.value);sendInvoicesVisibility = !sendInvoicesVisibility "  [disabled]="date.value == '' ">Send</button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<!-- <app-loading-indicator [hidden]="loading"  ></app-loading-indicator> -->
+
+<div class="menu-content">
+  <div class="invoice-table">
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Total Amount</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let invoice of invoices">
+        <td>{{invoice.invoiceId}}</td>
+        <td>{{invoice.paymentDueDate}}</td>
+        <td>{{invoice.totalAmount | currency:invoice.currency }}</td>
+        <td>
+          <i>Download</i>
+          <i *ngIf="invoice.status == 'UNPAID' && invoice.amount != 0 " (click)="payInvoice(invoice)">Pay Now</i>
+        </td>
+      </tr>
+    </table>
+    <!-- <div class="pagination">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+    </div> -->
+  </div>
+
+
+</div>

@@ -1,0 +1,78 @@
+
+.header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background: #009688;
+    height: 50px;
+}
+
+.header .axis-logo {
+    max-height: 70px;
+    padding: 10px;
+}
+
+.header nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.header nav h2 {
+    font-size: 1em;
+    color: white;
+    padding: 0 10px;
+    margin: auto;
+    font-weight: 100;
+    -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+}
+
+.header nav h2:hover {
+    color: #4ebc9b;
+}
+
+.header .profile {
+    margin-left: auto;
+    padding: 0 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+}
+
+header .profile .drop-down {
+    position: absolute;
+    width: 120px;
+    right: 0;
+    top: 58px;
+    background-color: white;
+    padding: 10px;
+    text-align: left;
+    list-style: none;
+    border: 1px solid grey;
+}
+
+header .profile .drop-down ul {
+    padding: 0;
+}
+
+header .profile .drop-down li {
+    list-style: none;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.header .profile .initials {
+    width: 39px;
+    background: #4dbc9c;
+    border-radius: 3px;
+    text-align: center;
+    color: white;
+    font-size: 1em;
+    margin: auto;
+    padding: 7px;
+    font-weight: bold;
+    /* text-align: center; */
+}
+
