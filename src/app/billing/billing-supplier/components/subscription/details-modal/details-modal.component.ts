@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input, HostListener } from '@angular/core';
 
 @Component({
-  selector: 'app-details-modal',
+  selector: 'billing-supplier-details-modal',
   templateUrl: './details-modal.component.html',
   styleUrls: ['./details-modal.component.css']
 })

@@ -6,10 +6,11 @@ import { Observable } from 'rxjs/Observable';
 
 import { Http } from '@angular/http/src/http';
 import { ToasterService } from '../../../../shared/services/toaster.service';
+import { LoadingIndicatorService } from '../../../../shared/services/loading-indicator.service';
 
 
 @Component({
-  selector: 'app-subscription',
+  selector: 'billing-supplier-subscription',
   templateUrl: './subscription.component.html',
   styleUrls: ['./subscription.component.css']
 })
@@ -24,23 +25,24 @@ export class SubscriptionComponent implements OnInit {
   constructor(
     private winRef: WindowRefService,
     private paymentService: PaymentService,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private lodingIndicatorService: LoadingIndicatorService
   ) { }
 
   /**
    * Gets the ID of the user from local storage and displays the details.
+   * Hide/Display Loading Indicator
    * 
    * @requires PaymentService
    * @memberof SubscriptionComponent
    */
   ngOnInit() {
-
+    this.lodingIndicatorService.displayLoadingIndicator();
     this.suppierId = localStorage.getItem("id");
-
     this.paymentService.getSupplierDetails(this.suppierId).subscribe(
       res => {
         this.supplierDetails = JSON.parse(res["_body"]);
-        this.loading = true;
+        this.lodingIndicatorService.hideLoadingIndicator();
       }
     );
   }

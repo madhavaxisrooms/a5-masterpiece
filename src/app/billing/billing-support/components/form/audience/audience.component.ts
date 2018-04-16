@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormService } from '../../../services/form.service';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { FormDataService } from '../services/form-data.service';
+import {LoadingIndicatorService} from '../../../../../shared/services/loading-indicator.service';
 
 @Component({
   selector: 'billing-support-form-audience-tab',
@@ -20,7 +21,8 @@ export class AudienceComponent implements OnInit {
   constructor(
     private formService: FormService,
     private formBuilder: FormBuilder,
-    private formDataService: FormDataService
+    private formDataService: FormDataService,
+    private loader: LoadingIndicatorService
   ) { }
 
   /**
@@ -77,6 +79,7 @@ export class AudienceComponent implements OnInit {
    * @memberof AudienceComponent
    */
   getUserIds() {
+    this.loader.displayLoadingIndicator();
     let counter = 0;
     this.formDataService.getUserIds(this.audienceForm.value.userRole).subscribe(
       res => {
@@ -85,6 +88,7 @@ export class AudienceComponent implements OnInit {
         this.usersSearchedList = [];
         if (counter > 0)
           this.searchUser(this.selectedUser);
+        this.loader.hideLoadingIndicator();
       }
     );
   }

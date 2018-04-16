@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from '../../services/form.service';
 import { ToasterService } from '../../../../shared/services/toaster.service';
+import { LoadingIndicatorService } from '../../../../shared/services/loading-indicator.service';
 
 
 @Component({
@@ -10,7 +11,6 @@ import { ToasterService } from '../../../../shared/services/toaster.service';
 })
 export class HomeComponent implements OnInit {
   templateData;
-  loadingIndicator: boolean = false;
   formHidden: boolean;
   aggrMenuHidden: boolean = true;
   templateDetailsHidden;
@@ -18,22 +18,30 @@ export class HomeComponent implements OnInit {
   public sendInvoicesVisibility: boolean = false;
   constructor(
     private formService: FormService,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private loader: LoadingIndicatorService
   ) { }
 
   /**
    * 1. Getting all the templates from server and displaying in the template
    * 2. Getting the Formhidden flag from the form service.
+   * 3. Displaying/Hiding the loading indicator
    * 
    * @requires FormService 
    * @memberof HomeComponent
    */
   ngOnInit() {
+
+    this.loader.displayLoadingIndicator();
     this.formService.getAllTemplates().subscribe(
       res => {
         this.templateData = JSON.parse(res['_body']);
         this.templateDetailsHidden = new Array(this.templateData.templateDetails.length).fill(true);
-        this.loadingIndicator = true;
+        this.loader.hideLoadingIndicator();
+      },
+      err =>{
+        this.toasterService.displayToaster("Something went wrong. Please contact Support Team", 'error');
+        this.loader.hideLoadingIndicator();
       }
     );
 

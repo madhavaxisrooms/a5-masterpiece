@@ -1,0 +1,144 @@
+/* Supplier Styles */
+
+.body-content .supplier-nav {
+    padding: 50px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.body-content .supplier-nav>* {
+    margin: 0 10px;
+}
+
+.body-content .supplier-nav button:first-child {
+    margin-left: 0;
+}
+
+.body-content .supplier-nav .filter-icon {
+    margin-top: 10px;
+}
+
+.supplier-content-area {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 50px 0;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    height: 520px;
+}
+
+.supplier-content-area .menu ul {
+    margin: 0px;
+    padding: 0;
+}
+
+.supplier-content-area .menu ul li {
+    padding: 10px 10px;
+    list-style: none;
+    text-transform: uppercase;
+    color: #ffffff;
+    cursor: pointer;
+    padding-left: 30px;
+}
+
+.supplier-content-area .menu ul .active, .supplier-content-area .menu ul li:hover {
+    background: #4dbc9c;
+}
+
+.supplier-content-area .menu-content {
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+}
+
+.supplier-content-area .menu-content h3 {
+    color: #162c42;
+    margin: 8px 0;
+}
+
+.supplier-content-area .menu-content .tab-title {
+    text-align: center;
+}
+
+.supplier-content-area .menu-content p {
+    color: #525252;
+}
+
+.supplier-content-area .menu-content .title-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.supplier-content-area .menu-content .title-content .title-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.supplier-content-area .menu-content i {
+    margin: auto 15px;
+    cursor: pointer;
+    color: #4ebc9b;
+    text-decoration: underline;
+}
+
+.supplier-content-area .menu-content .title-content .product-names ul {
+    padding: 0 0 0 25px;
+    margin: 0;
+    list-style: none;
+    font-weight: bold;
+    color: #525252;
+}
+
+.supplier-content-area .menu-content .price-details {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 70%;
+    height: 90px;
+}
+
+.supplier-content-area .menu-content .auto-renewal div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 200px;
+}
+
+.supplier-content-area .menu-content .auto-renewal div p {
+    margin: auto;
+    display: inline;
+}
+
+/* Invoice Tab */
+
+.supplier-content-area .menu-content .invoice-table {
+    margin: 0;
+}
+
+.supplier-content-area .menu-content .invoice-table table tr td:last-child {
+    text-align: left;
+}
+
+.supplier-content-area .menu-content .pagination {
+    margin: 20px auto;
+}
+

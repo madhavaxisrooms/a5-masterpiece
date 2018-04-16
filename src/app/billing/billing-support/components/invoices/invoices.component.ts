@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { WindowRefService } from '../../../../shared/services/window-ref.service';
 import { ToasterService } from '../../../../shared/services/toaster.service';
+import { LoadingIndicatorService } from '../../../../shared/services/loading-indicator.service';
 import { InvoiceService } from '../../services/invoice.service';
 
 @Component({
-  selector: 'app-invoices',
+  selector: 'billing-supplier-invoices',
   templateUrl: './invoices.component.html',
   styleUrls: ['./invoices.component.css']
 })
@@ -14,11 +15,11 @@ export class InvoicesComponent implements OnInit {
   public actionMenu;
   public changeDueDateVisibility: boolean = false;
   public invoiceIdForDueDate;
-  public loader: boolean = false;
   constructor(
     private invoiceService: InvoiceService,
     private winRef: WindowRefService,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private loader: LoadingIndicatorService
   ) { }
 
   /**
@@ -28,15 +29,16 @@ export class InvoicesComponent implements OnInit {
    * @memberof InvoicesComponent
    */
   ngOnInit() {
+    this.loader.displayLoadingIndicator();
     this.invoiceService.getAllInvoices().subscribe(
       res => {
         this.invoices = JSON.parse(res['_body']);
         if (this.invoices != null) this.actionMenu = new Array(this.invoices.length);
-        this.loader = true;
+        this.loader.hideLoadingIndicator();
       },
       err => {
         this.toasterService.displayToaster("Something went wrong.", 'error');
-        this.loader = true;
+        this.loader.hideLoadingIndicator();
       }
     );
   }
@@ -60,7 +62,7 @@ export class InvoicesComponent implements OnInit {
     } else {
       this.invoiceService.changeInvoiceStatus(invoiceId, status).subscribe(
         res => {
-          this.winRef.reload();
+          this.ngOnInit();
         },
         err => {
           this.toasterService.displayToaster("Something went wrong.", 'error');
@@ -84,7 +86,7 @@ export class InvoicesComponent implements OnInit {
     } else {
       this.invoiceService.changeDueDate(this.invoiceIdForDueDate, date).subscribe(
         res => {
-          this.winRef.reload();
+          this.ngOnInit();
         },
         err => {
           this.toasterService.displayToaster("Something went wrong.", 'error');

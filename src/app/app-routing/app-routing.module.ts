@@ -6,7 +6,8 @@ import { PageNotFoundComponent } from '../shared/components/page-not-found/page-
 
 const routes: Routes = [
   { path: 'billing', loadChildren: 'app/billing/billing.module#BillingModule' },
-  // { path: 'support', loadChildren: 'app/support/support.module#SupportModule' },
+  { path: 'activity-report', loadChildren: 'app/activity-report/activity-report.module#ActivityReportModule' },
+  { path: 'analytics', loadChildren: 'app/analytics/analytics.module#AnalyticsModule' },
   // { path: '', redirectTo: '/support/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   { path: '404', component: PageNotFoundComponent },

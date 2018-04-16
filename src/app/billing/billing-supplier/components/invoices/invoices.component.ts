@@ -1,36 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentService } from '../../services/payment.service';
 import { WindowRefService } from '../../../../shared/services/window-ref.service';
+import { LoadingIndicatorService } from '../../../../shared/services/loading-indicator.service';
 import { InvoiceService } from '../../services/invoice.service';
 
 @Component({
-  selector: 'app-invoices',
+  selector: 'billing-supplier-invoices',
   templateUrl: './invoices.component.html',
   styleUrls: ['./invoices.component.css']
 })
 export class InvoicesComponent implements OnInit {
   rzp1: any;
   public invoices;
-  public loading: boolean = false;
   public supplierid = localStorage.getItem('id');
   constructor(
     private invoiceService: InvoiceService,
     private paymentService: PaymentService,
     private winRef: WindowRefService,
+    private loader: LoadingIndicatorService
   ) { }
 
   /**
-   *
+   *Hide/Display Loader
    * Gets invoices details by ID
    *
    * @requires InvoiceService 
    * @memberof InvoicesComponent
    */
   ngOnInit() {
+    this.loader.displayLoadingIndicator();
     this.invoiceService.getInvoiceDetailsById(this.supplierid).subscribe(
       res => {
         this.invoices = JSON.parse(res['_body']);
-        this.loading = true;
+        this.loader.hideLoadingIndicator();
       }
     );
   }
@@ -62,7 +64,6 @@ export class InvoicesComponent implements OnInit {
    * @memberof InvoicesComponent
    */
   payInvoice(invoice) {
-
     var userDetails = {
       "paymentRequestType": "NON_CREDIT",
       "loginId":'1101',

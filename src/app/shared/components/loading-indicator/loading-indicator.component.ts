@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingIndicatorService } from '../../services/loading-indicator.service';
 
 @Component({
   selector: 'shared-loading-indicator',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadingIndicatorComponent implements OnInit {
 
-  constructor() { }
+  public loadingIndicatorStatus: boolean;
+
+  constructor(
+    private loader: LoadingIndicatorService
+  ) { }
 
   ngOnInit() {
+    this.loader.loadingIndicatorStatus.subscribe(
+      status => {
+        this.loadingIndicatorStatus = status;
+      }
+    )
   }
+
 
 }
