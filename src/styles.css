@@ -24,8 +24,12 @@ p, li {
     font-family: lato, 'Montserrat', Arial, sans-serif;
 }
 
-h1, h2, h3, h4, h5, li, td, input, select {
+h1, h2, h3, h4, h5, li, input, select {
     color: #333;
+}
+
+td{
+    color: #000000
 }
 
 input[type="checkbox"] {
@@ -73,13 +77,31 @@ input:checked[type="checkbox"]:before {
 }
 
 input, select {
-    border-radius: 3px;
+    border-radius: 2px;
+    height: 35px;
 }
+
 
 ::-webkit-input-placeholder {
     font-family: lato, 'Montserrat', Arial, sans-serif;
     font-size: 13px;
+    color: #B6B6B6;
 }
+
+
+:-ms-input-placeholder {
+    font-family: lato, 'Montserrat', Arial, sans-serif;
+    font-size: 13px;
+    color: #B6B6B6;
+}
+
+
+::placeholder {
+    font-family: lato, 'Montserrat', Arial, sans-serif;
+    font-size: 13px;
+    color: #B6B6B6;
+}
+
 
 button, ul li, a, p, h1, h2, h3, h4, h5, h6, th, td, input {
     font-family: lato, 'Montserrat', Arial, sans-serif;
@@ -89,7 +111,7 @@ td {
     font-family: lato, 'Montserrat', Arial, sans-serif;
 }
 
-a {
+a,a:focus, a:hover,a:visited {
     text-decoration: none;
     color: inherit;
 }
@@ -112,7 +134,7 @@ button:disabled:hover{
 }
 
 input {
-    border: 1px solid #3d464d;
+    border: 1px solid #e8e8e8;
     outline: none;
     padding: 6px 12px;
     color: #3d464d;
@@ -124,11 +146,11 @@ input[type="date"] {
 
 button {
     padding: 6px 12px;
-    background: white;
-    border: 1px solid #afafaf;
+    background: #3a9788;
+    border: 1px solid #3a9788;
     font-size: 14px;
-    color: #3a9788;
-    border-radius: 3px;
+    color: white;
+    border-radius: 2px;
     -webkit-transition: 0.3s ease-in-out;
     transition: 0.3s ease-in-out;
     text-transform: capitalize;
@@ -144,8 +166,8 @@ select {
 }
 
 button.active, button:hover {
-    color: white;
-    background: #4dbc9c;
+    color: #4dbc9c;
+    background: #fff;
     border-color: #4dbc9c;
 }
 
@@ -474,7 +496,7 @@ button.active, button:hover {
     background: #ffc107;
     margin: 2px;
     padding: 10px;
-    border-radius: 3px;
+    border-radius: 2px;
     color: #162c42;
     width: auto !important;
 }
@@ -551,10 +573,10 @@ button.active, button:hover {
     font-weight: 100;
     color: white;
 }
-
+/* 
 .body-content .invoice-table table tr:first-child {
     background: #34485d;
-}
+} */
 
 .body-content .invoice-table {
     margin: 20px 0;
@@ -568,13 +590,17 @@ button.active, button:hover {
 th, td {
     padding: 15px 10px;
 }
-
+/* 
 tr:nth-child(odd) {
     background: #c7c7c757;
-}
+} */
 
-tr {
+/* tr {
     border: 3px solid grey;
+} */
+
+table thead{
+    color: #576271;
 }
 
 table .action-menu {
@@ -634,7 +660,7 @@ table .action-dropdown-rel .action-dropdown li {
     color: white;
     font-weight: bold;
     margin: 0px 10px;
-    border-radius: 3px;
+    border-radius: 2px;
     border: 1px solid #032859;
     cursor: pointer;
     color: white;
