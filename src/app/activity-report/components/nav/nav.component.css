@@ -1,0 +1,28 @@
+nav{
+    background-color: white;
+    box-shadow: 0px 1px 20px #a5a5a5;
+}
+
+a{
+    color: #3a9788;
+    font-size: 14px;
+}
+.active-nav{
+    font-weight: bold;
+}
+
+ul{
+    display: flex;
+    height: 50px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    list-style: none;
+    width: 1170px;
+}
+
+li{
+    flex: 1;
+    text-align: center;
+}
