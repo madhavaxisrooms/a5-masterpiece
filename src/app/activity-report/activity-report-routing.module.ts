@@ -9,12 +9,22 @@ import { PriceUpdateReportComponent } from './components/price-and-updates/price
 import { ArcPriceReportComponent } from './components/price-and-updates/arc-price-report/arc-price-report.component';
 import { ProductPriceReportComponent } from './components/price-and-updates/product-price-report/product-price-report.component';
 import { PriceConfigChangeComponent } from './components/price-and-updates/price-config-change/price-config-change.component';
+import { PromotionLogComponent } from './components/cm-log-reports/promotion-log/promotion-log.component';
+import { ArcUpdateAnalysisReportComponent } from './components/cm-log-reports/arc-update-analysis-report/arc-update-analysis-report.component';
+import { CmLogReportComponent } from './components/cm-log-reports/cm-log-report/cm-log-report.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'cm-log-reports' },
   { path: 'booking-reports', component: BookingReportsComponent },
   { path: 'channels', component: ChannelsComponent },
-  { path: 'cm-log-reports', component: CmLogReportsComponent },
+  {
+    path: 'cm-log-reports', component: CmLogReportsComponent, children: [
+      { path: '', redirectTo: 'promotion-log' },
+      { path: 'promotion-log', component: PromotionLogComponent },
+      { path: 'cm-log-report', component: CmLogReportComponent },
+      { path: 'arc-update-analysis-report', component: ArcUpdateAnalysisReportComponent },
+    ]
+  },
   {
     path: 'price-and-updates', component: PriceAndUpdatesComponent, children: [
       { path: '', redirectTo: 'price-update-report' },
