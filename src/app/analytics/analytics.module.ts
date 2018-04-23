@@ -18,7 +18,7 @@ import { MasterReportsComponent } from './components/master-reports/master-repor
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
   ],
   declarations: [HomeComponent, FilterComponent, MasterReportsComponent]
 })

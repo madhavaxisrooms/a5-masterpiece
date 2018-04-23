@@ -79,7 +79,7 @@ export class AudienceComponent implements OnInit {
    * @memberof AudienceComponent
    */
   getUserIds() {
-    this.loader.displayLoadingIndicator();
+    // this.loader.displayLoadingIndicator();
     let counter = 0;
     this.formDataService.getUserIds(this.audienceForm.value.userRole).subscribe(
       res => {
@@ -88,7 +88,7 @@ export class AudienceComponent implements OnInit {
         this.usersSearchedList = [];
         if (counter > 0)
           this.searchUser(this.selectedUser);
-        this.loader.hideLoadingIndicator();
+        // this.loader.hideLoadingIndicator();
       }
     );
   }
