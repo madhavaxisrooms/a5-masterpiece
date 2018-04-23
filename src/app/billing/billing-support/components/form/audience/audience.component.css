@@ -30,3 +30,48 @@
     cursor: pointer;
   }
   
+
+
+input[type="checkbox"] {
+  position: relative;
+  width: 30px !important;
+  height: 15px !important;
+  -webkit-appearance: none;
+  background: #c6c6c6;
+  outline: none;
+  border-radius: 100px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+input.ng-invalid, .ng-invalid {
+  border-color: red;
+}
+
+input:checked[type="checkbox"] {
+  background: #162c42;
+}
+
+input[type="checkbox"]:before {
+  content: "";
+  position: absolute;
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50px;
+  top: 0;
+  left: 0;
+  background: white;
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+input:checked[type="checkbox"]:before {
+  left: 15px;
+}

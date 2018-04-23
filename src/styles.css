@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, li, input, select {
 td{
     color: #000000
 }
-
+/* 
 input[type="checkbox"] {
     position: relative;
     width: 30px !important;
@@ -75,7 +75,7 @@ input[type="checkbox"]:before {
 
 input:checked[type="checkbox"]:before {
     left: 15px;
-}
+} */
 
 input, select {
     border-radius: 2px;
@@ -440,14 +440,14 @@ button.active, button:hover {
     display: inline;
 }
 
-.modal-content .rule-addition-area .hotel-list-hotels input[type="checkbox"] {
+/* .modal-content .rule-addition-area .hotel-list-hotels input[type="checkbox"] {
     width: 30px !important;
     height: 15px !important;
 }
 
 .modal-content .rule-addition-area .hotel-list-hotels input:checked[type="checkbox"]:before {
     left: 15px;
-}
+} */
 
 .modal-content .hotel-list {
     z-index: 4;
@@ -864,8 +864,25 @@ table .action-dropdown-rel .action-dropdown li {
   background-color: rgba(0, 0, 0, 0.13);
 }
 
+.md-primary{
+    background: #009688;
+    color: #fff !important;
+} 
+
+.md-primary:hover{
+    background-color: #fff !important;
+    color: #009688 !important;
+}
+
+.mat-checkbox-layout{
+    font-weight: normal;
+}
+
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background{
+    background-color: #009688 ;
+}
+
 .mat-button[disabled], .mat-flat-button[disabled], .mat-icon-button[disabled], .mat-stroked-button[disabled] {
-  cursor: default;
   background: transparent !important;
   cursor: default !important;
 }
