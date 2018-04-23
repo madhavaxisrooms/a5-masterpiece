@@ -1,0 +1,15 @@
+.mat-cell, .mat-header-cell {
+  font-size: 14px;
+  border-bottom: 1px solid #eaeaea;
+  height: 48px;
+  line-height: 48px;
+  min-width: 150px;
+}
+
+.mat-row, .mat-header-row {
+  border-bottom-color: rgba(0, 0, 0, 0);
+}
+.mat-table {
+  width: 100%;
+  overflow-x: auto;
+}

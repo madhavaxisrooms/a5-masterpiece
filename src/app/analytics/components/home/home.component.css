@@ -52,3 +52,21 @@
   margin: 0px 0px 15px;
   height: 40px;
 }
+
+.table-column-drop{
+  position: absolute;
+  right:15px;
+  z-index: 1;
+  padding: 5px;
+  min-width: 200px;
+  margin-top: 5px;
+  height: 350px;
+  overflow-y: auto;
+}
+mat-list-item.mat-list-item{
+  height: 28px;
+  font-size: 14px;
+}
+mat-card[hidden] {
+  display: none;
+}

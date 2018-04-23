@@ -872,4 +872,14 @@ table .action-dropdown-rel .action-dropdown li {
 .padding-top-15 {
   padding-top: 15px !important;
 }
+input[type="checkbox"].cdk-visually-hidden {
+  position: absolute !important;
+}
+.table-column-drop .mat-checkbox label {
+  font-weight: 400;
+}
+.table-column-drop .mat-checkbox-inner-container{
+  width: 15px;
+  height: 15px;
+}
 /*-----------------Material design Common css---------------------*/
