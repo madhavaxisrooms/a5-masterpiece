@@ -1,0 +1,10 @@
+.filter-div + .filter-div {
+  margin-top: 10px;
+}
+.filter-button {
+  background: #009688;
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+}
