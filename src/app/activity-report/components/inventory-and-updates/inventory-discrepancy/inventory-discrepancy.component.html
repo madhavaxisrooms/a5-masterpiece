@@ -1,0 +1,79 @@
+<div class="input-area">
+  <div class="form-elements">
+    <mat-form-field>
+      <input matInput [matDatepicker]="startDate" placeholder="Date">
+      <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+      <mat-datepicker #startDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="action-area">
+      <button type="button" mat-button class="filter-button md-primary">Submit</button>
+  </div>
+</div>
+
+<div class="output-area">
+  <div class="action-area">
+    <span>
+      <button mat-button>Download</button>
+    </span>
+    <span>
+      <button mat-button>Print</button>
+    </span>
+  </div>
+
+  <table class="table" border="0">
+    <thead>
+      <tr>
+        <th>Product Details</th>
+        <th>Time Details</th>
+        <th>Action Details</th>
+        <th>Success Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Apple SE - Cuttack Suite Room</td>
+        <td>Tejaswini 12/04/2018 04:14:07 PM</td>
+        <td>Inventory Updated on 29/04/2018 - 6</td>
+        <td class="red-tick">AxisRooms</td>
+      </tr>
+      <tr>
+        <td>Apple SE - Cuttack Suite Room</td>
+        <td>Tejaswini 12/04/2018 04:14:07 PM</td>
+        <td>Inventory Updated on 29/04/2018 - 6</td>
+        <td class="green-tick">AxisRooms</td>
+      </tr>
+      <tr>
+        <td>Apple SE - Cuttack Suite Room</td>
+        <td>Tejaswini 12/04/2018 04:14:07 PM</td>
+        <td>Inventory Updated on 29/04/2018 - 6</td>
+        <td class="green-tick">AxisRooms</td>
+      </tr>
+      <tr>
+        <td>Apple SE - Cuttack Suite Room</td>
+        <td>Tejaswini 12/04/2018 04:14:07 PM</td>
+        <td>Inventory Updated on 29/04/2018 - 6</td>
+        <td class="green-tick">AxisRooms</td>
+      </tr>
+      <tr>
+        <td>Apple SE - Cuttack Suite Room</td>
+        <td>Tejaswini 12/04/2018 04:14:07 PM</td>
+        <td>Inventory Updated on 29/04/2018 - 6</td>
+        <td class="red-tick">AxisRooms</td>
+      </tr>
+      <tr>
+        <td>Apple SE - Cuttack Suite Room</td>
+        <td>Tejaswini 12/04/2018 04:14:07 PM</td>
+        <td>Inventory Updated on 29/04/2018 - 6</td>
+        <td class="green-tick">AxisRooms</td>
+      </tr>
+      <tr>
+        <td>Apple SE - Cuttack Suite Room</td>
+        <td>Tejaswini 12/04/2018 04:14:07 PM</td>
+        <td>Inventory Updated on 29/04/2018 - 6</td>
+        <td class="red-tick">AxisRooms</td>
+      </tr>
+     
+    </tbody>
+  </table>
+</div>

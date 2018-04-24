@@ -1,0 +1,40 @@
+.input-area .form-elements {
+    margin: 10px 0;
+}
+
+.input-area .form-elements > *{
+    margin: 10px;
+    width: 250px;
+}
+
+.input-area .action-area {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.output-area {
+    background: white;
+    padding: 10px;
+}
+
+.output-area .action-area {
+    display: flex;
+    justify-content: space-between;
+    color: #009688;
+    font-weight: bold;
+}
+
+.output-area .action-area>span {
+    margin: 0px 10px;
+}
+
+.output-area table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table * {
+    border: none;
+}
+
