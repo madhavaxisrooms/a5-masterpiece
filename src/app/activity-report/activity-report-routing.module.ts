@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BookingReportsComponent } from './components/booking-reports/booking-reports.component';
 import { ChannelsComponent } from './components/channels/channels.component';
 import { CmLogReportsComponent } from './components/cm-log-reports/cm-log-reports.component';
 import { PriceAndUpdatesComponent } from './components/price-and-updates/price-and-updates.component';
@@ -19,17 +18,28 @@ import { InventoryUpdateReportComponent } from './components/inventory-and-updat
 import { OtaActivationComponent } from './components/channels/ota-activation/ota-activation.component';
 import { BlockChannelComponent } from './components/channels/block-channel/block-channel.component';
 import { InventoryAndPriceAvailabilityReportComponent } from './components/channels/inventory-and-price-availability-report/inventory-and-price-availability-report.component';
+import { PmsMappingReportComponent } from './components/pms-reports/pms-mapping-report/pms-mapping-report.component';
+import { PmsPushBookingReportComponent } from './components/pms-reports/pms-push-booking-report/pms-push-booking-report.component';
+import { PmsReportsComponent } from './components/pms-reports/pms-reports.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'cm-log-reports' },
-  { path: 'booking-reports', component: BookingReportsComponent },
-  { path: 'channels', component: ChannelsComponent, children:[
-    { path: '', redirectTo: 'ota-activation' },
-    { path: 'ota-activation', component:OtaActivationComponent  },
-    { path: 'block-channel', component:BlockChannelComponent  },
-    { path: 'inventory-and-price-availability-report', component:InventoryAndPriceAvailabilityReportComponent  },
-  ] },
+  {
+    path: 'pms-reports', component: PmsReportsComponent, children: [
+      { path: '', redirectTo: 'pms-mapping-report' },
+      { path: 'pms-mapping-report', component: PmsMappingReportComponent },
+      { path: 'pms-push-booking-report', component: PmsPushBookingReportComponent },
+    ]
+  },
+  {
+    path: 'channels', component: ChannelsComponent, children: [
+      { path: '', redirectTo: 'ota-activation' },
+      { path: 'ota-activation', component: OtaActivationComponent },
+      { path: 'block-channel', component: BlockChannelComponent },
+      { path: 'inventory-and-price-availability-report', component: InventoryAndPriceAvailabilityReportComponent },
+    ]
+  },
   {
     path: 'cm-log-reports', component: CmLogReportsComponent, children: [
       { path: '', redirectTo: 'promotion-log' },

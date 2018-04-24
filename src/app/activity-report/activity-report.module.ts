@@ -8,7 +8,6 @@ import { NavComponent } from './components/nav/nav.component';
 import { PriceAndUpdatesComponent } from './components/price-and-updates/price-and-updates.component';
 import { ChannelsComponent } from './components/channels/channels.component';
 import { InventoryAndUpdatesComponent } from './components/inventory-and-updates/inventory-and-updates.component';
-import { BookingReportsComponent } from './components/booking-reports/booking-reports.component';
 import { CmLogReportsComponent } from './components/cm-log-reports/cm-log-reports.component';
 import { PriceUpdateReportComponent } from './components/price-and-updates/price-update-report/price-update-report.component';
 import { ProductPriceReportComponent } from './components/price-and-updates/product-price-report/product-price-report.component';
@@ -28,6 +27,10 @@ import { ChannelsSubMenuComponent } from './components/channels/channels-sub-men
 import { OtaActivationComponent } from './components/channels/ota-activation/ota-activation.component';
 import { BlockChannelComponent } from './components/channels/block-channel/block-channel.component';
 import { InventoryAndPriceAvailabilityReportComponent } from './components/channels/inventory-and-price-availability-report/inventory-and-price-availability-report.component';
+import { PmsReportsComponent } from './components/pms-reports/pms-reports.component';
+import { PmsMappingReportComponent } from './components/pms-reports/pms-mapping-report/pms-mapping-report.component';
+import { PmsPushBookingReportComponent } from './components/pms-reports/pms-push-booking-report/pms-push-booking-report.component';
+import { PmsReportsSubMenuComponent } from './components/pms-reports/pms-reports-sub-menu/pms-reports-sub-menu.component';
 
 @NgModule({
   imports: [
@@ -51,7 +54,6 @@ import { InventoryAndPriceAvailabilityReportComponent } from './components/chann
     PriceAndUpdatesComponent,
     ChannelsComponent,
     InventoryAndUpdatesComponent,
-    BookingReportsComponent,
     CmLogReportsComponent,
     PriceUpdateReportComponent,
     ProductPriceReportComponent,
@@ -71,6 +73,10 @@ import { InventoryAndPriceAvailabilityReportComponent } from './components/chann
     OtaActivationComponent,
     BlockChannelComponent,
     InventoryAndPriceAvailabilityReportComponent,
+    PmsReportsComponent,
+    PmsMappingReportComponent,
+    PmsPushBookingReportComponent,
+    PmsReportsSubMenuComponent,
   ]
 })
 export class ActivityReportModule { }
