@@ -12,11 +12,24 @@ import { PriceConfigChangeComponent } from './components/price-and-updates/price
 import { PromotionLogComponent } from './components/cm-log-reports/promotion-log/promotion-log.component';
 import { ArcUpdateAnalysisReportComponent } from './components/cm-log-reports/arc-update-analysis-report/arc-update-analysis-report.component';
 import { CmLogReportComponent } from './components/cm-log-reports/cm-log-report/cm-log-report.component';
+import { ArcInventoryAvailabilityReportComponent } from './components/inventory-and-updates/arc-inventory-availability-report/arc-inventory-availability-report.component';
+import { InventoryDiscrepancyComponent } from './components/inventory-and-updates/inventory-discrepancy/inventory-discrepancy.component';
+import { OtaInventoryComponent } from './components/inventory-and-updates/ota-inventory/ota-inventory.component';
+import { InventoryUpdateReportComponent } from './components/inventory-and-updates/inventory-update-report/inventory-update-report.component';
+import { OtaActivationComponent } from './components/channels/ota-activation/ota-activation.component';
+import { BlockChannelComponent } from './components/channels/block-channel/block-channel.component';
+import { InventoryAndPriceAvailabilityReportComponent } from './components/channels/inventory-and-price-availability-report/inventory-and-price-availability-report.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'cm-log-reports' },
   { path: 'booking-reports', component: BookingReportsComponent },
-  { path: 'channels', component: ChannelsComponent },
+  { path: 'channels', component: ChannelsComponent, children:[
+    { path: '', redirectTo: 'ota-activation' },
+    { path: 'ota-activation', component:OtaActivationComponent  },
+    { path: 'block-channel', component:BlockChannelComponent  },
+    { path: 'inventory-and-price-availability-report', component:InventoryAndPriceAvailabilityReportComponent  },
+  ] },
   {
     path: 'cm-log-reports', component: CmLogReportsComponent, children: [
       { path: '', redirectTo: 'promotion-log' },
@@ -34,7 +47,15 @@ const routes: Routes = [
       { path: 'price-config-change', component: PriceConfigChangeComponent }
     ]
   },
-  { path: 'inventory-and-updates', component: InventoryAndUpdatesComponent },
+  {
+    path: 'inventory-and-updates', component: InventoryAndUpdatesComponent, children: [
+      { path: '', redirectTo: 'arc-inventory-availabilty-report' },
+      { path: 'arc-inventory-availabilty-report', component: ArcInventoryAvailabilityReportComponent },
+      { path: 'inventory-discrepancy', component: InventoryDiscrepancyComponent },
+      { path: 'inventory-update-report', component: InventoryUpdateReportComponent },
+      { path: 'ota-inventory', component: OtaInventoryComponent },
+    ]
+  },
 ];
 
 @NgModule({
