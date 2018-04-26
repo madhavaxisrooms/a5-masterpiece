@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./price-update-report.component.css']
 })
 export class PriceUpdateReportComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit() {

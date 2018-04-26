@@ -1,3 +1,28 @@
-<p>
-  inventory-and-price-availability-report works!
-</p>
+<div class="input-area">
+  <div class="form-elements">
+    <mat-form-field>
+      <input matInput [matDatepicker]="startDate" placeholder="Start Date">
+      <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+      <mat-datepicker #startDate></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="endDate" placeholder="End Date">
+      <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+      <mat-datepicker #endDate></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Channel">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Supplier">
+    </mat-form-field>
+    <mat-checkbox>MIS Reports</mat-checkbox>
+
+  </div>
+  <div class="action-area">
+    <button type="button" mat-button class="filter-button md-primary">Download</button>
+  </div>
+</div>

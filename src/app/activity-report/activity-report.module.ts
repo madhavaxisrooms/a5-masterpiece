@@ -16,21 +16,14 @@ import { ArcPriceReportComponent } from './components/price-and-updates/arc-pric
 import { PromotionLogComponent } from './components/cm-log-reports/promotion-log/promotion-log.component';
 import { CmLogReportComponent } from './components/cm-log-reports/cm-log-report/cm-log-report.component';
 import { ArcUpdateAnalysisReportComponent } from './components/cm-log-reports/arc-update-analysis-report/arc-update-analysis-report.component';
-import { CmLogReportsSubMenuComponent } from './components/cm-log-reports/cm-log-reports-sub-menu/cm-log-reports-sub-menu.component';
-import { PriceAndUpdatesSubMenuComponent } from './components/price-and-updates/price-and-updates-sub-menu/price-and-updates-sub-menu.component';
 import { InventoryDiscrepancyComponent } from './components/inventory-and-updates/inventory-discrepancy/inventory-discrepancy.component';
 import { OtaInventoryComponent } from './components/inventory-and-updates/ota-inventory/ota-inventory.component';
 import { InventoryUpdateReportComponent } from './components/inventory-and-updates/inventory-update-report/inventory-update-report.component';
 import { ArcInventoryAvailabilityReportComponent } from './components/inventory-and-updates/arc-inventory-availability-report/arc-inventory-availability-report.component';
-import { InventoryAndUpdatesSubMenuComponent } from './components/inventory-and-updates/inventory-and-updates-sub-menu/inventory-and-updates-sub-menu.component';
-import { ChannelsSubMenuComponent } from './components/channels/channels-sub-menu/channels-sub-menu.component';
 import { OtaActivationComponent } from './components/channels/ota-activation/ota-activation.component';
 import { BlockChannelComponent } from './components/channels/block-channel/block-channel.component';
 import { InventoryAndPriceAvailabilityReportComponent } from './components/channels/inventory-and-price-availability-report/inventory-and-price-availability-report.component';
-import { PmsReportsComponent } from './components/pms-reports/pms-reports.component';
-import { PmsMappingReportComponent } from './components/pms-reports/pms-mapping-report/pms-mapping-report.component';
-import { PmsPushBookingReportComponent } from './components/pms-reports/pms-push-booking-report/pms-push-booking-report.component';
-import { PmsReportsSubMenuComponent } from './components/pms-reports/pms-reports-sub-menu/pms-reports-sub-menu.component';
+import { SubNavComponent } from './components/sub-nav/sub-nav.component';
 
 @NgModule({
   imports: [
@@ -62,21 +55,14 @@ import { PmsReportsSubMenuComponent } from './components/pms-reports/pms-reports
     PromotionLogComponent,
     CmLogReportComponent,
     ArcUpdateAnalysisReportComponent,
-    CmLogReportsSubMenuComponent,
-    PriceAndUpdatesSubMenuComponent,
     InventoryDiscrepancyComponent,
     OtaInventoryComponent,
     InventoryUpdateReportComponent,
     ArcInventoryAvailabilityReportComponent,
-    InventoryAndUpdatesSubMenuComponent,
-    ChannelsSubMenuComponent,
     OtaActivationComponent,
     BlockChannelComponent,
     InventoryAndPriceAvailabilityReportComponent,
-    PmsReportsComponent,
-    PmsMappingReportComponent,
-    PmsPushBookingReportComponent,
-    PmsReportsSubMenuComponent,
+    SubNavComponent,
   ]
 })
 export class ActivityReportModule { }

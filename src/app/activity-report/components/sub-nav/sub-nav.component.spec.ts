@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PmsReportsComponent } from './pms-reports.component';
+import { SubNavComponent } from './sub-nav.component';
 
-describe('PmsReportsComponent', () => {
-  let component: PmsReportsComponent;
-  let fixture: ComponentFixture<PmsReportsComponent>;
+describe('SubNavComponent', () => {
+  let component: SubNavComponent;
+  let fixture: ComponentFixture<SubNavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PmsReportsComponent ]
+      declarations: [ SubNavComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PmsReportsComponent);
+    fixture = TestBed.createComponent(SubNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
