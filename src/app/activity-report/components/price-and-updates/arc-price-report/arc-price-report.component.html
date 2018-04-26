@@ -1,9 +1,18 @@
 <div class="input-area">
   <div class="form-elements">
-    <input type="date" placeholder="Start Date">
-    <input type="text" placeholder="Supplier">
-    <input type="text" placeholder="Channel">
-    <button>Download</button>
+    <mat-form-field>
+      <input matInput [matDatepicker]="startDate" placeholder="Start Date">
+      <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+      <mat-datepicker #startDate></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Supplier">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Channel">
+    </mat-form-field>
+  </div>
+  <div class="action-area">
+    <button type="button" mat-button class="filter-button md-primary">Download</button>
   </div>
 </div>
-

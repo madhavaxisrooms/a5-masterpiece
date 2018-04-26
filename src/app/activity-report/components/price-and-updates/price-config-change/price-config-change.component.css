@@ -2,7 +2,7 @@
     margin: 10px 0;
 }
 
-.input-area .form-elements input {
+.input-area .form-elements > *{
     margin: 10px;
     width: 250px;
 }
