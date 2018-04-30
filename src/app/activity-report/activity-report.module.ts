@@ -24,6 +24,7 @@ import { OtaActivationComponent } from './components/channels/ota-activation/ota
 import { BlockChannelComponent } from './components/channels/block-channel/block-channel.component';
 import { InventoryAndPriceAvailabilityReportComponent } from './components/channels/inventory-and-price-availability-report/inventory-and-price-availability-report.component';
 import { SubNavComponent } from './components/sub-nav/sub-nav.component';
+import { ActivityReportLandingComponent } from './components/activity-report-landing/activity-report-landing.component';
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { SubNavComponent } from './components/sub-nav/sub-nav.component';
     BlockChannelComponent,
     InventoryAndPriceAvailabilityReportComponent,
     SubNavComponent,
+    ActivityReportLandingComponent,
   ]
 })
 export class ActivityReportModule { }
