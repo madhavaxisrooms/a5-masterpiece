@@ -1,5 +1,7 @@
+import { AuthGuard } from './shared/guards/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -12,6 +14,9 @@ import { ToasterComponent } from './shared/components/toaster/toaster.component'
 import { ToasterService } from './shared/services/toaster.service';
 import { WindowRefService } from './shared/services/window-ref.service';
 import { LoadingIndicatorService } from './shared/services/loading-indicator.service';
+import { AuthService } from './auth.service';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -25,12 +30,21 @@ import { LoadingIndicatorService } from './shared/services/loading-indicator.ser
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     ToasterService,
     WindowRefService,
-    LoadingIndicatorService
+    LoadingIndicatorService,
+    CookieService,
+    AuthService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
