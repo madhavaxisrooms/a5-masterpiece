@@ -18,10 +18,79 @@
 }
 
 .chart-row{
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
 .chart-card{
-    background-color: pink;
+    background-color: white;
     height: 400px;
+    padding: 20px;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.chart-card .title{
+    color: #009688;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.chart-card .info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chart-card .info .form-selection{
+    width: 200px;
+}
+
+.health-status{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100%;
+}
+
+.health-status .status{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 10px;
+    height: 30%;
+    justify-content: center;
+}
+
+.health-status .status .status-face{
+    height: 40px;
+    width: 40px;
+}
+
+.health-status .status .status-face.happy{
+    background-image: url('../../../../assets/happy.png');
+    background-repeat: no-repeat;
+}
+.health-status .status .status-face.poker{
+    background-image: url('../../../../assets/poker.png');
+    background-repeat: no-repeat;
+}
+.health-status .status .status-face.sad{
+    background-image: url('../../../../assets/sad.png');
+    background-repeat: no-repeat;
+}
+.health-status .status .status-face.distressed{
+    background-image: url('../../../../assets/distressed.png');
+    background-repeat: no-repeat;
+}
+
+.health-status .status .ota-name{
+    font-size: 14px;
 }
