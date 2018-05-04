@@ -1,0 +1,27 @@
+.hotel-name{
+    margin: 10px auto;
+}
+
+
+.title-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-content .right-content{
+    display: flex;
+    align-items: center;
+}
+
+.title-content .right-content a{
+    margin-right: 10px;
+}
+
+.chart-row{
+    margin: 10px 0;
+}
+
+.chart-card{
+    background-color: pink;
+    height: 400px;
+}
