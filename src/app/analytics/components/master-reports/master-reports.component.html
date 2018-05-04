@@ -1,13 +1,13 @@
 <mat-card class="padding-5">
   <div>
     <mat-table #table [dataSource]="dataSource" matSort>
-      <ng-container matColumnDef="channel">
+      <ng-container matColumnDef="channelId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Channel </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.channel}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.channelId}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="ota_reference_id">
+      <ng-container matColumnDef="otaReferenceId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> OTA Reference Id </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ota_reference_id}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.otaReferenceId}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="status">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
@@ -33,81 +33,81 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header> Rate Plan </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.rate_plan}} </mat-cell>
         </ng-container>
-      <ng-container matColumnDef="booking_time">
+      <ng-container matColumnDef="bookingDateAndTime">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Booking Time </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.booking_time}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.bookingDateAndTime}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="check_in">
+      <ng-container matColumnDef="checkinDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Check In </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.check_in}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.checkinDate}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="check_out">
+      <ng-container matColumnDef="checkoutDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Check Out </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.check_out}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.checkoutDate}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="no_of_rooms">
+      <ng-container matColumnDef="noOfRooms">
         <mat-header-cell *matHeaderCellDef mat-sort-header> No. of Rooms </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.no_of_rooms}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.noOfRooms}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="total_guests">
+      <ng-container matColumnDef="totalGuests">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Total Guests </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.total_guests}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.totalGuests}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="guest_name">
+      <ng-container matColumnDef="guestName">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Guest Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.guest_name}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.guestName}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="guest_email">
+      <ng-container matColumnDef="guestEmail">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Guest Email </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.guest_email}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.guestEmail}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="guest_phone">
+      <ng-container matColumnDef="guestPhone">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Guest Phone </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.guest_phone}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.guestPhone}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="room_nights">
+      <ng-container matColumnDef="roomNights">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Room Nights </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.room_nights}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.roomNights}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="total_amount">
+      <ng-container matColumnDef="totalAmount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.total_amount}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.totalAmount}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="supplier_amount">
+      <ng-container matColumnDef="supplierAmount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Supplier Amount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.supplier_amount}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.supplierAmount}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="avg_bar">
+      <ng-container matColumnDef="avgBAR">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Avg BAR </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.avg_bar}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.avgBAR}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="tax_amount">
+      <ng-container matColumnDef="taxAmount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> TAX Amount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.tax_amount}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.taxAmount}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="mode_of_payment">
+      <ng-container matColumnDef="modeOfPayment">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Mode of Payment </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.mode_of_payment}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.modeOfPayment}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="promotions">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Promotions </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.promotions}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="coupon_discount">
+      <ng-container matColumnDef="couponDiscount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Coupon Discount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.coupon_discount}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.couponDiscount}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="special_request">
+      <ng-container matColumnDef="specialRequests">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Sepcial Request </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.special_request}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.specialRequests}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="coupon">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Coupon </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.coupon}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="deal">
+      <ng-container matColumnDef="deals">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Deal </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.deal}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.deals}} </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

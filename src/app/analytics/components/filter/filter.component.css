@@ -8,3 +8,14 @@
   margin: 0 auto;
   width: 50%;
 }
+.select-channel {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: -20px;
+  border: 1px solid #dedede;
+  border-top: none;
+}
+[hidden] {
+  display: none;
+}
+

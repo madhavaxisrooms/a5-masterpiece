@@ -882,4 +882,60 @@ input[type="checkbox"].cdk-visually-hidden {
   width: 15px;
   height: 15px;
 }
+.select-channel label {
+  font-weight: 500 !important;
+  font-size: 14px;
+}
 /*-----------------Material design Common css---------------------*/
+/*-----------------Date Range Picker css -------------------------*/
+
+
+.daterangepicker .table-condensed>tbody>tr>td,
+.daterangepicker .table-condensed>tbody>tr>th,
+.daterangepicker .table-condensed>tfoot>tr>td,
+.daterangepicker .table-condensed>tfoot>tr>th,
+.daterangepicker .table-condensed>thead>tr>td,
+.daterangepicker .table-condensed>thead>tr>th {
+  padding: 10px;
+}
+
+.daterangepicker td.in-range {
+  background-color: #009688 !important;
+  color: #fff !important;
+}
+
+.daterangepicker td.start-date {
+  border-radius: 20px 0 0 20px !important;
+}
+.daterangepicker td.end-date {
+  border-radius: 0 20px 20px 0 !important;
+}
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: #009688 !important;
+}
+
+.daterangepicker td.start-date.end-date {
+  border-radius: 50% !important;
+}
+.daterangepicker .ranges li {
+  border-radius: 0px;
+  color: #009688;
+}
+.daterangepicker .ranges li.active,
+.daterangepicker .ranges li:hover {
+  background-color: #009688 !important;
+  border: 1px solid #009688 !important;
+  color: #fff;
+}
+.daterangepicker .range_inputs button.btn-success {
+  background-color: #009688 !important;
+  border-color: #009688 !important;
+  border-radius: 0px;
+}
+.daterangepicker .input-mini {
+  border: 1px solid rgba(246, 248, 250, 0) !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid #ccc !important;
+}
+/*-----------------Date Range Picker css -------------------------*/

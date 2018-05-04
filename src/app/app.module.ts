@@ -12,8 +12,8 @@ import { ToasterComponent } from './shared/components/toaster/toaster.component'
 import { ToasterService } from './shared/services/toaster.service';
 import { WindowRefService } from './shared/services/window-ref.service';
 import { LoadingIndicatorService } from './shared/services/loading-indicator.service';
-
-
+import {MasterReportsService} from './analytics/services/master-reports.service';
+import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,16 +21,18 @@ import { LoadingIndicatorService } from './shared/services/loading-indicator.ser
     LoadingIndicatorComponent,
     HeaderComponent,
     FooterComponent,
-    ToasterComponent
+    ToasterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpModule
   ],
   providers: [
     ToasterService,
     WindowRefService,
+    MasterReportsService,
     LoadingIndicatorService
   ],
   bootstrap: [AppComponent]
