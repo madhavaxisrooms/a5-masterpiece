@@ -9,7 +9,7 @@
     </h2>
     <div class="right-content ">
       <a href="">Summary</a>
-      <a href="">System Status</a>
+      <a href="#systemStatus" >System Status</a>
     </div>
   </div>
 
@@ -85,9 +85,9 @@
       </div>
     </div>
   </div>
-  <div class="title-content col-md-12">
-    <h2 class="page-title">
-      Hotel Summary
+  <div class="title-content col-md-12" id="systemStatus"  >
+    <h2 class="page-title" >
+      System Status
     </h2>
   </div>
   <div class="row chart-row">
@@ -147,6 +147,25 @@
             <p class="ota-name">agoda.com</p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row chart-row">
+    <div class="col-md-12 ">
+      <div class="chart-card">
+        <div class="info">
+          <p class="title">Error Reports</p>
+          <mat-form-field class="form-selection">
+            <mat-select placeholder="Duration">
+              <mat-option value="Inventory">This Week</mat-option>
+              <mat-option value="Price">This Month</mat-option>
+              <mat-option value="Price">This Quarter</mat-option>
+              <mat-option value="Price">This Year</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
       </div>
     </div>
   </div>

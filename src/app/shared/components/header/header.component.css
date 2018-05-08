@@ -18,17 +18,21 @@ header nav{
 
 header nav > a{
     align-self: center;
+  
 }
 
+
+
 header nav .level-one{
-    padding: 11px;
+    padding: 12px;
     background: #06a294;
     margin-right: 10px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     color: white;
     cursor: pointer;
-}
+    font-weight: 100;font-size: 14px;
+}  
 
 header .active-nav .level-one,
 header nav .level-one:hover{
@@ -36,3 +40,7 @@ header nav .level-one:hover{
     color: #009688;
 }
 
+
+.align-right-flex{
+    display: flex;
+}
