@@ -21,7 +21,34 @@ header nav > a{
   
 }
 
+.help-div{
+    position: relative;
+}
 
+.help-icon{
+    height: 20px;
+    margin: 15px auto;
+}
+
+
+
+.help-div p{
+    text-align: right;
+    position: absolute;
+    width: 150px;
+    background: white;
+    top: 50px;
+    z-index: 3;
+    right: 0px;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.help-div p:hover{
+    background: rgb(245, 245, 245);
+    color: #4dbc9c;
+}
 
 header nav .level-one{
     padding: 12px;

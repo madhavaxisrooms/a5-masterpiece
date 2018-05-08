@@ -19,7 +19,7 @@
         <a routerLink="/activity-report/" routerLinkActive="active-nav">
             <h2 class="level-one">Reports & Logs</h2>
         </a>
-        
+
     </nav>
     <div class="align-right-flex">
 
@@ -78,7 +78,12 @@
             <button mat-menu-item disabled>Velociraptor</button>
         </mat-menu>
 
-        <i></i>
+        <div class="help-div">
+            <img src="./../../../../assets/help.png" alt="Help Icon" class="help-icon icon" (click)="showHelp = !showHelp" >
+            <p *ngIf="showHelp" > &#9742; +92-8384628273</p>
+        </div>
+
+
 
         <button mat-button [matMenuTriggerFor]="profile" class="support-button">Hi, Madhav &#11167;</button>
 
