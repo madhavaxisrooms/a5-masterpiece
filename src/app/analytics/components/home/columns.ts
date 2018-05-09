@@ -11,9 +11,9 @@
       checked: true,
       value: 'status'
     }, {
-      name: 'Product',
+      name: 'Hotel Name',
       checked: true,
-      value: 'product'
+      value: 'hotelName'
     }, {
       name: 'City',
       checked: true,
@@ -21,7 +21,7 @@
     }, {
       name: 'Room Name',
       checked: true,
-      value: 'room_name'
+     value: 'roomName'
     }, {
       name: 'Source',
       checked: true,
@@ -29,7 +29,7 @@
     }, {
       name: 'Rate Plan',
       checked: false,
-      value: 'rate_plan'
+     value: 'rateplanName'
     }, {
       name: 'Booking Time',
       checked: true,
@@ -101,7 +101,7 @@
     }, {
       name: 'Coupon',
       checked: false,
-      value: 'coupon'
+     value: 'couponDiscount'
     }, {
       name: 'Deal',
       checked: false,

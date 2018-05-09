@@ -1,5 +1,6 @@
+
 <mat-card class="padding-5">
-  <div>
+  <div class="master-reports">
     <mat-table #table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="channelId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Channel </mat-header-cell>
@@ -13,25 +14,29 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="product">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Product </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.product}} </mat-cell>
+      <ng-container matColumnDef="hotelName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Hotel Name </mat-header-cell>
+<mat-cell *matCellDef="let element"> {{element.hotelName}} </mat-cell>
+
       </ng-container>
       <ng-container matColumnDef="city">
         <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="room_name">
+<ng-container matColumnDef="roomName">
+
         <mat-header-cell *matHeaderCellDef mat-sort-header> Room Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.room_name}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.roomName}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="source">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Source </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.source}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="rate_plan">
+<ng-container matColumnDef="rateplanName">
+
           <mat-header-cell *matHeaderCellDef mat-sort-header> Rate Plan </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.rate_plan}} </mat-cell>
+<mat-cell *matCellDef="let element"> {{element.rateplanName}} </mat-cell>
+
         </ng-container>
       <ng-container matColumnDef="bookingDateAndTime">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Booking Time </mat-header-cell>
@@ -103,7 +108,8 @@
       </ng-container>
       <ng-container matColumnDef="coupon">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Coupon </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.coupon}} </mat-cell>
+<mat-cell *matCellDef="let element"> {{element.couponDiscount}} </mat-cell>
+
       </ng-container>
       <ng-container matColumnDef="deals">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Deal </mat-header-cell>
@@ -112,7 +118,7 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+</div>
     <mat-paginator #paginator [pageSize]="15" [pageSizeOptions]="[15, 25, 50, 100]" [showFirstLastButtons]="false">
     </mat-paginator>
-  </div>
 </mat-card>

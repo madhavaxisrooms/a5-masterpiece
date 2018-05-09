@@ -5,13 +5,9 @@
         <input matInput placeholder="Select Date" ame="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)"
           readonly>
       </mat-form-field>
-
       <mat-form-field>
-        <mat-select placeholder="Check-In Date">
-          <mat-option value="1">Option 1</mat-option>
-          <mat-option value="2">Option 2</mat-option>
-          <mat-option value="3">Option 3</mat-option>
-          <mat-option value="4">Option 4</mat-option>
+        <mat-select placeholder="Search Type" [value]="defaultDate">
+          <mat-option [value]="date.id" *ngFor="let date of getDate">{{date.name}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -21,47 +17,71 @@
   <div class="container-fluid">
     <div class="row">
       <mat-form-field>
-        <input matInput placeholder="Hotel Chain">
+        <mat-select placeholder="Select Product" [value]="productDefault" #productsList (change)="productTypeChange(productsList)">
+          <mat-option *ngFor="let product of productType" [value]="product.id">{{product.name}}</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Select Channel" #channel (focus)="channelFocus()" (keyup)="channelComplete(channel.value)" [value]="chanValue">
+        <mat-select placeholder="Supplier Type">
+          <mat-option [value]="supplier.id" *ngFor="let supplier of supplierType">{{supplier.name}}</mat-option>
+        </mat-select>
       </mat-form-field>
-      <mat-list class="select-channel" [hidden]="chanShow">
-        <mat-list-item>
-          <mat-checkbox (change)="channelAll(allChannel, channel)" #allChannel [checked]="false" value="all">Select All</mat-checkbox>
-        </mat-list-item>
-        <mat-list-item *ngFor="let channel of channelShown">
-          <mat-checkbox (change)="channelSelected(channel, selectedValue, channel, allChannel)" [checked]="isChecked(channel.id, selectedValue)"
-            [value]="channel.id">{{channel.name}}</mat-checkbox>
-        </mat-list-item>
-      </mat-list>
       <mat-form-field>
-        <input matInput placeholder="Select City" #city (focus)="cityFocus()" [value]="citValue" (keyup)="cityComplete(city.value)">
+        <mat-select placeholder="Supplier">
+<mat-option [value]="supplier.id" *ngFor="let supplier of supplierList">{{supplier.name}}</mat-option>
+
+        </mat-select>
       </mat-form-field>
-      <mat-list class="select-channel" [hidden]="cityShow">
-        <mat-list-item>
-          <mat-checkbox (change)="cityAll(allCity, city)" #allCity [checked]="false" value="all">Select All</mat-checkbox>
-        </mat-list-item>
-        <mat-list-item *ngFor="let city of cityShown">
-          <mat-checkbox (change)="citySelectedFn(city, citySelected, city, allCity)" [checked]="isChecked(city.id, citySelected)" [value]="city.id">{{city.name}}</mat-checkbox>
-        </mat-list-item>
-      </mat-list>
       <mat-form-field>
         <mat-select placeholder="Payment Mode">
-          <mat-option value="1">Option 1</mat-option>
-          <mat-option value="2">Option 2</mat-option>
-          <mat-option value="3">Option 3</mat-option>
-          <mat-option value="4">Option 4</mat-option>
+          <mat-option [value]="payment.id" *ngFor="let payment of paymentType">{{payment.name}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
         <mat-select placeholder="Booking Status">
-          <mat-option value="1">Option 1</mat-option>
-          <mat-option value="2">Option 2</mat-option>
-          <mat-option value="3">Option 3</mat-option>
-          <mat-option value="4">Option 4</mat-option>
+          <mat-option [value]="status.id" *ngFor="let status of bookingStatus">{{status.name}}</mat-option>
         </mat-select>
       </mat-form-field>
+      <div (clickOutside)="outsideHotel($event)">
+        <mat-form-field>
+          <input matInput placeholder="Hotel Chain" [value]="hotValue" #hotel (focus)="hotelFocus()" (keyup)="hotelComplete(hotel.value)">
+        </mat-form-field>
+        <mat-list [hidden]="hotelShow" class="select-channel">
+          <mat-list-item>
+            <mat-checkbox (change)="hotelAll(allHotel, hotel)" #allHotel [checked]="false" value="all">Select All</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item *ngFor="let hotel of hotelShown">
+            <mat-checkbox [value]="hotel.id" (change)="hotelSelectedFn(hotel, hotelSelected, allHotel)" [checked]="isChecked(hotel.id, hotelSelected)">{{hotel.name}}</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div (clickOutside)="outsideChannel($event)">
+        <mat-form-field>
+          <input matInput placeholder="Select Channel" #channel (focus)="channelFocus()" (keyup)="channelComplete(channel.value)" [value]="chanValue">
+        </mat-form-field>
+        <mat-list class="select-channel" [hidden]="chanShow">
+          <mat-list-item>
+            <mat-checkbox (change)="channelAll(allChannel, channel)" #allChannel [checked]="false" value="all">Select All</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item *ngFor="let channel of channelShown">
+            <mat-checkbox (change)="channelSelected(channel, selectedValue, allChannel)" [checked]="isChecked(channel.id, selectedValue)"
+              [value]="channel.id">{{channel.name}}</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div (clickOutside)="outsideCity($event)">
+        <mat-form-field>
+          <input matInput placeholder="Select City" #city (focus)="cityFocus()" [value]="citValue" (keyup)="cityComplete(city.value)">
+        </mat-form-field>
+        <mat-list class="select-channel" [hidden]="cityShow">
+          <mat-list-item>
+            <mat-checkbox (change)="cityAll(allCity, city)" #allCity [checked]="false" value="all">Select All</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item *ngFor="let city of cityShown">
+            <mat-checkbox (change)="citySelectedFn(city, citySelected, allCity)" [checked]="isChecked(city.id, citySelected)" [value]="city.id">{{city.name}}</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+      </div>
       <button type="button" mat-button class="filter-button md-primary" (click)=filterSubmit()>Submit</button>
     </div>
   </div>

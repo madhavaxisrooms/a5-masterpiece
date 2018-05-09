@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { columns } from './columns';
+import { HomeService } from './../../services/home/home.service';
 @Component({
   selector: 'app-analytics-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [HomeService]
 })
 export class HomeComponent implements OnInit {
   showbooking: Boolean = true;
   showColumns: Boolean = true;
   displayedColumns = [];
   columnData = [];
-  constructor() { }
+  dataSource = [];
+  productTypes: Number;
+  @ViewChild('bookingId')bookingId: ElementRef;
+  constructor(private homeService: HomeService) { }
 
   ngOnInit() {
     this.displayedColumns = ['channelId', 'otaReferenceId', 'status',
-    'product', 'city', 'room_name', 'source', 'bookingDateAndTime', 'checkinDate'];
+      'hotelName', 'city', 'roomName', 'source', 'bookingDateAndTime', 'checkinDate'];
     this.columnData = columns;
   }
   /**
@@ -52,5 +57,14 @@ export class HomeComponent implements OnInit {
     } else {
       this.displayedColumns.push(obj);
     }
+  }
+  searchByBookingId() {
+    console.log(this.productTypes);
+    this.homeService.searchByBookingId(this.productTypes, this.bookingId.nativeElement.value).subscribe((result) => {
+      this.dataSource = result;
+    });
+  }
+  productType(event) {
+    this.productTypes = event;
   }
 }

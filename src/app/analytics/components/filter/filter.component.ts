@@ -1,44 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
+import {FilterService} from './../../services/filter/filter.service';
+
 @Component({
   selector: 'app-analytics-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css']
+  styleUrls: ['./filter.component.css'],
+  providers: [FilterService]
 })
 export class FilterComponent implements OnInit {
-  channelValue = [{
-    id: 1,
-    name: 'Axisrooms'
-  }, {
-    id: 2,
-    name: 'Booking.com'
-  }, {
-    id: 3,
-    name: 'Cleartrip'
-  }, {
-    id: 4,
-    name: 'Make my trip'
-  }, {
-    id: 5,
-    name: 'GO-immo'
-  }];
-  cityValue = [{
-    id: 1,
-    name: 'Bangalore',
-  }, {
-    id: 2,
-    name: 'Chennai',
-  }];
+  channelValue;
+  cityValue;
   selectedValue = [];
   showValues = [];
-  channelShown = this.channelValue;
-  cityShown = this.cityValue;
+  channelShown;
+  cityShown;
   chanValue: String = '';
   chanShow: Boolean = true;
   cityShow: Boolean = true;
   citValue: String = '';
   citySelected = [];
+  productType: Object;
+  paymentType: Object;
+  getDate: Object;
+  defaultDate: Number;
+  hotelShow: Boolean = true;
+  getCounts: Object;
+  supplierType: Object;
+  hotelSelected = [];
+  hotValue: String = '';
+  hotelValue;
+  hotelShown;
+  bookingStatus: Object;
   public daterange: any = {};
+  productDefault;
+  supplierList: Object;
+  @Output() productTypeValue: EventEmitter<Number> = new EventEmitter<Number>();
   public options: any = {
     locale: { format: 'DD/MM/YYYY' },
     alwaysShowCalendars: true,
@@ -53,9 +50,17 @@ export class FilterComponent implements OnInit {
 
   };
 
-  constructor() { }
+  constructor(private filterService: FilterService, private _eref: ElementRef) { }
 
   ngOnInit() {
+    this.getProduct();
+    this.getChannel();
+    this.getPaymentType();
+    this.getDateType();
+    this.getSupplierType();
+    this.getHotel();
+    this.getCity();
+    this.getSupplier();
   }
 
   channelComplete(a) {
@@ -86,8 +91,21 @@ export class FilterComponent implements OnInit {
       this.cityShown = this.cityValue;
     }
   }
-
-  channelSelected(value, obj, element, allChannel) {
+  hotelComplete(a) {
+    const values = a.split(',');
+    if (values[values.length - 1] !== '') {
+      this.hotelShown = [];
+      const query = values[values.length - 1].toUpperCase().trim();
+      for (let i = 0; i < this.hotelValue.length; i++) {
+        if (this.hotelValue[i].name.toUpperCase().indexOf(query) !== -1) {
+          this.hotelShown.push(this.hotelValue[i]);
+        }
+      }
+    } else {
+      this.hotelShown = this.hotelValue;
+    }
+  }
+  channelSelected(value, obj,  allChannel) {
     const index = obj.indexOf(value.id);
     if (index === -1) {
       obj.push(value.id);
@@ -98,9 +116,8 @@ export class FilterComponent implements OnInit {
     }
     allChannel.checked = false;
     this.channelShown = this.channelValue;
-    // this.channelShown = this.channelValue;
   }
-  citySelectedFn(value, obj, element, allChannel) {
+  citySelectedFn(value, obj, allChannel) {
     const index = obj.indexOf(value.id);
     if (index === -1) {
       obj.push(value.id);
@@ -111,15 +128,27 @@ export class FilterComponent implements OnInit {
     }
     allChannel.checked = false;
     this.cityShown = this.cityValue;
-    // this.channelShown = this.channelValue;
   }
-  channelFocus() {
-    this.chanShow = false;
-    this.cityShow = true;
+  hotelSelectedFn(value, obj, allHotel) {
+    const index = obj.indexOf(value.id);
+    if (index === -1) {
+      obj.push(value.id);
+      this.hotValue = this.hotValue + value.name + ',';
+    } else {
+      obj.splice(index, 1);
+      this.hotValue = this.hotValue.replace(value.name + ',', '');
+    }
+    allHotel.checked = false;
+    this.hotelShown = this.cityValue;
+  }
+  channelFocus(event) {
+      this.chanShow = false;
   }
   cityFocus() {
-    this.chanShow = true;
     this.cityShow = false;
+  }
+  hotelFocus() {
+    this.hotelShow = false;
   }
   isChecked($id, obj) {
     return obj.indexOf($id) !== -1 ? true : false;
@@ -148,6 +177,18 @@ export class FilterComponent implements OnInit {
       this.cityShown = this.cityValue;
     }
   }
+  hotelAll(obj, input) {
+     this.hotValue = '';
+     this.hotelSelected.length = 0;
+     if (obj.checked) {
+       for (const hotel of this.hotelValue) {
+         this.hotValue += hotel.name + ',';
+         this.hotelSelected.push(hotel.id);
+       }
+      input.value = this.hotValue;
+      this.hotelShown = this.hotelValue;
+     }
+  }
   public selectedDate(value: any, datepicker?: any) {
     datepicker.start = value.start;
     datepicker.end = value.end;
@@ -156,9 +197,78 @@ export class FilterComponent implements OnInit {
     this.daterange.label = value.label;
   }
   filterSubmit() {
-    console.log('City Selected' + this.citySelected);
-    console.log('Channel Selected' + this.selectedValue);
+    console.log('City Selected : ' + this.citySelected);
+    console.log('Channel Selected : ' + this.selectedValue);
+    console.log('Hotel Selected : ' + this.hotelSelected);
+  }
+  getProduct() {
+    this.filterService.getProduct().subscribe((result) => {
+      this.productType = result;
+      this.productDefault = result[0].id;
+      this.productTypeValue.emit(result[0].id);
+      this.getStatus();
+    });
+  }
+
+  getChannel() {
+    this.filterService.getChannel().subscribe(result => {
+      this.channelValue = result;
+      this.channelShown = result;
+    });
+  }
+  getDateType() {
+    this.filterService.getDateType().subscribe(result => {
+      this.getDate = result;
+      this.defaultDate = 1;
+    });
+  }
+  getPaymentType() {
+    this.filterService.getPaymentType().subscribe(result => {
+      this.paymentType = result.reverse();
+    });
+  }
+  getSupplierType() {
+    this.filterService.getSupplierTypes().subscribe(result => {
+      this.supplierType = result;
+    });
+  }
+  getHotel() {
+    this.filterService.getHotel().subscribe(result => {
+      this.hotelValue = result;
+      this.hotelShown = result;
+    });
+  }
+  getCity() {
+    this.filterService.getCity().subscribe(result => {
+      this.cityShown = result;
+      this.cityValue = result;
+    });
+  }
+  productTypeChange(obj) {
+    console.log(obj.value);
+    this.productDefault =  obj.value;
+    this.productTypeValue.emit(obj.value);
+    this.getStatus();
+  }
+  getStatus() {
+    this.filterService.getStatus(this.productDefault).subscribe(result => {
+      this.bookingStatus = result;
+    });
+  }
+  getSupplier() {
+    this.filterService.getSupplier().subscribe(result => {
+      this.supplierList = result;
+    });
+  }
+  outsideChannel(event) {
     this.chanShow = true;
+  }
+
+  outsideCity(event) {
     this.cityShow = true;
+  }
+
+  outsideHotel(event) {
+    this.hotelShow = true;
   }
 }

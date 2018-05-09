@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { MasterReportsComponent } from './components/master-reports/master-reports.component';
 import { Daterangepicker } from 'ng2-daterangepicker';
+import { ClickOutsideModule } from 'ng-click-outside';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,7 +23,8 @@ import { Daterangepicker } from 'ng2-daterangepicker';
     MatIconModule,
     MatListModule,
     MatAutocompleteModule,
-    Daterangepicker
+    Daterangepicker,
+    ClickOutsideModule
   ],
   declarations: [HomeComponent, FilterComponent, MasterReportsComponent]
 })
