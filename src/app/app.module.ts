@@ -1,7 +1,8 @@
+import { AuthGuard } from './shared/guards/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -14,6 +15,9 @@ import { WindowRefService } from './shared/services/window-ref.service';
 import { LoadingIndicatorService } from './shared/services/loading-indicator.service';
 import {MasterReportsService} from './analytics/services/master-reports.service';
 import { HttpModule } from '@angular/http';
+import { AuthService } from './auth.service';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,13 +31,22 @@ import { HttpModule } from '@angular/http';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     ToasterService,
     WindowRefService,
     MasterReportsService,
-    LoadingIndicatorService
+    LoadingIndicatorService,
+    CookieService,
+    AuthService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
