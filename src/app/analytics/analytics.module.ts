@@ -9,6 +9,8 @@ import { FilterComponent } from './components/filter/filter.component';
 import { MasterReportsComponent } from './components/master-reports/master-reports.component';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
     MatListModule,
     MatAutocompleteModule,
     Daterangepicker,
-    ClickOutsideModule
+    ClickOutsideModule,
+    ReactiveFormsModule
   ],
   declarations: [HomeComponent, FilterComponent, MasterReportsComponent]
 })

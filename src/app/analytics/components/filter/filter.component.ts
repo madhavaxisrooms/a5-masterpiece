@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
-import {FilterService} from './../../services/filter/filter.service';
-
+import { FilterService } from './../../services/filter/filter.service';
+import { MasterReportsService } from './../../services/master-reports.service';
+import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 @Component({
   selector: 'app-analytics-filter',
   templateUrl: './filter.component.html',
@@ -35,11 +36,12 @@ export class FilterComponent implements OnInit {
   public daterange: any = {};
   productDefault;
   supplierList: Object;
+  filterForms: FormGroup;
   @Output() productTypeValue: EventEmitter<Number> = new EventEmitter<Number>();
   public options: any = {
-    locale: { format: 'DD/MM/YYYY' },
     alwaysShowCalendars: true,
     opens: 'left',
+    defaultDate: [moment(), moment()],
     ranges: {
       'Today': [moment(), moment()],
       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -50,7 +52,19 @@ export class FilterComponent implements OnInit {
 
   };
 
-  constructor(private filterService: FilterService, private _eref: ElementRef) { }
+  constructor(private filterService: FilterService, private _eref: ElementRef,
+    private fb: FormBuilder, private masterServie: MasterReportsService) {
+    this.filterForms = this.fb.group({
+      dateType    : new FormControl(),
+      productType   : new FormControl(),
+      supplierType  : new FormControl(),
+      supplierId      : new FormControl(),
+      modeOfPayment   : new FormControl(),
+      status : new FormControl()
+    });
+    this.daterange.start = moment().format('DD-MM-YYYY');
+    this.daterange.end = moment().format('DD-MM-YYYY');
+  }
 
   ngOnInit() {
     this.getProduct();
@@ -139,7 +153,7 @@ export class FilterComponent implements OnInit {
       this.hotValue = this.hotValue.replace(value.name + ',', '');
     }
     allHotel.checked = false;
-    this.hotelShown = this.cityValue;
+    this.hotelShown = this.hotelValue;
   }
   channelFocus(event) {
       this.chanShow = false;
@@ -192,14 +206,22 @@ export class FilterComponent implements OnInit {
   public selectedDate(value: any, datepicker?: any) {
     datepicker.start = value.start;
     datepicker.end = value.end;
-    this.daterange.start = value.start;
-    this.daterange.end = value.end;
+    this.daterange.start = moment(value.start).format('DD-MM-YYYY');
+    this.daterange.end = moment(value.end).format('DD-MM-YYYY');
     this.daterange.label = value.label;
   }
   filterSubmit() {
-    console.log('City Selected : ' + this.citySelected);
-    console.log('Channel Selected : ' + this.selectedValue);
-    console.log('Hotel Selected : ' + this.hotelSelected);
+    const filterValues = this.filterForms.value;
+    filterValues.startDate = this.daterange.start;
+    filterValues.endDate = this.daterange.end;
+    filterValues.selectCity = this.citySelected.toString();
+    filterValues.channelId = this.selectedValue.toString();
+    filterValues.productId = this.hotelSelected.toString();
+    console.log(this.daterange.start);
+    console.log(this.daterange.end);
+    this.masterServie.getFilterResults(filterValues).subscribe(result => {
+      console.log(result);
+    });
   }
   getProduct() {
     this.filterService.getProduct().subscribe((result) => {
@@ -245,7 +267,6 @@ export class FilterComponent implements OnInit {
     });
   }
   productTypeChange(obj) {
-    console.log(obj.value);
     this.productDefault =  obj.value;
     this.productTypeValue.emit(obj.value);
     this.getStatus();
@@ -267,7 +288,12 @@ export class FilterComponent implements OnInit {
   outsideCity(event) {
     this.cityShow = true;
   }
-
+  /**
+   * To hide the show hotel chain dropdown
+   * return the hotelShow
+   * @param {any} event
+   * @memberof FilterComponent
+   */
   outsideHotel(event) {
     this.hotelShow = true;
   }

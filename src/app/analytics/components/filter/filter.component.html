@@ -1,3 +1,4 @@
+<form [formGroup]='filterForms' (submit)=filterSubmit()>
 <mat-card class="filter-div padding-top-15">
   <div class="container-fluid">
     <div class="row">
@@ -6,7 +7,7 @@
           readonly>
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Search Type" [value]="defaultDate">
+        <mat-select placeholder="Search Type" [value]="defaultDate" formControlName="dateType">
           <mat-option [value]="date.id" *ngFor="let date of getDate">{{date.name}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -17,28 +18,28 @@
   <div class="container-fluid">
     <div class="row">
       <mat-form-field>
-        <mat-select placeholder="Select Product" [value]="productDefault" #productsList (change)="productTypeChange(productsList)">
+        <mat-select placeholder="Select Product" [value]="productDefault" #productsList (change)="productTypeChange(productsList)"  formControlName="productType">
           <mat-option *ngFor="let product of productType" [value]="product.id">{{product.name}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Supplier Type">
+        <mat-select placeholder="Supplier Type"  formControlName="supplierType">
           <mat-option [value]="supplier.id" *ngFor="let supplier of supplierType">{{supplier.name}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Supplier">
+        <mat-select placeholder="Supplier"  formControlName="supplierId">
 <mat-option [value]="supplier.id" *ngFor="let supplier of supplierList">{{supplier.name}}</mat-option>
 
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Payment Mode">
+        <mat-select placeholder="Payment Mode"  formControlName="modeOfPayment">
           <mat-option [value]="payment.id" *ngFor="let payment of paymentType">{{payment.name}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Booking Status">
+        <mat-select placeholder="Booking Status"  formControlName="status">
           <mat-option [value]="status.id" *ngFor="let status of bookingStatus">{{status.name}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -82,7 +83,8 @@
           </mat-list-item>
         </mat-list>
       </div>
-      <button type="button" mat-button class="filter-button md-primary" (click)=filterSubmit()>Submit</button>
+      <button type="button" mat-button class="filter-button md-primary" type="submit">Submit</button>
     </div>
   </div>
 </mat-card>
+</form>

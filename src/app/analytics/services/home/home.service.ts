@@ -11,7 +11,7 @@ export class HomeService {
     return this.http.get(url).map((res) => {
       return res.json();
     }, err => {
-      console.log(err);
+      return { status: 'Something went wrong. Please try again Later.' };
     });
   }
 }

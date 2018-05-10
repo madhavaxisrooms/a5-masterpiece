@@ -12,7 +12,7 @@ export class FilterService {
     return this.http.get(url).map((res) => {
       return res.json();
     }, err => {
-      console.log(err);
+      return { status: 'Something went wrong. Please try again Later.' };
     });
   }
   getChannel() {
@@ -20,7 +20,7 @@ export class FilterService {
     return this.http.get(url).map(res => {
       return res.json();
     }, err => {
-      console.log(err);
+      return { status: 'Something went wrong. Please try again Later.' };
     });
   }
   getDateType() {
@@ -28,7 +28,7 @@ export class FilterService {
     return this.http.get(url).map(res => {
       return res.json();
     }, err => {
-      console.log(err);
+      return { status: 'Something went wrong. Please try again Later.' };
     });
   }
   getPaymentType() {
@@ -36,7 +36,7 @@ export class FilterService {
     return this.http.get(url).map(res => {
       return res.json();
     }, err => {
-      console.log(err);
+      return { status: 'Something went wrong. Please try again Later.' };
     });
   }
   getCount() {
@@ -44,7 +44,7 @@ export class FilterService {
     return this.http.get(url).map(res => {
       return res.json();
     }, err => {
-      console.log(err);
+      return { status: 'Something went wrong. Please try again Later.' };
     });
   }
   getSupplierTypes() {
@@ -52,7 +52,7 @@ export class FilterService {
     return this.http.get(url).map(res => {
       return res.json();
     }, err => {
-      console.log(err);
+      return { status: 'Something went wrong. Please try again Later.' };
     });
   }
   getHotel() {
@@ -60,7 +60,7 @@ export class FilterService {
     return this.http.get(url).map(res => {
       return res.json();
     }, err => {
-      console.log(err);
+      return { status: 'Something went wrong. Please try again Later.' };
     });
   }
   getCity() {
@@ -68,7 +68,7 @@ export class FilterService {
     return this.http.get(url).map(res => {
       return res.json();
     }, err => {
-      console.log(err);
+      return { status: 'Something went wrong. Please try again Later.' };
     });
   }
   getStatus($id) {
@@ -76,7 +76,7 @@ export class FilterService {
     return this.http.get(url).map(res => {
       return res.json();
     }, err => {
-      console.log(err);
+      return { status: 'Something went wrong. Please try again Later.' };
     });
   }
   getSupplier() {
@@ -84,7 +84,7 @@ export class FilterService {
     return this.http.get(url).map(res => {
       return res.json();
     }, err => {
-      console.log(err);
+      return { status: 'Something went wrong. Please try again Later.' };
     });
   }
 }

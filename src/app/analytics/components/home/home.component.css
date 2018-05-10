@@ -1,72 +1,93 @@
 .master-reports-div h1 {
-  font-size: 18px;
+    font-size: 18px;
     font-weight: bold;
     margin: 20px 0px;
 }
+
 .total-details {
-  width: 175px;
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  line-height: 24px;
-  margin: 15px 0px;
+    width: 175px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    line-height: 24px;
+    margin: 15px 0px;
 }
-.total-details ul{
-  position: absolute;
-  width: 100%;
-  height:auto;margin: 0;
-  padding: 0;
-  z-index: 1;
-  background: white;
-  list-style: none;
-  padding: 9px;
-  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+
+.total-details ul {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    background: white;
+    list-style: none;
+    padding: 9px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
 }
+
 .total-details p {
-  font-size:1.4rem;
-  display: inline-block;
-  margin: 0;
+    font-size: 1.4rem;
+    display: inline-block;
+    margin: 0;
 }
+
 .total-details .mat-icon {
-  vertical-align: middle;
+    vertical-align: middle;
 }
-.search-booking-id{
-  background: #009688;
-  min-width: 50px;
-  color: #fff;
-  height: 38px;
-  border-radius: 0px;
+
+.search-booking-id {
+    background: #009688;
+    min-width: 50px;
+    color: #fff;
+    height: 38px;
+    border-radius: 0px;
 }
+
 .table-column-display {
-  background: #009688;
-  border: none;
-  padding: 0;
-  height: 38px;
-  color: #fff;
-  border-radius: 0;
-  min-width: 100%;
-  padding: 0px;
+    background: #009688;
+    border: none;
+    padding: 0;
+    height: 38px;
+    color: #fff;
+    border-radius: 0;
+    min-width: 100%;
+    padding: 0px;
 }
 
 .download-button {
-  margin: 0px 0px 15px;
-  height: 40px;
+    margin: 0px 0px 15px;
+    height: 40px;
 }
 
-.table-column-drop{
-  position: absolute;
-  right:15px;
-  z-index: 1;
-  padding: 5px;
-  min-width: 200px;
-  margin-top: 5px;
-  height: 350px;
-  overflow-y: auto;
+.table-column-drop {
+    position: absolute;
+    right: 15px;
+    z-index: 1;
+    padding: 5px;
+    min-width: 200px;
+    margin-top: 5px;
+    height: 350px;
+    overflow-y: auto;
 }
-mat-list-item.mat-list-item{
-  height: 28px;
-  font-size: 14px;
+
+mat-list-item.mat-list-item {
+    height: 28px;
+    font-size: 14px;
 }
+
 mat-card[hidden] {
-  display: none;
+    display: none;
+}
+[hidden] {
+  display: none !important;
+}
+.clear-button {
+    display: block;
+    margin-top: 9px;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-left: -30px;
+    font-weight: 600;
+    color: #009688;
 }
