@@ -6,6 +6,14 @@ header {
     background: #009688;
     height: 50px;
 }
+header .product-switcher{
+    position: relative;
+}
+header .product-switcher .products{
+    position: absolute;
+    z-index: 3;
+    background:white;
+}
 
 header .logo {
     max-height: 70px;
@@ -48,6 +56,16 @@ header nav > a{
 .help-div p:hover{
     background: rgb(245, 245, 245);
     color: #4dbc9c;
+}
+
+
+.overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
 }
 
 header nav .level-one{

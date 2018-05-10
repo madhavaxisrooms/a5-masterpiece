@@ -1,5 +1,16 @@
 <header>
-    <img class="logo" src="../../../../assets/axisrooms_logo_white.png" alt="Axisrooms Logo">
+    <div class="product-switcher pointer" >
+        <img class="logo" src="../../../../assets/axisrooms_logo_white.png" (click)="showProductSwitcher = !showProductSwitcher" alt="Axisrooms Logo">
+        <div class="products box-shadow" *ngIf="showProductSwitcher">
+            <img class="logo pointer" src="../../../../assets/happy.png" (click)="showProductSwitcher = !showProductSwitcher" alt="Axisrooms Logo">
+            <img class="logo pointer" src="../../../../assets/happy.png" (click)="showProductSwitcher = !showProductSwitcher" alt="Axisrooms Logo">
+            <img class="logo pointer" src="../../../../assets/happy.png" (click)="showProductSwitcher = !showProductSwitcher" alt="Axisrooms Logo">
+            <img class="logo pointer" src="../../../../assets/happy.png" (click)="showProductSwitcher = !showProductSwitcher" alt="Axisrooms Logo">
+            <img class="logo pointer" src="../../../../assets/happy.png" (click)="showProductSwitcher = !showProductSwitcher" alt="Axisrooms Logo">
+            <img class="logo pointer" src="../../../../assets/happy.png" (click)="showProductSwitcher = !showProductSwitcher" alt="Axisrooms Logo">
+        </div>
+        <div class="overlay" *ngIf="showProductSwitcher" (click)="showProductSwitcher = !showProductSwitcher"></div>
+    </div>
     <nav>
         <a routerLink="/dashboard" routerLinkActive="active-nav">
             <h2 class="level-one"> Dashboard</h2>
@@ -16,10 +27,6 @@
         <a routerLink="/activity-report/" routerLinkActive="active-nav">
             <h2 class="level-one">Reports & Logs</h2>
         </a>
-        <a routerLink="/activity-report/" routerLinkActive="active-nav">
-            <h2 class="level-one">Reports & Logs</h2>
-        </a>
-
     </nav>
     <div class="align-right-flex">
 
@@ -79,8 +86,9 @@
         </mat-menu>
 
         <div class="help-div">
-            <img src="./../../../../assets/help.png" alt="Help Icon" class="help-icon icon" (click)="showHelp = !showHelp" >
-            <p *ngIf="showHelp" > &#9742; +92-8384628273</p>
+            <img src="./../../../../assets/help.png" alt="Help Icon" class="help-icon icon" (click)="showHelp = !showHelp">
+            <div class="overlay" *ngIf="showHelp" (click)="showHelp = !showHelp"></div>
+            <p *ngIf="showHelp"> &#9742; +92-8384628273</p>
         </div>
 
 

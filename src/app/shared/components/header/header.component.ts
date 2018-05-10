@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public showHelp: boolean = false;
+  public showProductSwitcher: boolean = false;
   constructor() { }
 
   ngOnInit() {
