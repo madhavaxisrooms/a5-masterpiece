@@ -74,13 +74,13 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> Room Nights </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.roomNights}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="totalAmount">
+      <ng-container matColumnDef="totalAmountDecimal">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.totalAmount}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.totalAmountDecimal}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="supplierAmount">
+      <ng-container matColumnDef="supplierAmountDecimal">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Supplier Amount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.supplierAmount}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.supplierAmountDecimal}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="avgBAR">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Avg BAR </mat-header-cell>
@@ -121,4 +121,8 @@
 </div>
     <mat-paginator #paginator [pageSize]="15" [pageSizeOptions]="[15, 25, 50, 100]" [showFirstLastButtons]="false">
     </mat-paginator>
+    <br/>
+    <br/>
+    <button mat-button>Previous</button>
+    <button mat-button>Next</button>
 </mat-card>

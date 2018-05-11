@@ -5,13 +5,13 @@
       <div class="row">
         <div class="col-md-3">
           <div class="total-details">
-            <p (click)="showBooking()">Total Bookings: 235
+            <p (click)="showBooking()">Total Bookings: {{totalCount}}
               <mat-icon>keyboard_arrow_down</mat-icon>
             </p>
-            <ul [hidden]="showbooking">
+            <!-- <ul [hidden]="showbooking">
               <li>Total Room Nights: 123</li>
               <li>Total Revenue: Rs. 12345</li>
-            </ul>
+            </ul> -->
           </div>
         </div>
         <div class="col-md-4 col-md-offset-2">
@@ -50,7 +50,8 @@
           <mat-icon>file_download</mat-icon>
         </button>
       </div>
-      <app-analytics-filter (productTypeValue) = "productType($event)"></app-analytics-filter>
+      <app-analytics-filter (productTypeValue) = "productType($event)" (filterResult)="filterResult($event)"
+      (selectDate)="masterCount($event)"></app-analytics-filter>
     </div>
   </div>
 </div>

@@ -14,12 +14,10 @@ export class TokenInterceptorService implements HttpInterceptor {
     const authService = this.injector.get(AuthService);
     const tokenizedReq = req.clone(
       {
-        headers: req.headers.set('accessToken', 'token-here')
+        headers: req.headers.set('accessToken', 'bearer ' + authService.getToken())
       }
     );
-    console.log('req', tokenizedReq);
-    console.log(tokenizedReq.body);
-    return next.handle(tokenizedReq);
+    return next.handle(req);
   }
 
 }

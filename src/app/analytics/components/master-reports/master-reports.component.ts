@@ -7,7 +7,7 @@ import {MasterReportsService} from './../../services/master-reports.service';
   styleUrls: ['./master-reports.component.css']
 })
 export class MasterReportsComponent implements AfterViewInit {
-  @Input() dataSource;
+  @Input() dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @Input() displayedColumns;
@@ -19,7 +19,8 @@ export class MasterReportsComponent implements AfterViewInit {
    */
   ngAfterViewInit() {
     this.reportsService.getList().subscribe((result) => {
-     this.dataSource = new MatTableDataSource(result);
+      const $data = result;
+     this.dataSource = new MatTableDataSource($data);
      this.dataSource.paginator = this.paginator;
      this.dataSource.sort = this.sort;
     });

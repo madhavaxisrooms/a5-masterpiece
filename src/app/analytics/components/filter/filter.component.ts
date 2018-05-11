@@ -1,9 +1,10 @@
-import { Component, OnInit, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, Output, EventEmitter, ViewChild } from '@angular/core';
 import * as moment from 'moment';
 import { FilterService } from './../../services/filter/filter.service';
 import { MasterReportsService } from './../../services/master-reports.service';
 import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
+import { MasterReportsComponent } from '../master-reports/master-reports.component';
 
 @Component({
   selector: 'app-analytics-filter',
@@ -40,6 +41,8 @@ export class FilterComponent implements OnInit {
   supplierList: Object;
   filterForms: FormGroup;
   @Output() productTypeValue: EventEmitter<Number> = new EventEmitter<Number>();
+  @Output() filterResult: any = new EventEmitter();
+  @Output() selectDate: EventEmitter<String> = new EventEmitter<String>();
   public options: any = {
     alwaysShowCalendars: true,
     opens: 'left',
@@ -53,19 +56,19 @@ export class FilterComponent implements OnInit {
     }
 
   };
-
+  masterComp: MasterReportsComponent;
   constructor(private filterService: FilterService, private _eref: ElementRef,
     private fb: FormBuilder, private masterServie: MasterReportsService) {
     this.filterForms = this.fb.group({
-      dateType    : new FormControl(),
-      productType   : new FormControl(),
-      supplierType  : new FormControl(),
-      supplierId      : new FormControl(),
-      modeOfPayment   : new FormControl(),
-      status : new FormControl()
+      dateType    : new FormControl([-1]),
+      productType   : new FormControl([-1]),
+      supplierType  : new FormControl([-1]),
+      supplierId      : new FormControl([-1]),
+      modeOfPayment   : new FormControl([-1]),
+      status : new FormControl([-1])
     });
-    this.daterange.start = moment().format('DD-MM-YYYY');
-    this.daterange.end = moment().format('DD-MM-YYYY');
+    this.daterange.start = moment().format('YYYY-MM-DD');
+    this.daterange.end = moment().format('YYYY-MM-DD');
   }
 
   ngOnInit() {
@@ -144,6 +147,7 @@ export class FilterComponent implements OnInit {
     }
     allChannel.checked = false;
     this.cityShown = this.cityValue;
+    this.getHotel(obj.toString());
   }
   hotelSelectedFn(value, obj, allHotel) {
     const index = obj.indexOf(value.id);
@@ -192,6 +196,7 @@ export class FilterComponent implements OnInit {
       input.value = this.citValue;
       this.cityShown = this.cityValue;
     }
+    this.getHotel(this.citySelected.toString());
   }
   hotelAll(obj, input) {
      this.hotValue = '';
@@ -208,8 +213,8 @@ export class FilterComponent implements OnInit {
   public selectedDate(value: any, datepicker?: any) {
     datepicker.start = value.start;
     datepicker.end = value.end;
-    this.daterange.start = moment(value.start).format('DD-MM-YYYY');
-    this.daterange.end = moment(value.end).format('DD-MM-YYYY');
+    this.daterange.start = moment(value.start).format('YYYY-MM-DD');
+    this.daterange.end = moment(value.end).format('YYYY-MM-DD');
     this.daterange.label = value.label;
   }
   filterSubmit() {
@@ -219,10 +224,9 @@ export class FilterComponent implements OnInit {
     filterValues.selectCity = this.citySelected.toString();
     filterValues.channelId = this.selectedValue.toString();
     filterValues.productId = this.hotelSelected.toString();
-    console.log(this.daterange.start);
-    console.log(this.daterange.end);
     this.masterServie.getFilterResults(filterValues).subscribe(result => {
-      console.log(result);
+      this.filterResult.emit(result);
+      this.selectDate.emit(this.daterange);
     });
   }
   getProduct() {
@@ -248,7 +252,7 @@ export class FilterComponent implements OnInit {
   }
   getPaymentType() {
     this.filterService.getPaymentType().subscribe(result => {
-      this.paymentType = result.reverse();
+      this.paymentType = result;
     },
       (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
@@ -269,8 +273,8 @@ export class FilterComponent implements OnInit {
       }
     });
   }
-  getHotel() {
-    this.filterService.getHotel().subscribe(result => {
+  getHotel($cityId = '') {
+    this.filterService.getHotel($cityId).subscribe(result => {
       this.hotelValue = result;
       this.hotelShown = result;
     }, (err: HttpErrorResponse) => {
@@ -278,7 +282,7 @@ export class FilterComponent implements OnInit {
         console.log('Client Side Error');
       } else {
         console.log('Server Side Error');
-      };
+      }
     });
   }
   getCity() {
@@ -317,5 +321,11 @@ export class FilterComponent implements OnInit {
    */
   outsideHotel(event) {
     this.hotelShow = true;
+  }
+
+  supplierTypeChange(supplierType) {
+    this.filterService.getSupplier(supplierType).subscribe((result => {
+      console.log(result);
+    }));
   }
 }

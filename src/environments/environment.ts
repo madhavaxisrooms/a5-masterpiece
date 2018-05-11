@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  analytics_ip: 'http://94.130.54.42:58603/v1'
+  analytics_ip: 'http://94.130.54.42:58603/v1',
+  accessToken:  localStorage.getItem('access_token')
 };

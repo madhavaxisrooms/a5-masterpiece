@@ -4,6 +4,8 @@ import { HomeService } from './../../services/home/home.service';
 import { MasterReportsService } from './../../services/master-reports.service';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { MasterReportsComponent } from './../master-reports/master-reports.component';
+import { HttpErrorResponse} from '@angular/common/http';
+import * as moment from 'moment';
 @Component({
   selector: 'app-analytics-home',
   templateUrl: './home.component.html',
@@ -18,6 +20,7 @@ export class HomeComponent implements OnInit {
   dataSource1;
   productTypes: Number;
   clear: Boolean = true;
+  totalCount: any;
   @ViewChild(MasterReportsComponent)masterComp: MasterReportsComponent;
   @ViewChild('bookingId')bookingId: ElementRef;
   constructor(private homeService: HomeService, private masterService: MasterReportsService) { }
@@ -26,6 +29,7 @@ export class HomeComponent implements OnInit {
     this.displayedColumns = ['channelId', 'otaReferenceId', 'status',
       'hotelName', 'city', 'roomName', 'source', 'bookingDateAndTime', 'checkinDate'];
     this.columnData = columns;
+    this.masterCount(moment().format('YYYY-MM-DD'));
   }
   /**
    * @ Used to show and hide the show booking dropdown above the master reports table.
@@ -74,6 +78,10 @@ export class HomeComponent implements OnInit {
       this.clear = false;
     });
   }
+  filterResult(result) {
+    console.log(result);
+    this.masterComp.searchById(result);
+  }
   /**
    * To get the product type id from the filter component
    * Used for search by booking id
@@ -86,10 +94,29 @@ export class HomeComponent implements OnInit {
   clearFilter() {
     this.masterService.getList().subscribe(result => {
       this.clear = true;
-      // this.dataSource1 = new MatTableDataSource(result);
       this.masterComp.searchById(result);
-    }, err=> {
+    }, err => {
       console.log(err);
+    });
+  }
+  masterCount($data) {
+    let $startDate = '2018-01-01';
+    let $endDate = '2018-03-25';
+    if (typeof $data === 'string') {
+      $startDate = $data;
+      $endDate = $data;
+    } else {
+      $startDate = $data.start;
+      $endDate = $data.end;
+    }
+    this.homeService.masterCount($startDate, $endDate).subscribe( (result) => {
+      this.totalCount = result;
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        console.log('Client Side Error');
+      } else {
+        console.log('Server Side Error');
+      }
     });
   }
 }
