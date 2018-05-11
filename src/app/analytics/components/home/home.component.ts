@@ -88,6 +88,8 @@ export class HomeComponent implements OnInit {
       this.clear = true;
       // this.dataSource1 = new MatTableDataSource(result);
       this.masterComp.searchById(result);
+    }, err=> {
+      console.log(err);
     });
   }
 }

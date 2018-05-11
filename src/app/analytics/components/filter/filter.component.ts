@@ -3,6 +3,8 @@ import * as moment from 'moment';
 import { FilterService } from './../../services/filter/filter.service';
 import { MasterReportsService } from './../../services/master-reports.service';
 import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
+import {HttpErrorResponse} from '@angular/common/http';
+
 @Component({
   selector: 'app-analytics-filter',
   templateUrl: './filter.component.html',
@@ -247,17 +249,36 @@ export class FilterComponent implements OnInit {
   getPaymentType() {
     this.filterService.getPaymentType().subscribe(result => {
       this.paymentType = result.reverse();
+    },
+      (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        console.log('Client Side Error');
+      } else {
+        console.log('Server Side Error');
+      }
     });
   }
   getSupplierType() {
     this.filterService.getSupplierTypes().subscribe(result => {
       this.supplierType = result;
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        console.log('Client Side Error');
+      } else {
+        console.log('Server Side Error');
+      }
     });
   }
   getHotel() {
     this.filterService.getHotel().subscribe(result => {
       this.hotelValue = result;
       this.hotelShown = result;
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        console.log('Client Side Error');
+      } else {
+        console.log('Server Side Error');
+      };
     });
   }
   getCity() {

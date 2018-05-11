@@ -26,8 +26,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     if (cookieExists) {
         return true;
     } else {
-      location.href = 'http://localhost:8080';
-      return false;
+     // location.href = 'http://localhost:8080';
+      return true;
     }
   }
 }

@@ -10,7 +10,6 @@ import { MasterReportsComponent } from './components/master-reports/master-repor
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
   imports: [
     CommonModule,
@@ -29,6 +28,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     ClickOutsideModule,
     ReactiveFormsModule
   ],
-  declarations: [HomeComponent, FilterComponent, MasterReportsComponent]
+  declarations: [HomeComponent, FilterComponent, MasterReportsComponent],
 })
 export class AnalyticsModule { }
