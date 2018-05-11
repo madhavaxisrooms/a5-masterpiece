@@ -1,0 +1,165 @@
+<header>
+  <div class="support-options">
+    <img class="logo icon" src="../../../../assets/axisrooms_logo_white.png" alt="Logo">
+
+    <button mat-button [matMenuTriggerFor]="profile" class="support-button">CM &#11167;</button>
+
+    <mat-menu #profile="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="option1">Menu Option One</button>
+      <button mat-menu-item>Option 4</button>
+      <button mat-menu-item [matMenuTriggerFor]="option2">Menu Option Two</button>
+      <button mat-menu-item>Log Out</button>
+    </mat-menu>
+
+
+    <mat-menu #option1="matMenu">
+      <button mat-menu-item>Option One</button>
+      <button mat-menu-item>Option Two</button>
+    </mat-menu>
+
+    <mat-menu #option2="matMenu">
+      <button mat-menu-item>Option One</button>
+      <button mat-menu-item [matMenuTriggerFor]="option3">Options Two</button>
+    </mat-menu>
+
+    <mat-menu #option3="matMenu">
+      <button mat-menu-item>Option One</button>
+      <button mat-menu-item>Options Two</button>
+      <button mat-menu-item>Options Two</button>
+      <button mat-menu-item>Options Two</button>
+      <button mat-menu-item>Options Two</button>
+    </mat-menu>
+
+
+    <button mat-button [matMenuTriggerFor]="profile" class="support-button">Reports &#11167;</button>
+    <button mat-button [matMenuTriggerFor]="profile" class="support-button">Analytics &#11167;</button>
+    <button mat-button [matMenuTriggerFor]="profile" class="support-button">PMS &#11167;</button>
+    <button mat-button [matMenuTriggerFor]="profile" class="support-button">Operations &#11167;</button>
+
+
+
+
+    <div class="align-right-flex">
+
+      <button mat-button [matMenuTriggerFor]="animals" class="support-button">Operations &#11167; </button>
+
+      <mat-menu #animals="matMenu">
+        <button mat-menu-item>Menu Option One</button>
+        <button mat-menu-item>Menu Option Two</button>
+        <button mat-menu-item [matMenuTriggerFor]="invertebrates">Menu Option Three</button>
+        <button mat-menu-item>Menu Option Four</button>
+        <button mat-menu-item>Menu Option Five</button>
+        <button mat-menu-item>Menu Option Six</button>
+        <button mat-menu-item>Menu Option Seven</button>
+        <button mat-menu-item [matMenuTriggerFor]="vertebrates">Menu Option Four</button>
+        <button mat-menu-item>Menu Option Eigth</button>
+      </mat-menu>
+
+      <mat-menu #vertebrates="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+        <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+        <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+        <button mat-menu-item>Birds</button>
+        <button mat-menu-item>Mammals</button>
+      </mat-menu>
+
+      <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+      </mat-menu>
+
+      <mat-menu #fish="matMenu">
+        <button mat-menu-item>Baikal oilfish</button>
+        <button mat-menu-item>Bala shark</button>
+        <button mat-menu-item>Ballan wrasse</button>
+        <button mat-menu-item>Bamboo shark</button>
+        <button mat-menu-item>Banded killifish</button>
+      </mat-menu>
+
+      <mat-menu #amphibians="matMenu">
+        <button mat-menu-item>Sonoran desert toad</button>
+        <button mat-menu-item>Western toad</button>
+        <button mat-menu-item>Arroyo toad</button>
+        <button mat-menu-item>Yosemite toad</button>
+      </mat-menu>
+
+      <mat-menu #reptiles="matMenu">
+        <button mat-menu-item>Banded Day Gecko</button>
+        <button mat-menu-item>Banded Gila Monster</button>
+        <button mat-menu-item>Black Tree Monitor</button>
+        <button mat-menu-item>Blue Spiny Lizard</button>
+        <button mat-menu-item disabled>Velociraptor</button>
+      </mat-menu>
+
+      <div class="help-div">
+        <img src="./../../../../assets/help.png" alt="Help Icon" class="help-icon icon" (click)="showHelp = !showHelp">
+        <div class="overlay" *ngIf="showHelp" (click)="showHelp = !showHelp"></div>
+        <p *ngIf="showHelp"> &#9742; +92-8384628273</p>
+      </div>
+
+
+
+      <button mat-button [matMenuTriggerFor]="profile" class="support-button">Hi, Madhav &#11167;</button>
+
+      <mat-menu #profile="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="option1">Menu Option One</button>
+        <button mat-menu-item>Option 4</button>
+        <button mat-menu-item [matMenuTriggerFor]="option2">Menu Option Two</button>
+        <button mat-menu-item>Log Out</button>
+      </mat-menu>
+
+
+      <mat-menu #option1="matMenu">
+        <button mat-menu-item>Option One</button>
+        <button mat-menu-item>Option Two</button>
+      </mat-menu>
+
+      <mat-menu #option2="matMenu">
+        <button mat-menu-item>Option One</button>
+        <button mat-menu-item [matMenuTriggerFor]="option3">Options Two</button>
+      </mat-menu>
+
+      <mat-menu #option3="matMenu">
+        <button mat-menu-item>Option One</button>
+        <button mat-menu-item>Options Two</button>
+        <button mat-menu-item>Options Two</button>
+        <button mat-menu-item>Options Two</button>
+        <button mat-menu-item>Options Two</button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <div class="supplier-view-options box-shadow">
+
+    <div class="select-hotel">
+      <mat-form-field >
+        <input matInput placeholder="Select Supplier">
+      </mat-form-field>
+    <button type="button" mat-button class="filter-button md-primary">Submit</button>
+      
+    </div>
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active-nav">
+        <h2 class="level-one"> Dashboard</h2>
+      </a>
+      <a routerLink="/#" routerLinkActive="active-nav">
+        <h2 class="level-one">Booking</h2>
+      </a>
+      <a routerLink="/#" routerLinkActive="active-nav">
+        <h2 class="level-one">Inventory & Pricing</h2>
+      </a>
+      <a routerLink="/analytics/" routerLinkActive="active-nav">
+        <h2 class="level-one">Analytics</h2>
+      </a>
+      <a routerLink="/activity-report/" routerLinkActive="active-nav">
+        <h2 class="level-one">Reports & Logs</h2>
+      </a>
+    </nav>
+  </div>
+
+</header>

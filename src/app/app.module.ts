@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatMenuModule } from '@angular/material';
+import { MatMenuModule, MatInputModule, MatSelectModule, MatFormFieldModule, MatFormFieldControl } from '@angular/material';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -13,6 +13,7 @@ import { ToasterComponent } from './shared/components/toaster/toaster.component'
 import { ToasterService } from './shared/services/toaster.service';
 import { WindowRefService } from './shared/services/window-ref.service';
 import { LoadingIndicatorService } from './shared/services/loading-indicator.service';
+import { SupportHeaderComponent } from './shared/components/support-header/support-header.component';
 
 
 @NgModule({
@@ -22,13 +23,18 @@ import { LoadingIndicatorService } from './shared/services/loading-indicator.ser
     LoadingIndicatorComponent,
     HeaderComponent,
     FooterComponent,
-    ToasterComponent
+    ToasterComponent,
+    SupportHeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule,
+    
   ],
   providers: [
     ToasterService,

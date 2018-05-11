@@ -1,0 +1,110 @@
+
+.support-options {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background: #009688;
+    height: 50px;
+}
+
+
+.support-options .logo {
+    max-height: 70px;
+    padding: 10px;
+}
+
+
+header nav{
+    display: flex;
+    margin-left: 20px;
+}
+
+header nav > a{
+    align-self: center;
+  
+}
+
+.help-div{
+    position: relative;
+}
+
+.help-icon{
+    height: 20px;
+    margin: 15px auto;
+}
+
+
+
+.help-div p{
+    text-align: right;
+    position: absolute;
+    width: 150px;
+    background: white;
+    top: 50px;
+    z-index: 3;
+    right: 0px;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.help-div p:hover{
+    background: rgb(245, 245, 245);
+    color: #4dbc9c;
+}
+
+
+.overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+}
+
+header nav .level-one{
+    padding: 12px;
+    background: #06a294;
+    margin-right: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: 100;font-size: 14px;
+}  
+
+header .active-nav .level-one,
+header nav .level-one:hover{
+    background-color: white;
+    color: #009688;
+}
+
+
+.align-right-flex{
+    display: flex;
+} 
+
+
+.supplier-view-options{
+    height: 50px;
+    display: flex;
+    background: white;
+    margin-bottom: 1px;
+}
+
+.supplier-view-options .select-hotel{
+    width: 300px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.supplier-view-options .select-hotel button{
+    margin-left: 10px;
+}
+
+.supplier-view-options .select-hotel .mat-input-container{
+    align-self: baseline;
+}
