@@ -1,29 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { environment } from './../../../environments/environment';
+import { AuthService } from './../../auth.service';
+import {environment} from './../../../environments/environment';
 import 'rxjs/Rx/';
 import * as moment from 'moment';
 @Injectable()
 export class MasterReportsService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
 
    }
 
   getList() {
+    const params = {
+      accessToken: this.authService.access_token,
+      startDate: moment().format('YYYY-MM-DD'),
+      endDate: moment().format('YYYY-MM-DD'),
+      startRowNumber: '0',
+      endRowNumber: '100'
+    }
     const url = environment.analytics_ip + '/cm/reports/master';
-    return this.http.get(url,  {params: {
-        accessToken: environment.accessToken,
-        startDate: moment().format('YYYY-MM-DD'),
-        endDate: moment().format('YYYY-MM-DD')
-      }
-    });
+    return this.http.get(url,  {params: params});
   }
   getFilterResults($data) {
     const url = environment.analytics_ip + '/cm/reports/master';
     const params = $data;
-    console.log(params);
-    params.accessToken =  environment.accessToken;
+    params.accessToken = this.authService.access_token;
     return this.http.get(url, {
       params: params
     });

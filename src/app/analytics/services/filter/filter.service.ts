@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { environment } from './../../../../environments/environment';
+import { AuthService } from './../../../auth.service';
 import 'rxjs/Rx/';
 
 @Injectable()
 export class FilterService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
   getProduct() {
     const url = environment.analytics_ip + '/cm/filters/getProductType';
     return this.http.get(url, {
       params: {
-        accessToken: environment.accessToken
+        accessToken: this.authService.access_token
       }
     });
   }
@@ -19,7 +20,7 @@ export class FilterService {
     const url = environment.analytics_ip + '/cm/filters/getChannelTypes';
     return this.http.get(url, {
       params: {
-        accessToken: environment.accessToken
+        accessToken: this.authService.access_token
       }
     });
   }
@@ -27,7 +28,7 @@ export class FilterService {
     const url = environment.analytics_ip + '/cm/filters/getDateType';
     return this.http.get(url, {
       params: {
-        accessToken: environment.accessToken
+        accessToken: this.authService.access_token
       }
     });
   }
@@ -35,7 +36,7 @@ export class FilterService {
     const url = environment.analytics_ip + '/cm/filters/getPaymentTypes';
     return this.http.get(url, {
       params: {
-        accessToken: environment.accessToken
+        accessToken: this.authService.access_token
       }
     });
   }
@@ -43,7 +44,7 @@ export class FilterService {
     const url = environment.analytics_ip + '/cm/reports/masterCount';
     return this.http.get(url, {
       params: {
-        accessToken: environment.accessToken
+        accessToken: this.authService.access_token
       }
     });
   }
@@ -51,7 +52,7 @@ export class FilterService {
     const url = environment.analytics_ip + '/cm/filters/getSupplierTypes';
     return this.http.get(url, {
       params: {
-        accessToken: environment.accessToken
+        accessToken: this.authService.access_token
       }
     });
   }
@@ -59,7 +60,7 @@ export class FilterService {
     const url = environment.analytics_ip + '/cm/filters/getProducts';
     return this.http.get(url, {
       params: {
-        accessToken: environment.accessToken,
+        accessToken: this.authService.access_token,
         cityId: $cityId
       }
     });
@@ -68,7 +69,7 @@ export class FilterService {
     const url = environment.analytics_ip + '/cm/filters/getCities';
     return this.http.get(url, {
       params: {
-        accessToken: environment.accessToken
+        accessToken: this.authService.access_token
       }
     });
   }
@@ -76,7 +77,7 @@ export class FilterService {
     const url = environment.analytics_ip + '/cm/filters/getStatuses/' + $id;
     return this.http.get(url, {
       params: {
-        accessToken: environment.accessToken
+        accessToken: this.authService.access_token
       }
     });
   }
@@ -84,7 +85,7 @@ export class FilterService {
     const url = environment.analytics_ip + '/cm/filters/getSuppliers';
     return this.http.get(url, {
       params: {
-        accessToken: environment.accessToken,
+        accessToken: this.authService.access_token,
         supplierType: supplier
       }
     });

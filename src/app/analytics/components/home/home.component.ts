@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, Input} from '@angular/core';
 import { columns } from './columns';
 import { HomeService } from './../../services/home/home.service';
 import { MasterReportsService } from './../../services/master-reports.service';
@@ -6,6 +6,7 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { MasterReportsComponent } from './../master-reports/master-reports.component';
 import { HttpErrorResponse} from '@angular/common/http';
 import * as moment from 'moment';
+import {FilterComponent} from '../filter/filter.component';
 @Component({
   selector: 'app-analytics-home',
   templateUrl: './home.component.html',
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
   totalCount: any;
   @ViewChild(MasterReportsComponent)masterComp: MasterReportsComponent;
   @ViewChild('bookingId')bookingId: ElementRef;
+  @ViewChild(FilterComponent)filterComp: FilterComponent;
   constructor(private homeService: HomeService, private masterService: MasterReportsService) { }
 
   ngOnInit() {
@@ -74,12 +76,12 @@ export class HomeComponent implements OnInit {
    */
   searchByBookingId() {
     this.homeService.searchByBookingId(this.productTypes, this.bookingId.nativeElement.value).subscribe((result) => {
-      this.dataSource1 = result;
+      //this.dataSource1 = result;
+      this.masterComp.searchById(result);
       this.clear = false;
     });
   }
   filterResult(result) {
-    console.log(result);
     this.masterComp.searchById(result);
   }
   /**
@@ -118,5 +120,8 @@ export class HomeComponent implements OnInit {
         console.log('Server Side Error');
       }
     });
+  }
+  nextPrev(event) {
+    this.filterComp.nextPrev(event);
   }
 }

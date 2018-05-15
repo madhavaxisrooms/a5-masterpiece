@@ -4,6 +4,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router,
 import { Observable } from 'rxjs/Observable';
 import { CookieService } from 'ngx-cookie-service';
 import { Route } from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
@@ -24,10 +25,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     this.cookieValue = this.cookieService.get('access_token');
     const cookieExists: boolean = this.cookieService.check('access_token');
     if (cookieExists) {
+        localStorage.setItem('access_token', this.cookieService.get('access_token'));
         return true;
     } else {
-     // location.href = 'http://localhost:8080';
-      return true;
+      localStorage.removeItem('access_token');
+      location.href = environment.server_path;
+      return false;
     }
   }
 }

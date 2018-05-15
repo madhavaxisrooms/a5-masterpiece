@@ -42,7 +42,7 @@
           </mat-card>
         </div>
       </div>
-      <app-analytics-master-reports [displayedColumns] = "displayedColumns" [dataSource]="dataSource1"></app-analytics-master-reports>
+      <app-analytics-master-reports [displayedColumns] = "displayedColumns" (dataValues)="nextPrev($event)"></app-analytics-master-reports>
     </div>
     <div class="col-md-3">
       <div class="clearfix">
@@ -51,7 +51,7 @@
         </button>
       </div>
       <app-analytics-filter (productTypeValue) = "productType($event)" (filterResult)="filterResult($event)"
-      (selectDate)="masterCount($event)"></app-analytics-filter>
+      (selectDate)="masterCount($event)" ></app-analytics-filter>
     </div>
   </div>
 </div>

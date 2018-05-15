@@ -7,15 +7,18 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable()
 export class AuthService {
 
-  constructor(private route: ActivatedRoute, private _router: Router) {}
-
+  constructor(private route: ActivatedRoute, private _router: Router) {
+    this.getToken();
+  }
+  access_token: string;
   logoutUser() {
     localStorage.removeItem('access_token');
     this._router.navigate(['/analytics']);
   }
 
   getToken() {
-    return localStorage.getItem('access_token');
+    this.access_token = localStorage.getItem('access_token');
+    return this.access_token;
   }
 
   loggedIn() {

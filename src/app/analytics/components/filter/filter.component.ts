@@ -4,8 +4,6 @@ import { FilterService } from './../../services/filter/filter.service';
 import { MasterReportsService } from './../../services/master-reports.service';
 import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
-import { MasterReportsComponent } from '../master-reports/master-reports.component';
-
 @Component({
   selector: 'app-analytics-filter',
   templateUrl: './filter.component.html',
@@ -40,6 +38,8 @@ export class FilterComponent implements OnInit {
   productDefault;
   supplierList: Object;
   filterForms: FormGroup;
+  startValue:number = 0;
+  dataLength:number = 500;
   @Output() productTypeValue: EventEmitter<Number> = new EventEmitter<Number>();
   @Output() filterResult: any = new EventEmitter();
   @Output() selectDate: EventEmitter<String> = new EventEmitter<String>();
@@ -54,9 +54,7 @@ export class FilterComponent implements OnInit {
       'This Month': [moment().startOf('month'), moment().endOf('month')],
       'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
     }
-
   };
-  masterComp: MasterReportsComponent;
   constructor(private filterService: FilterService, private _eref: ElementRef,
     private fb: FormBuilder, private masterServie: MasterReportsService) {
     this.filterForms = this.fb.group({
@@ -224,6 +222,33 @@ export class FilterComponent implements OnInit {
     filterValues.selectCity = this.citySelected.toString();
     filterValues.channelId = this.selectedValue.toString();
     filterValues.productId = this.hotelSelected.toString();
+    filterValues.startRowNumber = this.startValue;
+    filterValues.endRowNumber = this.dataLength
+    this.masterServie.getFilterResults(filterValues).subscribe(result => {
+      this.filterResult.emit(result);
+      this.selectDate.emit(this.daterange);
+    });
+  }
+  nextPrev(data) {
+    const filterValues = this.filterForms.value;
+    filterValues.startDate = this.daterange.start;
+    filterValues.endDate = this.daterange.end;
+    filterValues.selectCity = this.citySelected.toString();
+    filterValues.channelId = this.selectedValue.toString();
+    filterValues.productId = this.hotelSelected.toString();
+    filterValues.startRowNumber = this.startValue;
+    filterValues.endRowNumber = this.dataLength;
+    if (data === 'next') {
+      filterValues.startRowNumber += this.dataLength;
+      this.startValue += this.dataLength;
+    } else {
+      filterValues.startRowNumber -= this.dataLength;
+      this.startValue -= this.dataLength;
+      if (filterValues.startRowNumber < 0) {
+        filterValues.startRowNumber = 0;
+        this.startValue = 0;
+      }
+    }
     this.masterServie.getFilterResults(filterValues).subscribe(result => {
       this.filterResult.emit(result);
       this.selectDate.emit(this.daterange);

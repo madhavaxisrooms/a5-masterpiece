@@ -121,8 +121,6 @@
 </div>
     <mat-paginator #paginator [pageSize]="15" [pageSizeOptions]="[15, 25, 50, 100]" [showFirstLastButtons]="false">
     </mat-paginator>
-    <br/>
-    <br/>
-    <button mat-button>Previous</button>
-    <button mat-button>Next</button>
+    <button mat-button (click)="previousSetValues()" [hidden]="startValue" class="prevNext">Previous</button>
+    <button mat-button (click)="nextSetValues()" class="prevNext">Next</button>
 </mat-card>

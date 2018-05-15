@@ -29,3 +29,11 @@ mat-card {
   width: 100%;
     overflow-x: auto;
 }
+
+.prevNext {
+  background: #E0E0E0;
+  color: #009688;
+}
+.prevNext:nth-of-type(2) {
+  float: right;
+}

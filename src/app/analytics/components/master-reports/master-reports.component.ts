@@ -1,6 +1,7 @@
-import { Component, ViewChild, AfterViewInit, Input } from '@angular/core';
+import {Component, ViewChild, AfterViewInit, Input, EventEmitter, Output} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import {MasterReportsService} from './../../services/master-reports.service';
+
 @Component({
   selector: 'app-analytics-master-reports',
   templateUrl: './master-reports.component.html',
@@ -11,6 +12,7 @@ export class MasterReportsComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @Input() displayedColumns;
+  @Output() dataValues: EventEmitter<string> = new EventEmitter<string>();
   constructor(private reportsService: MasterReportsService) {}
 
   /**
@@ -26,8 +28,15 @@ export class MasterReportsComponent implements AfterViewInit {
     });
   }
   searchById($data) {
+    console.log($data);
     this.dataSource = new MatTableDataSource($data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+  nextSetValues() {
+    this.dataValues.emit('next');
+  }
+  previousSetValues() {
+    this.dataValues.emit('prev');
   }
 }
