@@ -84,6 +84,8 @@ export class HomeComponent implements OnInit {
       this.loader.hideLoadingIndicator();
       this.masterComp.searchById(result);
       this.clear = false;
+    }, (err: HttpErrorResponse) => {
+      this.loader.hideLoadingIndicator();
     });
   }
   filterResult(result) {

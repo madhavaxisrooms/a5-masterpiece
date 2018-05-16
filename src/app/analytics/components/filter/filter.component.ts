@@ -230,6 +230,8 @@ export class FilterComponent implements OnInit {
       this.loader.hideLoadingIndicator();
       this.filterResult.emit(result);
       this.selectDate.emit(this.daterange);
+    }, (err: HttpErrorResponse) => {
+      this.loader.hideLoadingIndicator();
     });
   }
   nextPrev(data) {
@@ -257,6 +259,10 @@ export class FilterComponent implements OnInit {
       this.filterResult.emit(result);
       this.loader.hideLoadingIndicator();
       this.selectDate.emit(this.daterange);
+    }, (err: HttpErrorResponse) => {
+      this.loader.hideLoadingIndicator();
+    }, (err: HttpErrorResponse) => {
+      this.loader.hideLoadingIndicator();
     });
   }
   getProduct() {
