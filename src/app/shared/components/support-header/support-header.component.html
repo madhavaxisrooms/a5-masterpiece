@@ -1,19 +1,19 @@
 <header>
   <div class="support-options">
-    <img class="logo icon" src="../../../../assets/axisrooms_logo_white.png" alt="Logo">
+    <a routerLink="/"> <img class="logo icon" src="../../../../assets/axisrooms_logo_white.png" alt="Logo"></a>
 
-    <button mat-button [matMenuTriggerFor]="profile" class="support-button">CM &#11167;</button>
+    <button mat-button [matMenuTriggerFor]="cm" class="support-button">CM &#11167;</button>
 
-    <mat-menu #profile="matMenu">
+    <mat-menu #cm="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="option1">Menu Option One</button>
-      <button mat-menu-item>Option 4</button>
+      <a href="https://www.google.com"> <button mat-menu-item>Option Test</button></a>
       <button mat-menu-item [matMenuTriggerFor]="option2">Menu Option Two</button>
       <button mat-menu-item>Log Out</button>
     </mat-menu>
 
 
     <mat-menu #option1="matMenu">
-      <button mat-menu-item>Option One</button>
+      <button mat-menu-item>Option Test</button>
       <button mat-menu-item>Option Two</button>
     </mat-menu>
 
@@ -29,15 +29,11 @@
       <button mat-menu-item>Options Two</button>
       <button mat-menu-item>Options Two</button>
     </mat-menu>
-
-
+    
     <button mat-button [matMenuTriggerFor]="profile" class="support-button">Reports &#11167;</button>
     <button mat-button [matMenuTriggerFor]="profile" class="support-button">Analytics &#11167;</button>
     <button mat-button [matMenuTriggerFor]="profile" class="support-button">PMS &#11167;</button>
     <button mat-button [matMenuTriggerFor]="profile" class="support-button">Operations &#11167;</button>
-
-
-
 
     <div class="align-right-flex">
 
@@ -102,8 +98,6 @@
         <p *ngIf="showHelp"> &#9742; +92-8384628273</p>
       </div>
 
-
-
       <button mat-button [matMenuTriggerFor]="profile" class="support-button">Hi, Madhav &#11167;</button>
 
       <mat-menu #profile="matMenu">
@@ -137,11 +131,11 @@
   <div class="supplier-view-options box-shadow">
 
     <div class="select-hotel">
-      <mat-form-field >
+      <mat-form-field>
         <input matInput placeholder="Select Supplier">
       </mat-form-field>
-    <button type="button" mat-button class="filter-button md-primary">Submit</button>
-      
+      <button type="button" mat-button class="filter-button md-primary">Submit</button>
+
     </div>
     <nav>
       <a routerLink="/dashboard" routerLinkActive="active-nav">

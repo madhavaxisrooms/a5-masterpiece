@@ -14,6 +14,8 @@ import { ToasterService } from './shared/services/toaster.service';
 import { WindowRefService } from './shared/services/window-ref.service';
 import { LoadingIndicatorService } from './shared/services/loading-indicator.service';
 import { SupportHeaderComponent } from './shared/components/support-header/support-header.component';
+import { HeaderService } from './shared/services/header.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -34,12 +36,13 @@ import { SupportHeaderComponent } from './shared/components/support-header/suppo
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    
+    HttpClientModule
   ],
   providers: [
     ToasterService,
     WindowRefService,
-    LoadingIndicatorService
+    LoadingIndicatorService,
+    HeaderService
   ],
   bootstrap: [AppComponent]
 })
