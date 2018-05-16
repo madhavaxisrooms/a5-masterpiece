@@ -20,15 +20,13 @@ export class MasterReportsComponent implements AfterViewInit {
    * @ Memeber of MasterReportsComponent.
    */
   ngAfterViewInit() {
-    this.reportsService.getList().subscribe((result) => {
-      const $data = result;
-     this.dataSource = new MatTableDataSource($data);
+    this.reportsService.getList().subscribe((result: any) => {
+     this.dataSource = new MatTableDataSource(result);
      this.dataSource.paginator = this.paginator;
      this.dataSource.sort = this.sort;
     });
   }
   searchById($data) {
-    console.log($data);
     this.dataSource = new MatTableDataSource($data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

@@ -159,7 +159,7 @@ export class FilterComponent implements OnInit {
     allHotel.checked = false;
     this.hotelShown = this.hotelValue;
   }
-  channelFocus(event) {
+  channelFocus() {
       this.chanShow = false;
   }
   cityFocus() {

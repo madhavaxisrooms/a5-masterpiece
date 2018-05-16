@@ -4,7 +4,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router,
 import { Observable } from 'rxjs/Observable';
 import { CookieService } from 'ngx-cookie-service';
 import { Route } from '@angular/router';
-import {environment} from '../../../environments/environment';
+import {config} from '../../config';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
@@ -29,7 +29,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         return true;
     } else {
       localStorage.removeItem('access_token');
-      location.href = environment.server_path;
+      location.href = config.server_path;
       return false;
     }
   }

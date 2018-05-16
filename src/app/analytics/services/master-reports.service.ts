@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { AuthService } from './../../auth.service';
-import {environment} from './../../../environments/environment';
+import {config} from './../../config';
 import 'rxjs/Rx/';
 import * as moment from 'moment';
 @Injectable()
@@ -19,11 +19,11 @@ export class MasterReportsService {
       startRowNumber: '0',
       endRowNumber: '100'
     }
-    const url = environment.analytics_ip + '/cm/reports/master';
+    const url = config.analytics_ip + '/cm/reports/master';
     return this.http.get(url,  {params: params});
   }
   getFilterResults($data) {
-    const url = environment.analytics_ip + '/cm/reports/master';
+    const url = config.analytics_ip + '/cm/reports/master';
     const params = $data;
     params.accessToken = this.authService.access_token;
     return this.http.get(url, {
