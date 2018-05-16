@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MatMenuModule, MatInputModule, MatSelectModule, MatFormFieldModule, MatFormFieldControl } from '@angular/material';
+import { MatMenuModule, MatInputModule, MatSelectModule, MatFormFieldModule, MatFormFieldControl, MatIconModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -19,6 +19,7 @@ import { HeaderService } from './shared/services/header.service';
 import { AuthService } from './auth.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { CookieService } from 'ngx-cookie-service';
+import { TempHeaderComponent } from './shared/components/temp-header/temp-header.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { CookieService } from 'ngx-cookie-service';
     HeaderComponent,
     FooterComponent,
     ToasterComponent,
-    SupportHeaderComponent
+    SupportHeaderComponent,
+    TempHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { CookieService } from 'ngx-cookie-service';
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule
   ],
   providers: [
     ToasterService,

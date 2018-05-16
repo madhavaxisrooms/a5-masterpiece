@@ -1,3 +1,6 @@
+.mat-icon{
+    vertical-align: middle;
+}
 
 .support-options {
     display: -webkit-box;
@@ -6,7 +9,14 @@
     background: #009688;
     height: 50px;
 }
+.support-options > * {
+    align-self: center;
+}
 
+.support-options > *:last-child {
+    margin-left: auto;
+    margin-right: 20px;
+}
 
 .support-options .logo {
     max-height: 70px;

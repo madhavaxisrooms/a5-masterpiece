@@ -7,8 +7,8 @@ import { AuthGuard } from '../shared/guards/auth.guard';
 import { AppComponent } from '../app.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:'dashboard',pathMatch: 'full' },
-  { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule',canLoad: [AuthGuard]  },
+  { path: '', redirectTo:'dashboard',pathMatch: 'full', canLoad: [AuthGuard] },
+  { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule' , canLoad: [AuthGuard] },
   { path: 'billing', loadChildren: 'app/billing/billing.module#BillingModule', canLoad: [AuthGuard] },
   { path: 'activity-report', loadChildren: 'app/activity-report/activity-report.module#ActivityReportModule', canLoad: [AuthGuard] },
   { path: 'analytics', loadChildren: 'app/analytics/analytics.module#AnalyticsModule', canLoad: [AuthGuard] },

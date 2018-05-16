@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     if (cookieExists) {
         return true;
     } else {
-      location.href = 'http://localhost:8080';
+      location.href = 'https://app.axisrooms.com';
       return false;
     }
   }

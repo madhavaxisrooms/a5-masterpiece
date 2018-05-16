@@ -3,24 +3,29 @@
     <a routerLink="/">
       <img class="logo icon" src="../../../../assets/axisrooms_logo_white.png" alt="Logo">
     </a>
-    <div *ngFor="let menu of header.menus">
-      <button mat-button [matMenuTriggerFor]="mainMenu" class="support-button">{{menu.name}}&#11167;</button>
+    <span *ngFor="let menu of header.menus">
+      <button mat-button [matMenuTriggerFor]="mainMenu" class="support-button">{{menu.name}} <mat-icon>arrow_drop_down</mat-icon></button>
+
       <mat-menu #mainMenu="matMenu">
         <div *ngFor="let subMenu of menu.submenus">
           <div *ngIf="subMenu.submenus">
             <button mat-menu-item [matMenuTriggerFor]="subMenu1">{{subMenu.name}}</button>
           </div>
           <div *ngIf="!subMenu.submenus">
-            <button mat-menu-item>{{subMenu.name}}</button>
+            <a href="{{subMenu.actionUrl}}">
+              <button mat-menu-item>{{subMenu.name}}</button>
+            </a>
           </div>
           <mat-menu #subMenu1="matMenu">
             <div *ngFor="let subMenu1 of subMenu.submenus">
-              <button mat-menu-item>{{subMenu1.name}}</button>
+              <a href="{{subMenu1.actionUrl}}">
+                <button mat-menu-item>{{subMenu1.name}}</button>
+              </a>
             </div>
           </mat-menu>
         </div>
       </mat-menu>
-    </div>
+    </span>
   </div>
 
   <div class="supplier-view-options box-shadow">
@@ -33,19 +38,19 @@
 
     </div>
     <nav>
-      <a routerLink="/dashboard" routerLinkActive="active-nav">
+      <a routerLink="/dashboard" *ngIf="dashboardVisible"  routerLinkActive="active-nav">
         <h2 class="level-one"> Dashboard</h2>
       </a>
-      <a routerLink="/#" routerLinkActive="active-nav">
+      <a routerLink="/#"  *ngIf="bookingVisible"  routerLinkActive="active-nav">
         <h2 class="level-one">Booking</h2>
       </a>
-      <a routerLink="/#" routerLinkActive="active-nav">
+      <a routerLink="/#"   *ngIf="inventoryVisible"  routerLinkActive="active-nav">
         <h2 class="level-one">Inventory & Pricing</h2>
       </a>
-      <a routerLink="/analytics/" routerLinkActive="active-nav">
+      <a routerLink="/analytics/"  *ngIf="analyticsVisible"  routerLinkActive="active-nav">
         <h2 class="level-one">Analytics</h2>
       </a>
-      <a routerLink="/activity-report/" routerLinkActive="active-nav">
+      <a routerLink="/activity-report/"  *ngIf="reportsVisible"  routerLinkActive="active-nav">
         <h2 class="level-one">Reports & Logs</h2>
       </a>
     </nav>

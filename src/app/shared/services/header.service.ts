@@ -488,4 +488,9 @@ export class HeaderService {
     const url = 'http://192.168.0.161:8080/api/menuItem?userId=1578';
     return this.http.get(url);
   }
+
+  getSupplierViewHeaderData(productId){
+      const url = 'http://192.168.0.161:8080/api/menuItem?productId=' + productId;
+      return this.http.get(url);
+  }
 }
