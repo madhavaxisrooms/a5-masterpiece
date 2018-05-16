@@ -261,8 +261,6 @@ export class FilterComponent implements OnInit {
       this.selectDate.emit(this.daterange);
     }, (err: HttpErrorResponse) => {
       this.loader.hideLoadingIndicator();
-    }, (err: HttpErrorResponse) => {
-      this.loader.hideLoadingIndicator();
     });
   }
   getProduct() {
