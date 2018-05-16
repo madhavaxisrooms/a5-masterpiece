@@ -13,6 +13,10 @@ export class SupportHeaderComponent implements OnInit {
   public lowerLevels = [];
 
   public dashboardVisible:boolean = false;
+  public bookingVisible:boolean = false;
+  public inventoryVisible:boolean = false;
+  public analyticsVisible:boolean = false;
+  public reportsVisible:boolean = false;
 
   constructor(
     private headerService: HeaderService,
@@ -31,7 +35,14 @@ export class SupportHeaderComponent implements OnInit {
     //   }
     // );
 
-    this.headerService.getSupplierViewHeaderData(262);
+    this.headerService.getSupplierViewHeaderData(262).subscribe(
+      res => {
+        console.log(res);
+      },
+      err =>{
+        console.log(err);
+      }
+    );
 
     this.header.menus.splice(-1,1);
   }
