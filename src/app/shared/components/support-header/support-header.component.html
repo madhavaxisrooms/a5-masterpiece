@@ -3,24 +3,29 @@
     <a routerLink="/">
       <img class="logo icon" src="../../../../assets/axisrooms_logo_white.png" alt="Logo">
     </a>
-    <div *ngFor="let menu of header.menus">
+    <span *ngFor="let menu of header.menus">
       <button mat-button [matMenuTriggerFor]="mainMenu" class="support-button">{{menu.name}}&#11167;</button>
+
       <mat-menu #mainMenu="matMenu">
         <div *ngFor="let subMenu of menu.submenus">
           <div *ngIf="subMenu.submenus">
             <button mat-menu-item [matMenuTriggerFor]="subMenu1">{{subMenu.name}}</button>
           </div>
           <div *ngIf="!subMenu.submenus">
-            <button mat-menu-item>{{subMenu.name}}</button>
+            <a href="{{subMenu.actionUrl}}">
+              <button mat-menu-item>{{subMenu.name}}</button>
+            </a>
           </div>
           <mat-menu #subMenu1="matMenu">
             <div *ngFor="let subMenu1 of subMenu.submenus">
-              <button mat-menu-item>{{subMenu1.name}}</button>
+              <a href="{{subMenu1.actionUrl}}">
+                <button mat-menu-item>{{subMenu1.name}}</button>
+              </a>
             </div>
           </mat-menu>
         </div>
       </mat-menu>
-    </div>
+    </span>
   </div>
 
   <div class="supplier-view-options box-shadow">
