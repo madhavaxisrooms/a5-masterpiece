@@ -21,7 +21,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TempHeaderComponent } from './shared/components/temp-header/temp-header.component';
 
-
+import {MasterReportsService} from './analytics/services/master-reports.service';
+import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { TempHeaderComponent } from './shared/components/temp-header/temp-header
   providers: [
     ToasterService,
     WindowRefService,
+    MasterReportsService,
     LoadingIndicatorService,
     HeaderService,
     CookieService,

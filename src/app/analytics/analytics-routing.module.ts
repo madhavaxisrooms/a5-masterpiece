@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { MasterReportsService } from './services/master-reports.service';
 
 const routes: Routes = [{
   path: '',

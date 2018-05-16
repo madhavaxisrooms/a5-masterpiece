@@ -4,6 +4,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router,
 import { Observable } from 'rxjs/Observable';
 import { CookieService } from 'ngx-cookie-service';
 import { Route } from '@angular/router';
+import {config} from '../../config';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
@@ -24,9 +25,11 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     this.cookieValue = this.cookieService.get('access_token');
     const cookieExists: boolean = this.cookieService.check('access_token');
     if (cookieExists) {
+        localStorage.setItem('access_token', this.cookieService.get('access_token'));
         return true;
     } else {
-      location.href = 'https://app.axisrooms.com';
+      localStorage.removeItem('access_token');
+      location.href = config.server_path;
       return false;
     }
   }

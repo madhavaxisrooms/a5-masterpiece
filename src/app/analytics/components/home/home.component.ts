@@ -1,144 +1,134 @@
-import { Component, OnInit } from '@angular/core';
-
+import {Component, OnInit, ViewChild, ElementRef, Input} from '@angular/core';
+import { columns } from './columns';
+import { HomeService } from './../../services/home/home.service';
+import { MasterReportsService } from './../../services/master-reports.service';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MasterReportsComponent } from './../master-reports/master-reports.component';
+import { HttpErrorResponse} from '@angular/common/http';
+import * as moment from 'moment';
+import {FilterComponent} from '../filter/filter.component';
+import {config} from './../../../config';
+import {LoadingIndicatorService} from './../../../shared/services/loading-indicator.service';
 @Component({
   selector: 'app-analytics-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [HomeService, MasterReportsService]
 })
 export class HomeComponent implements OnInit {
   showbooking: Boolean = true;
   showColumns: Boolean = true;
   displayedColumns = [];
   columnData = [];
-  constructor() { }
+  dataSource1;
+  productTypes: Number;
+  clear: Boolean = true;
+  totalCount: any;
+  configUrl =  config.cm_url;
+  @ViewChild(MasterReportsComponent)masterComp: MasterReportsComponent;
+  @ViewChild('bookingId')bookingId: ElementRef;
+  @ViewChild(FilterComponent)filterComp: FilterComponent;
+  constructor(private homeService: HomeService, private masterService: MasterReportsService, private loader: LoadingIndicatorService) { }
 
   ngOnInit() {
-    this.displayedColumns = ['channel', 'ota_reference_id', 'status',
-    'product', 'city', 'room_name', 'source', 'booking_time', 'check_in'];
-    this.columnData = [{
-      name: 'Channel',
-      checked: true,
-      value: 'channel'
-    }, {
-      name: 'OTA Reference Id',
-      checked: true,
-      value: 'ota_reference_id'
-    }, {
-      name: 'Status',
-      checked: true,
-      value: 'status'
-    }, {
-      name: 'Product',
-      checked: true,
-      value: 'product'
-    }, {
-      name: 'City',
-      checked: true,
-      value: 'city'
-    }, {
-      name: 'Room Name',
-      checked: true,
-      value: 'room_name'
-    }, {
-      name: 'Source',
-      checked: true,
-      value: 'source'
-    }, {
-      name: 'Rate Plan',
-      checked: false,
-      value: 'rate_plan'
-    }, {
-      name: 'Booking Time',
-      checked: true,
-      value: 'booking_time'
-    }, {
-      name: 'Check In',
-      checked: true,
-      value: 'check_in'
-    }, {
-      name: 'Check Out',
-      checked: false,
-      value: 'check_out'
-    }, {
-      name: 'No. of Rooms',
-      checked: false,
-      value: 'no_of_rooms'
-    }, {
-      name: 'Total Guests',
-      checked: false,
-      value: 'total_guests'
-    }, {
-      name: 'Guest Name',
-      checked: false,
-      value: 'guest_name'
-    }, {
-      name: 'Guest Email',
-      checked: false,
-      value: 'guest_email'
-    }, {
-      name: 'Guest Phone',
-      checked: false,
-      value: 'guest_phone'
-    }, {
-      name: 'Room Nights',
-      checked: false,
-      value: 'room_nights'
-    }, {
-      name: 'Total Amount',
-      checked: false,
-      value: 'total_amount'
-    }, {
-      name: 'Supplier Amount',
-      checked: false,
-      value: 'supplier_amount'
-    }, {
-      name: 'Avg BAR',
-      checked: false,
-      value: 'avg_bar'
-    }, {
-      name: 'Tax Amount',
-      checked: false,
-      value: 'tax_amount'
-    }, {
-      name: 'Mode of Payment',
-      checked: false,
-      value: 'mode_of_payment'
-    }, {
-      name: 'Promotions',
-      checked: false,
-      value: 'promotions'
-    }, {
-      name: 'Coupon Discount',
-      checked: false,
-      value: 'coupon_discount'
-    }, {
-      name: 'Special Request',
-      checked: false,
-      value: 'special_request'
-    }, {
-      name: 'Coupon',
-      checked: false,
-      value: 'coupon'
-    }, {
-      name: 'Deal',
-      checked: false,
-      value: 'deal'
-    }];
+    this.displayedColumns = ['channelId', 'otaReferenceId', 'status',
+      'hotelName', 'city', 'roomName', 'source', 'bookingDateAndTime', 'checkinDate'];
+    this.columnData = columns;
+    this.masterCount(moment().format('YYYY-MM-DD'));
   }
+  /**
+   * @ Used to show and hide the show booking dropdown above the master reports table.
+   * @ Member of HomeComponent
+   * @ return boolean values only
+   * @ if true hide the dropdown
+   * @ if false show the dropdown
+   */
   showBooking() {
     this.showbooking = this.showbooking === false ? true : false ;
   }
+
+  /**
+   * @ To show the column list dropdown above the master reports table
+   * @ Memeber of HomeComponent
+   * @ return boolean values only
+   * @ if true hide the column
+   * @ if false show the column
+   */
+  showColumn() {
+    this.showColumns = this.showColumns === false ? true : false;
+  }
+
+  /**
+   * @ To display the number of columns in the master reports.
+   * @ By default shows 8 columns. based on user selection shows and hide the other columns.
+   * @ return array of [displayCOlumns]
+   * @memeber of HomeComponent
+   */
   tableColumn(obj: any): any {
-    console.log(obj);
     const index: number = this.displayedColumns.indexOf(obj);
     if (index !== -1) {
       this.displayedColumns.splice(index, 1);
     } else {
       this.displayedColumns.push(obj);
     }
-    console.log(this.displayedColumns);
   }
-  showColumn() {
-    this.showColumns = this.showColumns === false ? true : false;
+  /**
+   * To search the values based on the booking id.
+   * return an object matches with the booking id
+   * memeber of home component
+   */
+  searchByBookingId() {
+    this.loader.displayLoadingIndicator()
+    this.homeService.searchByBookingId(this.productTypes, this.bookingId.nativeElement.value).subscribe((result) => {
+      //this.dataSource1 = result;
+      this.loader.hideLoadingIndicator();
+      this.masterComp.searchById(result);
+      this.clear = false;
+    }, (err: HttpErrorResponse) => {
+      this.loader.hideLoadingIndicator();
+    });
+  }
+  filterResult(result) {
+    this.masterComp.searchById(result);
+  }
+  /**
+   * To get the product type id from the filter component
+   * Used for search by booking id
+   * @param {any} event
+   * @memberof HomeComponent
+   */
+  productType(event) {
+    this.productTypes = event;
+  }
+  clearFilter() {
+    this.masterService.getList().subscribe(result => {
+      this.clear = true;
+      this.masterComp.searchById(result);
+    }, err => {
+      console.log(err);
+    });
+  }
+  masterCount($data) {
+    let $startDate = '2018-01-01';
+    let $endDate = '2018-03-25';
+    if (typeof $data === 'string') {
+      $startDate = $data;
+      $endDate = $data;
+    } else {
+      $startDate = $data.start;
+      $endDate = $data.end;
+    }
+    this.homeService.masterCount($startDate, $endDate).subscribe( (result) => {
+      this.totalCount = result;
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        console.log('Client Side Error');
+      } else {
+        console.log('Server Side Error');
+      }
+    });
+  }
+  nextPrev(event) {
+    this.filterComp.nextPrev(event);
   }
 }
