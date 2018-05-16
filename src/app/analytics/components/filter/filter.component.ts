@@ -4,6 +4,7 @@ import { FilterService } from './../../services/filter/filter.service';
 import { MasterReportsService } from './../../services/master-reports.service';
 import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
+import {LoadingIndicatorService} from './../../../shared/services/loading-indicator.service';
 @Component({
   selector: 'app-analytics-filter',
   templateUrl: './filter.component.html',
@@ -56,7 +57,7 @@ export class FilterComponent implements OnInit {
     }
   };
   constructor(private filterService: FilterService, private _eref: ElementRef,
-    private fb: FormBuilder, private masterServie: MasterReportsService) {
+    private fb: FormBuilder, private masterServie: MasterReportsService, private loader: LoadingIndicatorService) {
     this.filterForms = this.fb.group({
       dateType    : new FormControl([-1]),
       productType   : new FormControl([-1]),
@@ -216,6 +217,7 @@ export class FilterComponent implements OnInit {
     this.daterange.label = value.label;
   }
   filterSubmit() {
+    this.loader.displayLoadingIndicator();
     const filterValues = this.filterForms.value;
     filterValues.startDate = this.daterange.start;
     filterValues.endDate = this.daterange.end;
@@ -225,6 +227,7 @@ export class FilterComponent implements OnInit {
     filterValues.startRowNumber = this.startValue;
     filterValues.endRowNumber = this.dataLength
     this.masterServie.getFilterResults(filterValues).subscribe(result => {
+      this.loader.hideLoadingIndicator();
       this.filterResult.emit(result);
       this.selectDate.emit(this.daterange);
     });
@@ -238,6 +241,7 @@ export class FilterComponent implements OnInit {
     filterValues.productId = this.hotelSelected.toString();
     filterValues.startRowNumber = this.startValue;
     filterValues.endRowNumber = this.dataLength;
+    this.loader.displayLoadingIndicator();
     if (data === 'next') {
       filterValues.startRowNumber += this.dataLength;
       this.startValue += this.dataLength;
@@ -251,6 +255,7 @@ export class FilterComponent implements OnInit {
     }
     this.masterServie.getFilterResults(filterValues).subscribe(result => {
       this.filterResult.emit(result);
+      this.loader.hideLoadingIndicator();
       this.selectDate.emit(this.daterange);
     });
   }

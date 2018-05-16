@@ -7,6 +7,8 @@ import { MasterReportsComponent } from './../master-reports/master-reports.compo
 import { HttpErrorResponse} from '@angular/common/http';
 import * as moment from 'moment';
 import {FilterComponent} from '../filter/filter.component';
+import {config} from './../../../config';
+import {LoadingIndicatorService} from './../../../shared/services/loading-indicator.service';
 @Component({
   selector: 'app-analytics-home',
   templateUrl: './home.component.html',
@@ -22,10 +24,11 @@ export class HomeComponent implements OnInit {
   productTypes: Number;
   clear: Boolean = true;
   totalCount: any;
+  configUrl =  config.cm_url;
   @ViewChild(MasterReportsComponent)masterComp: MasterReportsComponent;
   @ViewChild('bookingId')bookingId: ElementRef;
   @ViewChild(FilterComponent)filterComp: FilterComponent;
-  constructor(private homeService: HomeService, private masterService: MasterReportsService) { }
+  constructor(private homeService: HomeService, private masterService: MasterReportsService, private loader: LoadingIndicatorService) { }
 
   ngOnInit() {
     this.displayedColumns = ['channelId', 'otaReferenceId', 'status',
@@ -75,8 +78,10 @@ export class HomeComponent implements OnInit {
    * memeber of home component
    */
   searchByBookingId() {
+    this.loader.displayLoadingIndicator()
     this.homeService.searchByBookingId(this.productTypes, this.bookingId.nativeElement.value).subscribe((result) => {
       //this.dataSource1 = result;
+      this.loader.hideLoadingIndicator();
       this.masterComp.searchById(result);
       this.clear = false;
     });

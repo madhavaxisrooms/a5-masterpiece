@@ -2,13 +2,15 @@ h3{
     text-align: center;
     color: white;
   }
-  
+.modal-wrapper {
+  background: rgba(0, 0, 0, 0.58);
+}
   .wrapper-loader {
     margin: auto;
     width: 100px;
     height: 100px;
   }
-  
+
   .loader {
     position: relative;
     width: 100px;
@@ -21,7 +23,7 @@ h3{
     -webkit-animation: spin 0.8s linear infinite;
             animation: spin 0.8s linear infinite;
   }
- 
+
   @-webkit-keyframes spin {
     to {
       -webkit-transform: rotate(360deg);
@@ -34,4 +36,3 @@ h3{
               transform: rotate(360deg);
     }
   }
-  

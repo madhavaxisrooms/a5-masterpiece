@@ -10,6 +10,7 @@ import { MasterReportsComponent } from './components/master-reports/master-repor
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   imports: [
     CommonModule,
@@ -26,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatAutocompleteModule,
     Daterangepicker,
     ClickOutsideModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   declarations: [HomeComponent, FilterComponent, MasterReportsComponent],
 })
