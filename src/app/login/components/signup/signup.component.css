@@ -1,0 +1,89 @@
+.custom-container {
+    display: flex;
+    height: calc(100vh - 100px);
+}
+
+.info-segment {
+    flex: 6;
+    background-image: url("https://s3-ap-southeast-1.amazonaws.com/resources.axisrooms/static/common/background-image-login.jpg");
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+    color: white;
+}
+
+.info-segment::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: -webkit-linear-gradient(45deg, #34495e 0, #2c3e50 60%, #34495e 115%);
+    background: linear-gradient(45deg, #34495e 0, #2c3e50 60%, #34495e 115%);
+    z-index: 1;
+    opacity: .7;
+}
+
+.info-segment .information {
+    z-index: 2;
+    flex-basis: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.info-segment .information h1{
+    color: white;
+    font-weight: bold;
+}
+
+.info-segment .information p{
+    width: 50%;
+}
+
+.info-segment .information button{
+    align-self: flex-start;
+    margin-left: 20px;
+}
+
+
+.signup-segment {
+    display: flex;
+    flex: 4;
+    flex-direction: column;
+    padding: 50px;
+    justify-content: center;
+}
+
+.signup-segment .form-area {
+    flex-basis: 80%;
+    width: 80%;
+    margin: auto;
+}
+
+.signup-segment h2{
+    font-size: 35px;
+    color: #3a9788;
+    margin: 0 0 30px 0;
+}
+
+.signup-segment p{
+    margin: 0;
+}
+
+.signup-segment small{
+    font-style: italic;
+}
+
+.signup-segment small a{
+    color: #3a9788;
+}
+
+.signup-segment form button{
+    margin-top: 20px;
+    width: 100%;
+}

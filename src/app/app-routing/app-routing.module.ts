@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'billing', loadChildren: 'app/billing/billing.module#BillingModule', canLoad: [AuthGuard] },
   { path: 'activity-report', loadChildren: 'app/activity-report/activity-report.module#ActivityReportModule', canLoad: [AuthGuard] },
   { path: 'analytics', loadChildren: 'app/analytics/analytics.module#AnalyticsModule', canLoad: [AuthGuard] },
-  { path: 'login', loadChildren: 'aap/login/login.module#LoginModule' },
+  { path: 'login', loadChildren: 'app/login/login.module#LoginModule' },
   { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule' },
   { path: '**', component: PageNotFoundComponent },
   { path: '404', component: PageNotFoundComponent },
