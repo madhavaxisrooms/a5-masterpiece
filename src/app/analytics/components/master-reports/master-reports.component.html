@@ -1,18 +1,19 @@
 
 <mat-card class="padding-5">
-  <div class="master-reports">
-    <mat-table #table [dataSource]="dataSource" matSort>
-      <ng-container matColumnDef="channelId">
+  <div *ngIf="dataLength == 1; else noData">
+  <div class="master-reports" matSort>
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="channelName">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Channel </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.channelId}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.channelName}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="otaReferenceId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> OTA Reference Id </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.otaReferenceId}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="status">
+      <ng-container matColumnDef="statusName">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.statusName}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="hotelName">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Hotel Name </mat-header-cell>
@@ -123,5 +124,21 @@
     </mat-paginator>
     <button mat-button (click)="previousSetValues()"  class="prevNext">Previous</button>
     <button mat-button (click)="nextSetValues()" class="prevNext">Next</button>
+  </div>
+  <ng-template #noData>
+    <ng-container *ngIf="dataLength == 0; else errorDiv">
+      <div class="no-data-div">
+        <mat-icon>error</mat-icon>
+        <p>No data found</p>
+      </div>
+    </ng-container>
+  </ng-template>
+  <ng-template #errorDiv>
+    <div class="no-data-div">
+      <mat-icon>sentiment_very_dissatisfied</mat-icon>
+      <p>Something Went Wrong Please try again Later</p>
+      <a [href]="configUrl" mat-button></a>
+    </div>
+  </ng-template>
 </mat-card>
 

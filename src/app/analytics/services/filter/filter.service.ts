@@ -90,4 +90,12 @@ export class FilterService {
       }
     });
   }
+  getUserType() {
+    const url = config.analytics_ip + '/cm/filters/checkIfSupport';
+    return this.http.get( url, {
+      params: {
+        accessToken: this.authService.access_token,
+      }
+    });
+  }
 }

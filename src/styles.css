@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, li, input, select {
 td{
     color: #000000
 }
-/* 
+/*
 input[type="checkbox"] {
     position: relative;
     width: 30px !important;
@@ -260,7 +260,7 @@ button.active, button:hover {
 }
 
 /* icons */
-    
+
 
 /* Modal */
 
@@ -882,7 +882,7 @@ table .action-dropdown-rel .action-dropdown li {
 .md-primary{
     background: #009688;
     color: #fff !important;
-} 
+}
 
 .md-primary:hover{
     background-color: #fff !important;
@@ -920,7 +920,9 @@ input[type="checkbox"].cdk-visually-hidden {
 }
 /*-----------------Material design Common css---------------------*/
 /*-----------------Date Range Picker css -------------------------*/
-
+.daterangepicker .off.available {
+  visibility: hidden;
+}
 
 .daterangepicker .table-condensed>tbody>tr>td,
 .daterangepicker .table-condensed>tbody>tr>th,

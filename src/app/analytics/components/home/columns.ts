@@ -1,7 +1,7 @@
  export const columns = [{
       name: 'Channel',
       checked: true,
-      value: 'channelId'
+      value: 'channelName'
     }, {
       name: 'OTA Reference Id',
       checked: true,
@@ -9,7 +9,7 @@
     }, {
       name: 'Status',
       checked: true,
-      value: 'status'
+      value: 'statusName'
     }, {
       name: 'Hotel Name',
       checked: true,

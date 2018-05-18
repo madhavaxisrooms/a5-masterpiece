@@ -41,13 +41,15 @@ export class FilterComponent implements OnInit {
   filterForms: FormGroup;
   startValue:number = 0;
   dataLength:number = 500;
+  userType: Boolean = false;
   @Output() productTypeValue: EventEmitter<Number> = new EventEmitter<Number>();
   @Output() filterResult: any = new EventEmitter();
   @Output() selectDate: EventEmitter<String> = new EventEmitter<String>();
   public options: any = {
+    locale: { format: 'DD/MM/YYYY' },
     alwaysShowCalendars: true,
     opens: 'left',
-    defaultDate: [moment(), moment()],
+    defaultDate: [moment().format('DD/MM/YYYY'), moment().format('DD/MM/YYYY')],
     ranges: {
       'Today': [moment(), moment()],
       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -77,10 +79,17 @@ export class FilterComponent implements OnInit {
     this.getDateType();
     this.getSupplierType();
     this.getHotel();
-    this.getCity();
+    // this.getCity();
     this.getSupplier();
+    this.getUserType();
   }
-
+  getUserType() {
+    this.filterService.getUserType().subscribe((result: Boolean) => {
+      this.userType = result;
+    }, (err: HttpErrorResponse) => {
+      console.log(err);
+    });
+  }
   channelComplete(a) {
     const values = a.split(',');
     if (values[values.length - 1] !== '') {
@@ -319,12 +328,12 @@ export class FilterComponent implements OnInit {
       }
     });
   }
-  getCity() {
-    this.filterService.getCity().subscribe(result => {
-      this.cityShown = result;
-      this.cityValue = result;
-    });
-  }
+  // getCity() {
+  //   this.filterService.getCity().subscribe(result => {
+  //     this.cityShown = result;
+  //     this.cityValue = result;
+  //   });
+  // }
   productTypeChange(obj) {
     this.productDefault =  obj.value;
     this.productTypeValue.emit(obj.value);

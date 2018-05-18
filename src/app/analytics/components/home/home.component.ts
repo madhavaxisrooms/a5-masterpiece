@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService, private masterService: MasterReportsService, private loader: LoadingIndicatorService) { }
 
   ngOnInit() {
-    this.displayedColumns = ['channelId', 'otaReferenceId', 'status',
+    this.displayedColumns = ['channelName', 'otaReferenceId', 'statusName',
       'hotelName', 'city', 'roomName', 'source', 'bookingDateAndTime', 'checkinDate'];
     this.columnData = columns;
     this.masterCount(moment().format('YYYY-MM-DD'));

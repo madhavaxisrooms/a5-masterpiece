@@ -6,8 +6,10 @@ header{
     position: relative;
 }
 header .logo {
-    max-height: 70px;
+    /*max-height: 70px;*/
     padding: 10px;
+    width: 130px;
+    height: 45px;
 }
 
 
