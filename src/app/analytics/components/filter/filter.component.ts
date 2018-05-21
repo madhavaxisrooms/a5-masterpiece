@@ -39,8 +39,8 @@ export class FilterComponent implements OnInit {
   productDefault;
   supplierList: Object;
   filterForms: FormGroup;
-  startValue: Number = 0;
-  dataLength: Number = 500;
+  startValue: any = 0;
+  dataLength: any = 500;
   userType: Boolean = false;
   @Output() productTypeValue: EventEmitter<Number> = new EventEmitter<Number>();
   @Output() filterResult: any = new EventEmitter();
