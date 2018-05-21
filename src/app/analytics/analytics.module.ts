@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { AnalyticsRoutingModule } from './analytics-routing.module';
 import {MatButtonModule, MatCheckboxModule, MatCardModule, MatSelectModule,
-  MatInputModule, MatTableModule, MatPaginatorModule, MatIconModule, MatListModule, MatAutocompleteModule} from '@angular/material';
+  MatInputModule, MatTableModule, MatPaginatorModule, MatIconModule, MatListModule, MatAutocompleteModule,
+  MatTooltipModule} from '@angular/material';
 import { HomeComponent } from './components/home/home.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { MasterReportsComponent } from './components/master-reports/master-reports.component';
@@ -28,7 +29,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     Daterangepicker,
     ClickOutsideModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTooltipModule
   ],
   declarations: [HomeComponent, FilterComponent, MasterReportsComponent],
 })

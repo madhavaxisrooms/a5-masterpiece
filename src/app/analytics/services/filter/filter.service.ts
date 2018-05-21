@@ -81,7 +81,7 @@ export class FilterService {
       }
     });
   }
-  getSupplier(supplier = '') {
+  getSupplier(supplier = '-1') {
     const url = config.analytics_ip + '/cm/filters/getSuppliers';
     return this.http.get(url, {
       params: {

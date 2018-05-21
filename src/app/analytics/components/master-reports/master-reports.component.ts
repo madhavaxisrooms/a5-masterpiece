@@ -38,7 +38,6 @@ export class MasterReportsComponent implements AfterViewInit, OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
-
       this.loadingService.hideLoadingIndicator();
      }, (err: HttpErrorResponse) => {
       this.dataLength = 2;

@@ -87,23 +87,29 @@
       checked: false,
      value: 'modeOfPayment'
     }, {
-      name: 'Promotions',
-      checked: false,
-     value: 'promotions'
-    }, {
-      name: 'Coupon Discount',
-      checked: false,
-     value: 'couponDiscount'
-    }, {
+   name: 'Promotions',
+   checked: false,
+   value: 'promotions'
+ },{
       name: 'Special Request',
       checked: false,
      value: 'specialRequests'
     }, {
       name: 'Coupon',
       checked: false,
-     value: 'couponDiscount'
-    }, {
+     value: 'coupon'
+    },
+   {
+     name: 'Coupon Discount',
+     checked: false,
+    value: 'couponDiscount'
+   },
+   {
       name: 'Deal',
       checked: false,
       value: 'deals'
     }];
+
+
+
+
