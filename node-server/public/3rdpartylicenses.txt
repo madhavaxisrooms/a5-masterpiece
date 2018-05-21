@@ -94,6 +94,10 @@ MIT
 MIT
 MIT
 
+@angular/platform-browser@5.2.9
+MIT
+MIT
+
 css-loader@0.28.11
 MIT
 Copyright JS Foundation and other contributors
@@ -186,10 +190,6 @@ own licenses; we recommend you read them, as their terms may differ from
 the terms above.
 
 ngx-cookie-service@1.0.10
-MIT
-MIT
-
-@angular/platform-browser@5.2.9
 MIT
 MIT
 

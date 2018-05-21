@@ -22,4 +22,12 @@ export class HomeService {
       params: params
     });
   }
+  masterCountById(bookingId, productId) {
+    const url = config.analytics_ip + '/cm/reports/masterCount/' + bookingId + '/' + productId;
+    return this.http.get(url, {
+      params: {
+        accessToken: this.authService.access_token
+      }
+    });
+  }
 }

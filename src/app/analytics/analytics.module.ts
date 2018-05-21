@@ -12,6 +12,7 @@ import { Daterangepicker } from 'ng2-daterangepicker';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { Title } from '@angular/platform-browser';
 @NgModule({
   imports: [
     CommonModule,
@@ -32,6 +33,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatProgressSpinnerModule,
     MatTooltipModule
   ],
+  providers: [Title],
   declarations: [HomeComponent, FilterComponent, MasterReportsComponent],
 })
 export class AnalyticsModule { }

@@ -40,15 +40,21 @@ export class MasterReportsComponent implements AfterViewInit, OnInit {
       }
       this.loadingService.hideLoadingIndicator();
      }, (err: HttpErrorResponse) => {
-      this.dataLength = 2;
+      this.dataLength = 0;
       this.loadingService.hideLoadingIndicator();
     });
   }
-  searchById($data) {
+  searchById($data: any) {
     // this.loadingService.hideLoadingIndicator();
-    this.dataSource = new MatTableDataSource($data);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    if ($data.length === 0) {
+      this.dataLength = 0;
+    } else {
+      this.dataLength = 1;
+        this.dataSource = new MatTableDataSource($data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+    }
+
   }
   nextSetValues() {
     this.dataValues.emit('next');

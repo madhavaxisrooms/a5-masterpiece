@@ -69,11 +69,11 @@
     }, {
       name: 'Total Amount',
       checked: true,
-     value: 'totalAmountDecimal'
+     value: 'totalAmountFinal'
     }, {
       name: 'Supplier Amount',
       checked: false,
-     value: 'supplierAmountDecimal'
+     value: 'supplierAmountFinal'
     }, {
       name: 'Avg BAR',
       checked: false,

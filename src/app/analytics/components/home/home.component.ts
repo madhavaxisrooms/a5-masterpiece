@@ -9,6 +9,7 @@ import * as moment from 'moment';
 import {FilterComponent} from '../filter/filter.component';
 import {config} from './../../../config';
 import {LoadingIndicatorService} from './../../../shared/services/loading-indicator.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-analytics-home',
   templateUrl: './home.component.html',
@@ -28,13 +29,15 @@ export class HomeComponent implements OnInit {
   @ViewChild(MasterReportsComponent)masterComp: MasterReportsComponent;
   @ViewChild('bookingId')bookingId: ElementRef;
   @ViewChild(FilterComponent)filterComp: FilterComponent;
-  constructor(private homeService: HomeService, private masterService: MasterReportsService, private loader: LoadingIndicatorService) { }
+  constructor(private homeService: HomeService, private masterService: MasterReportsService,
+    private loader: LoadingIndicatorService, private titleServie: Title) { }
 
   ngOnInit() {
     this.displayedColumns = ['channelName', 'otaReferenceId', 'statusName',
-      'hotelName', 'city', 'roomName', 'source', 'bookingDateAndTime', 'checkinDate', 'modeOfPayment', 'noOfRooms', 'totalAmountDecimal'];
+      'hotelName', 'city', 'roomName', 'source', 'bookingDateAndTime', 'checkinDate', 'modeOfPayment', 'noOfRooms', 'totalAmountFinal'];
     this.columnData = columns;
     this.masterCount(moment().format('YYYY-MM-DD'));
+    this.titleServie.setTitle('Master Report');
   }
   /**
    * @ Used to show and hide the show booking dropdown above the master reports table.
@@ -84,9 +87,15 @@ export class HomeComponent implements OnInit {
       // this.dataSource1 = result;
       this.loader.hideLoadingIndicator();
       this.masterComp.searchById(result);
+      this.masterCountById();
       this.clear = false;
     }, (err: HttpErrorResponse) => {
       this.loader.hideLoadingIndicator();
+    });
+  }
+  masterCountById() {
+    this.homeService.masterCountById(this.bookingId.nativeElement.value, this.productTypes).subscribe(result => {
+      this.totalCount = result;
     });
   }
   filterResult(result) {
@@ -103,10 +112,10 @@ export class HomeComponent implements OnInit {
   }
   clearFilter(id) {
     this.loader.displayLoadingIndicator();
-    this.masterService.getList().subscribe(result => {
+    this.masterService.getFilterResults(this.filterComp.filterForms.value).subscribe(result => {
       this.clear = true;
       this.masterComp.searchById(result);
-      this.loader.hideLoadingIndicator();
+      this.masterCountFilter(this.filterComp.filterForms.value);
       id.value = '';
     }, err => {
       console.log(err);

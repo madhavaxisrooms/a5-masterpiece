@@ -1,6 +1,6 @@
 
 <mat-card class="padding-5">
-  <div *ngIf="dataLength === 1; else noData">
+  <div [hidden]="dataLength ==0">
   <div class="master-reports" matSort>
     <mat-table #table [dataSource]="dataSource">
       <ng-container matColumnDef="channelName">
@@ -75,13 +75,13 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> Room Nights </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.roomNights}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="totalAmountDecimal">
+      <ng-container matColumnDef="totalAmountFinal">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.totalAmountDecimal}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.totalAmountFinal}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="supplierAmountDecimal">
+      <ng-container matColumnDef="supplierAmountFinal">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Supplier Amount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.supplierAmountDecimal}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.supplierAmountFinal}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="avgBAR">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Avg BAR <mat-icon class="information" matTooltip="(Avg Bar= Total Supplier Amount/(Total room nights* Total number of rooms)">help</mat-icon></mat-header-cell>
@@ -127,20 +127,14 @@
     <button mat-button (click)="previousSetValues()"  class="prevNext">Previous</button>
     <button mat-button (click)="nextSetValues()" class="prevNext">Next</button>
   </div>
-  <ng-template #noData>
-    <ng-container *ngIf="dataLength === 0; else errorDiv">
-      <div class="no-data-div">
+      <div class="no-data-div" [hidden]="dataLength == 1">
         <mat-icon>error</mat-icon>
         <p>No data found</p>
       </div>
-    </ng-container>
-  </ng-template>
-  <ng-template #errorDiv>
-    <div class="no-data-div">
+    <!-- <div class="no-data-div" [hidden]="">
       <mat-icon>sentiment_very_dissatisfied</mat-icon>
       <p>Something Went Wrong Please try again Later</p>
       <a [href]="configUrl" mat-button></a>
-    </div>
-  </ng-template>
+    </div> -->
 </mat-card>
 
