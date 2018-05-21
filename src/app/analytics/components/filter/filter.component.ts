@@ -81,7 +81,7 @@ export class FilterComponent implements OnInit {
     this.getChannel();
     this.getPaymentType();
     this.getDateType();
-    this.getSupplierType();
+    // this.getSupplierType();
     this.getHotel();
     // this.getCity();
     this.getSupplier(-1);

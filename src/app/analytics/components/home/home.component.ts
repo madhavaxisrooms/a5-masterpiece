@@ -65,6 +65,7 @@ export class HomeComponent implements OnInit {
    * @memeber of HomeComponent
    */
   tableColumn(obj: any, index1): any {
+    console.log(index1);
     const index: number = this.displayedColumns.indexOf(obj);
     if (index !== -1) {
       this.displayedColumns.splice(index, 1);
@@ -137,7 +138,7 @@ export class HomeComponent implements OnInit {
     // console.log($data);
     this.homeService.masterCount($data).subscribe((result) => {
       this.totalCount = result;
-      this.loader.hideLoadingIndicator();
+        this.loader.hideLoadingIndicator();
     }, (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
         console.log('Client Side Error');

@@ -27,10 +27,6 @@
       checked: true,
       value: 'source'
     }, {
-      name: 'Rate Plan',
-      checked: false,
-     value: 'rateplanName'
-    }, {
       name: 'Booking Time',
       checked: true,
       value: 'bookingDateAndTime'
@@ -44,9 +40,13 @@
      value: 'checkoutDate'
     }, {
       name: 'No. of Rooms',
-      checked: false,
+      checked: true,
      value: 'noOfRooms'
-    }, {
+   }, {
+     name: 'Rate Plan',
+     checked: false,
+     value: 'rateplanName'
+   }, {
       name: 'Total Guests',
       checked: false,
      value: 'totalGuests'
@@ -68,7 +68,7 @@
      value: 'roomNights'
     }, {
       name: 'Total Amount',
-      checked: false,
+      checked: true,
      value: 'totalAmountDecimal'
     }, {
       name: 'Supplier Amount',
@@ -84,7 +84,7 @@
      value: 'taxAmount'
     }, {
       name: 'Mode of Payment',
-      checked: false,
+      checked: true,
      value: 'modeOfPayment'
     }, {
    name: 'Promotions',

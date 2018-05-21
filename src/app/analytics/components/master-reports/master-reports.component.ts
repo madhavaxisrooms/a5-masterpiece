@@ -45,7 +45,7 @@ export class MasterReportsComponent implements AfterViewInit, OnInit {
     });
   }
   searchById($data) {
-    this.loadingService.hideLoadingIndicator();
+    // this.loadingService.hideLoadingIndicator();
     this.dataSource = new MatTableDataSource($data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
