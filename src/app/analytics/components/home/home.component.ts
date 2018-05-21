@@ -102,9 +102,11 @@ export class HomeComponent implements OnInit {
     this.productTypes = event;
   }
   clearFilter(id) {
+    this.loader.displayLoadingIndicator();
     this.masterService.getList().subscribe(result => {
       this.clear = true;
       this.masterComp.searchById(result);
+      this.loader.hideLoadingIndicator();
       id.value = '';
     }, err => {
       console.log(err);
