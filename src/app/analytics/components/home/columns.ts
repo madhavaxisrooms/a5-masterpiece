@@ -47,6 +47,10 @@
      checked: false,
      value: 'rateplanName'
    }, {
+     name: 'Bar Price',
+     checked: false,
+     value: 'barPrice'
+   }, {
       name: 'Total Guests',
       checked: false,
      value: 'totalGuests'
@@ -90,7 +94,7 @@
    name: 'Promotions',
    checked: false,
    value: 'promotions'
- },{
+ }, {
       name: 'Special Request',
       checked: false,
      value: 'specialRequests'

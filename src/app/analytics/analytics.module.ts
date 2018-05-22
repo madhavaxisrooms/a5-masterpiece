@@ -31,7 +31,7 @@ import { Title } from '@angular/platform-browser';
     ClickOutsideModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   providers: [Title],
   declarations: [HomeComponent, FilterComponent, MasterReportsComponent],
