@@ -1,4 +1,5 @@
 /* General CSS  */
+
 /* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
 
 body {
@@ -12,26 +13,38 @@ body {
     outline: none;
 }
 
-h2, h3 {
+h2,
+h3 {
     font-size: 16px;
 }
 
-h4, th, td {
+h4,
+th,
+td {
     font-size: 13px;
 }
 
-p, li {
+p,
+li {
     font-size: 13px;
     font-family: lato, 'Montserrat', Arial, sans-serif;
 }
 
-h1, h2, h3, h4, h5, li, input, select {
+h1,
+h2,
+h3,
+h4,
+h5,
+li,
+input,
+select {
     color: #333;
 }
 
-td{
+td {
     color: #000000
 }
+
 /*
 input[type="checkbox"] {
     position: relative;
@@ -77,11 +90,11 @@ input:checked[type="checkbox"]:before {
     left: 15px;
 } */
 
-input, select {
+input,
+select {
     border-radius: 2px;
     height: 35px;
 }
-
 
 ::-webkit-input-placeholder {
     font-family: lato, 'Montserrat', Arial, sans-serif;
@@ -89,13 +102,11 @@ input, select {
     color: #B6B6B6;
 }
 
-
 :-ms-input-placeholder {
     font-family: lato, 'Montserrat', Arial, sans-serif;
     font-size: 13px;
     color: #B6B6B6;
 }
-
 
 ::placeholder {
     font-family: lato, 'Montserrat', Arial, sans-serif;
@@ -103,8 +114,19 @@ input, select {
     color: #B6B6B6;
 }
 
-
-button, ul li, a, p, h1, h2, h3, h4, h5, h6, th, td, input {
+button,
+ul li,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th,
+td,
+input {
     font-family: lato, 'Montserrat', Arial, sans-serif;
 }
 
@@ -112,12 +134,17 @@ td {
     font-family: lato, 'Montserrat', Arial, sans-serif;
 }
 
-a,a:focus, a:hover,a:visited {
+a,
+a:focus,
+a:hover,
+a:visited {
     text-decoration: none;
     color: inherit;
 }
 
-.icon, button, select {
+.icon,
+button,
+select {
     cursor: pointer;
 }
 
@@ -127,7 +154,7 @@ button:disabled {
     border-color: grey;
 }
 
-button:disabled:hover{
+button:disabled:hover {
     background-color: grey;
     color: white;
     border-color: grey;
@@ -166,7 +193,8 @@ select {
     outline: none;
 }
 
-button.active, button:hover {
+button.active,
+button:hover {
     color: #4dbc9c;
     background: #fff;
     border-color: #4dbc9c;
@@ -241,26 +269,23 @@ button.active, button:hover {
     right: 0;
     top: 45px;
     z-index: 1;
-
 }
 
 /* Helpers */
-
 
 .blue-border {
     border-color: #162c42 !important;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
 }
 
-.box-shadow{
+.box-shadow {
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
 
 /* icons */
-
 
 /* Modal */
 
@@ -324,7 +349,8 @@ button.active, button:hover {
     border: none;
 }
 
-.modal-wrapper .modal-content .modal-body-content, .modal-wrapper .modal-content .modal-form-content {
+.modal-wrapper .modal-content .modal-body-content,
+.modal-wrapper .modal-content .modal-form-content {
     padding: 10px;
 }
 
@@ -376,16 +402,19 @@ button.active, button:hover {
     color: #545454;
 }
 
-.modal-wrapper .modal-content .modal-form .form-element input, .modal-wrapper .modal-content .modal-form .form-element select {
+.modal-wrapper .modal-content .modal-form .form-element input,
+.modal-wrapper .modal-content .modal-form .form-element select {
     width: 49%;
     display: inline-block;
 }
 
-.modal-wrapper .modal-content .save-button, .modal-wrapper .modal-content .next-button {
+.modal-wrapper .modal-content .save-button,
+.modal-wrapper .modal-content .next-button {
     overflow: auto;
 }
 
-.modal-wrapper .modal-content .save-button button, .modal-wrapper .modal-content .next-button button {
+.modal-wrapper .modal-content .save-button button,
+.modal-wrapper .modal-content .next-button button {
     float: right;
 }
 
@@ -589,6 +618,7 @@ button.active, button:hover {
     font-weight: 100;
     color: white;
 }
+
 /*
 .body-content .invoice-table table tr:first-child {
     background: #34485d;
@@ -603,9 +633,11 @@ button.active, button:hover {
     color: #3d464d;
 }
 
-th, td {
+th,
+td {
     padding: 15px 10px;
 }
+
 /*
 tr:nth-child(odd) {
     background: #c7c7c757;
@@ -615,7 +647,7 @@ tr:nth-child(odd) {
     border: 3px solid grey;
 } */
 
-table thead{
+table thead {
     color: #576271;
 }
 
@@ -687,6 +719,7 @@ table .action-dropdown-rel .action-dropdown li {
     -ms-flex-direction: column;
     flex-direction: column;
 }
+
 /* Supplier Styles */
 
 .body-content .supplier-nav {
@@ -733,7 +766,8 @@ table .action-dropdown-rel .action-dropdown li {
     padding-left: 30px;
 }
 
-.supplier-content-area .menu ul .active, .supplier-content-area .menu ul li:hover {
+.supplier-content-area .menu ul .active,
+.supplier-content-area .menu ul li:hover {
     background: #4dbc9c;
 }
 
@@ -831,8 +865,6 @@ table .action-dropdown-rel .action-dropdown li {
     margin: 20px auto;
 }
 
-
-
 /* Details Tab */
 
 .modal-wrapper .modal-content .modal-body-content .product-card {
@@ -863,65 +895,87 @@ table .action-dropdown-rel .action-dropdown li {
     color: #4d5d71;
 }
 
-
-
 /*-----------------Material design Common css---------------------*/
-.mat-form-field  {
-  width:100%;
-}
-.padding-5{
-  padding: 5px !important;
-}
-.mat-input-element {
-  height: auto;
-}
-.mat-form-field-underline {
-  background-color: rgba(0, 0, 0, 0.13);
+
+.mat-form-field {
+    width: 100%;
 }
 
-.md-primary{
+.padding-5 {
+    padding: 5px !important;
+}
+
+.mat-input-element {
+    height: auto;
+}
+
+.mat-form-field-underline {
+    background-color: rgba(0, 0, 0, 0.13);
+}
+
+.md-primary {
     background: #009688;
     color: #fff !important;
 }
 
-.md-primary:hover{
+.md-primary:hover {
     background-color: #fff !important;
     color: #009688 !important;
 }
 
-.mat-checkbox-layout{
+.mat-checkbox-layout {
     font-weight: normal;
 }
 
-.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background{
-    background-color: #009688 ;
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #009688;
 }
 
-.mat-button[disabled], .mat-flat-button[disabled], .mat-icon-button[disabled], .mat-stroked-button[disabled] {
-  background: transparent !important;
-  cursor: default !important;
+.mat-button[disabled],
+.mat-flat-button[disabled],
+.mat-icon-button[disabled],
+.mat-stroked-button[disabled] {
+    background: transparent !important;
+    cursor: default !important;
 }
+
 .padding-top-15 {
-  padding-top: 15px !important;
+    padding-top: 15px !important;
 }
+
 input[type="checkbox"].cdk-visually-hidden {
-  position: absolute !important;
+    position: absolute !important;
 }
+
 .table-column-drop .mat-checkbox label {
-  font-weight: 400;
+    font-weight: 400;
 }
-.table-column-drop .mat-checkbox-inner-container{
-  width: 15px;
-  height: 15px;
+
+.table-column-drop .mat-checkbox-inner-container {
+    width: 15px;
+    height: 15px;
 }
+
 .select-channel label {
-  font-weight: 500 !important;
-  font-size: 14px;
+    font-weight: 500 !important;
+    font-size: 14px;
 }
+
 /*-----------------Material design Common css---------------------*/
+
 /*-----------------Date Range Picker css -------------------------*/
+
 .daterangepicker .off.available {
-  visibility: hidden;
+    visibility: hidden;
+}
+.daterangepicker.ltr .calendar.left {
+  padding-right: 5px;
+}
+.daterangepicker.ltr .calendar.right {
+    /* margin-left: 5px !important; */
+    padding-left: 5px;
+    border-left: 1px solid #ccc;
 }
 
 .daterangepicker .table-condensed>tbody>tr>td,
@@ -930,47 +984,54 @@ input[type="checkbox"].cdk-visually-hidden {
 .daterangepicker .table-condensed>tfoot>tr>th,
 .daterangepicker .table-condensed>thead>tr>td,
 .daterangepicker .table-condensed>thead>tr>th {
-  padding: 10px;
+    padding: 10px;
 }
 
 .daterangepicker td.in-range {
-  background-color: #009688 !important;
-  color: #fff !important;
+    background-color: #009688 !important;
+    color: #fff !important;
 }
 
-.daterangepicker td.start-date {
-  border-radius: 20px 0 0 20px !important;
+.daterangepicker.ltr .calendar.right .daterangepicker td.start-date {
+    border-radius: 20px 0 0 20px !important;
 }
+
 .daterangepicker td.end-date {
-  border-radius: 0 20px 20px 0 !important;
+    border-radius: 0 20px 20px 0 !important;
 }
-.daterangepicker td.active, .daterangepicker td.active:hover {
-  background-color: #009688 !important;
+
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+    background-color: #009688 !important;
 }
 
 .daterangepicker td.start-date.end-date {
-  border-radius: 50% !important;
+    border-radius: 50% !important;
 }
+
 .daterangepicker .ranges li {
-  border-radius: 0px;
-  color: #009688;
+    border-radius: 0px;
+    color: #009688;
 }
+
 .daterangepicker .ranges li.active,
 .daterangepicker .ranges li:hover {
-  background-color: #009688 !important;
-  border: 1px solid #009688 !important;
-  color: #fff;
+    background-color: #009688 !important;
+    border: 1px solid #009688 !important;
+    color: #fff;
 }
-.daterangepicker .range_inputs button.btn-success {
-  background-color: #009688 !important;
-  border-color: #009688 !important;
-  border-radius: 0px;
-}
-.daterangepicker .input-mini {
-  border: 1px solid rgba(246, 248, 250, 0) !important;
-  border-radius: 0px !important;
-  box-shadow: none !important;
-  border-bottom: 2px solid #ccc !important;
-}
-/*-----------------Date Range Picker css -------------------------*/
 
+.daterangepicker .range_inputs button.btn-success {
+    background-color: #009688 !important;
+    border-color: #009688 !important;
+    border-radius: 0px;
+}
+
+.daterangepicker .input-mini {
+    border: 1px solid rgba(246, 248, 250, 0) !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    border-bottom: 2px solid #ccc !important;
+}
+
+/*-----------------Date Range Picker css -------------------------*/

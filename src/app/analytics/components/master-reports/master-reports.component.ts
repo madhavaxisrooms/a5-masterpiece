@@ -35,7 +35,7 @@ export class MasterReportsComponent implements AfterViewInit, OnInit {
       }
       if (this.dataLength === 1) {
         this.dataSource = new MatTableDataSource(result);
-        // this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
       this.loadingService.hideLoadingIndicator();
@@ -49,10 +49,12 @@ export class MasterReportsComponent implements AfterViewInit, OnInit {
     if ($data.length === 0) {
       this.dataLength = 0;
     } else {
-      this.dataLength = 1;
+        this.dataLength = 1;
         this.dataSource = new MatTableDataSource($data);
-        // this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.paginator.pageIndex = 0;
+        this.paginator.pageSize = 10;
     }
 
   }

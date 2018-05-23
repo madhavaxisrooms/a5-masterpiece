@@ -30,6 +30,7 @@ mat-card {
     overflow: auto;
     position: relative;
     max-height: 600px;
+    margin-bottom: 5px;
 }
 
 .prevNext {

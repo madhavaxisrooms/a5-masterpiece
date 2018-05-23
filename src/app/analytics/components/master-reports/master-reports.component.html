@@ -37,10 +37,10 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header> Rate Plan </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.rateplanName}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="barPrice">
+      <!-- <ng-container matColumnDef="barPrice">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Bar Price</mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.barPrice}}</mat-cell>
-      </ng-container>
+      </ng-container> -->
       <ng-container matColumnDef="bookingDateAndTime">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Booking Time </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.bookingDateAndTime}} </mat-cell>
@@ -124,8 +124,8 @@
       </div>
     </mat-table>
 </div>
-    <!-- <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]" [showFirstLastButtons]="false">
-    </mat-paginator> -->
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]" [showFirstLastButtons]="false">
+    </mat-paginator>
     <button mat-button (click)="previousSetValues()"  class="prevNext">Previous</button>
     <button mat-button (click)="nextSetValues()" class="prevNext">Next</button>
   </div>

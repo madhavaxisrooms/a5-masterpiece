@@ -17,7 +17,7 @@ export class MasterReportsService {
       startDate: moment().format('YYYY-MM-DD'),
       endDate: moment().format('YYYY-MM-DD'),
       startRowNumber: '0',
-      endRowNumber: '10'
+      endRowNumber: '500'
     };
     const url = config.analytics_ip + '/cm/reports/master';
     return this.http.get(url,  {params: params});
