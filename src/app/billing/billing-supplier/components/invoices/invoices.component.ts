@@ -83,7 +83,7 @@ export class InvoicesComponent implements OnInit {
       res => {
         var userDetails = JSON.parse(res['_body']);
         var options = {
-          'key': "rzp_test_eyPVcBwNeHotR9",
+          'key': "rzp_live_1WSALQH1f3VCRy",
           'name': 'RazorPay Payment',
           'description': 'Axisrooms',
           'image': '../../../../assets/axisrooms-logo-small.png',

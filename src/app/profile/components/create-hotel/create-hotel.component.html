@@ -1,3 +1,308 @@
-<p>
-  create-hotel works!
-</p>
+<div class="container">
+  <div class="page-title-area">
+    <h1>
+      Hotel Ceation
+    </h1>
+    <button type="button" mat-button class="md-primary">Back</button>
+  </div>
+  <ng4geo-autocomplete (componentCallback)="autoCompleteCallback($event)"></ng4geo-autocomplete>
+  <form [formGroup]="createHotelForm" (ngSubmit)="CreateHotel()">
+    <section>
+      <h2 class="section-title">
+        Basic Details
+      </h2>
+      <div class="row">
+        <div class="col-md-3">
+          <mat-form-field>
+            <input matInput formControlName="name" type="text" placeholder="Hotel Name">
+            <div *ngIf="createHotelForm.controls['name'].errors && !createHotelForm.controls['name'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['name'].errors.required">Name is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field class="form-selection">
+            <mat-select placeholder="Country" (change)="getStatesByCountryId(createHotelForm.value.country)" formControlName="country">
+              <mat-option *ngFor="let c of countryList" value="{{c.countryId}}">{{c.countryName}}</mat-option>
+            </mat-select>
+            <div *ngIf="createHotelForm.controls['country'].errors && !createHotelForm.controls['country'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['country'].errors.required">Country is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <input matInput formControlName="address" type="text" placeholder="Address">
+            <div *ngIf="createHotelForm.controls['address'].errors && !createHotelForm.controls['address'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['address'].errors.required">Address is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <input matInput formControlName="latitude" type="text" placeholder="Lattitude - Optional">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <input matInput formControlName="chainName" type="text" placeholder="Chain Name - Optional">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field class="form-selection">
+            <mat-select placeholder="State" (change)="getCitiesByStateId(createHotelForm.value.state)" formControlName="state">
+              <mat-option *ngFor="let s of stateList" value="{{s.stateId}}">{{s.stateName}}</mat-option>
+            </mat-select>
+            <div *ngIf="createHotelForm.controls['state'].errors && !createHotelForm.controls['state'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['state'].errors.required">State is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <input matInput formControlName="pincode" type="number" placeholder="Pincode">
+            <div *ngIf="createHotelForm.controls['pincode'].errors && !createHotelForm.controls['pincode'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['pincode'].errors.required">Pincode is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <input matInput formControlName="longitude" type="text" placeholder="Longitude - Optional">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <mat-select formControlName="propertyType" placeholder="Business Type">
+              <mat-option *ngFor="let bt of propertyTypes" [value]="bt.typeId">
+                {{ bt.propertyType }}
+              </mat-option>
+            </mat-select>
+            <div *ngIf="createHotelForm.controls['propertyType'].errors && !createHotelForm.controls['propertyType'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['propertyType'].errors.required">Business Type is required.</div>
+            </div>
+          </mat-form-field>
+
+        </div>
+        <div class="col-md-3">
+          <mat-form-field class="form-selection">
+            <mat-select placeholder="City" (change)="getLocationByCityId(createHotelForm.value.city)" formControlName="city">
+              <mat-option *ngFor="let c of cityList" value="{{c.cityId}}">{{c.cityName}}</mat-option>
+            </mat-select>
+            <div *ngIf="createHotelForm.controls['city'].errors && !createHotelForm.controls['city'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['city'].errors.required">City is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <input matInput formControlName="phone" type="number" placeholder="Phone Number">
+            <div *ngIf="createHotelForm.controls['phone'].errors && !createHotelForm.controls['phone'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['phone'].errors.required">Phone Number is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <input matInput formControlName="timeZone" type="text" placeholder="Time-Zone">
+            <div *ngIf="createHotelForm.controls['timeZone'].errors && !createHotelForm.controls['timeZone'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['timeZone'].errors.required">Time Zone is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <mat-select formControlName="rating" placeholder="Hotel Class - Optional">
+              <mat-option value="1"> &#9733;</mat-option>
+              <mat-option value="2"> &#9733;&#9733;</mat-option>
+              <mat-option value="3"> &#9733;&#9733;&#9733;</mat-option>
+              <mat-option value="4"> &#9733;&#9733;&#9733;&#9733;</mat-option>
+              <mat-option value="5"> &#9733;&#9733;&#9733;&#9733;&#9733;</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+        <div class="col-md-3">
+          <mat-form-field class="form-selection">
+            <mat-select placeholder="Area" formControlName="area">
+              <mat-option *ngFor="let a of areaList" value="{{a.locationId}}">{{a.locationName}}</mat-option>
+            </mat-select>
+            <div *ngIf="createHotelForm.controls['area'].errors && !createHotelForm.controls['area'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['area'].errors.required">Area is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <input matInput formControlName="websiteLink" type="url" placeholder="Website">
+            <div *ngIf="createHotelForm.controls['websiteLink'].errors && !createHotelForm.controls['websiteLink'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['websiteLink'].errors.required">Website is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <input matInput formControlName="currency" type="text" placeholder="Currency">
+            <div *ngIf="createHotelForm.controls['currency'].errors && !createHotelForm.controls['currency'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['currency'].errors.required">Currency is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">
+        Amenities & LOC
+      </h2>
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field>
+            <textarea matInput formControlName="description" placeholder="Description - Optional"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <h3>Amenities - Optional</h3>
+          <div class="amenities-selection">
+            <p *ngFor="let am of selectedAmenitiesNames"> {{am}} </p>
+            <button type="button" class="align-self-center" (click)="amenitiesVisible = !amenitiesVisible">Add Amenities</button>
+            <div *ngIf="amenitiesVisible" class="overlay" (click)="amenitiesVisible = !amenitiesVisible"></div>
+            <div *ngIf="amenitiesVisible" class="choose-amenities container box-shadow ">
+              <p *ngFor="let am of amentiesList" class="pointer" (click)="amenitySelected(am)" [ngClass]="{'selected': am.selected}">{{am.amenityName}}</p>
+
+              <button type="button" class="align-self-center" (click)="amenitiesVisible = !amenitiesVisible">Close</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="half-width">
+            <input matInput formControlName="checkIn" type="time" placeholder="Check-in Time">
+            <div *ngIf="createHotelForm.controls['checkIn'].errors && !createHotelForm.controls['checkIn'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['checkIn'].errors.required">Check-in time is required.</div>
+            </div>
+          </mat-form-field>
+          <mat-form-field class="half-width">
+            <input matInput formControlName="checkOut" type="time" placeholder="Check-out Time">
+            <div *ngIf="createHotelForm.controls['checkOut'].errors && !createHotelForm.controls['checkOut'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['checkOut'].errors.required">Check-out time is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <input matInput (blur)="imageUrlsEntered(imgUrl.value)" #imgUrl type="text" placeholder="Upload Image URL - Optional (Comma Seperated)">
+          </mat-form-field>
+        </div>
+      </div>
+
+    </section>
+
+    <section>
+      <h2 class="section-title">
+        Bank & Contact Details
+      </h2>
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Bank Details</h3>
+          <mat-form-field class="width-75">
+            <input matInput formControlName="bankName" type="text" placeholder="Bank Name">
+            <div *ngIf="createHotelForm.controls['bankName'].errors && !createHotelForm.controls['bankName'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['bankName'].errors.required">Bank Name is required.</div>
+            </div>
+          </mat-form-field>
+          <mat-form-field class="width-75">
+            <input matInput formControlName="bankBranchName" type="text" placeholder="Branch">
+            <div *ngIf="createHotelForm.controls['bankBranchName'].errors && !createHotelForm.controls['bankBranchName'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['bankBranchName'].errors.required">Branch Name is required.</div>
+            </div>
+          </mat-form-field>
+          <mat-form-field class="width-75">
+            <input matInput formControlName="bankAccountName" type="text" placeholder="Account Name">
+            <div *ngIf="createHotelForm.controls['bankAccountName'].errors && !createHotelForm.controls['bankAccountName'].pristine"
+              class="error-msg">
+              <div [hidden]="!createHotelForm.controls['bankAccountName'].errors.required">Bank Account Name is required.</div>
+            </div>
+          </mat-form-field>
+          <mat-form-field class="width-75">
+            <input matInput formControlName="bankAccountId" type="text" placeholder="Account Number">
+            <div *ngIf="createHotelForm.controls['bankAccountId'].errors && !createHotelForm.controls['bankAccountId'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['bankAccountId'].errors.required"> Account Number is required.</div>
+            </div>
+          </mat-form-field>
+          <mat-form-field class="width-75">
+            <input matInput formControlName="bankIfscCode" type="text" placeholder="IFSC Code">
+            <div *ngIf="createHotelForm.controls['bankIfscCode'].errors && !createHotelForm.controls['bankIfscCode'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['bankIfscCode'].errors.required">IFSC Code is required.</div>
+            </div>
+          </mat-form-field>
+          <mat-form-field class="width-75">
+            <input matInput formControlName="hotelPanNumber" type="text" placeholder="Hotel PAN/TAN Number">
+            <div *ngIf="createHotelForm.controls['hotelPanNumber'].errors && !createHotelForm.controls['hotelPanNumber'].pristine" class="error-msg">
+              <div [hidden]="!createHotelForm.controls['hotelPanNumber'].errors.required">Hotel PAN/TAN Number is required.</div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <h3>Contact Details</h3>
+            <div class="col-md-6">
+                <h4>Hotel Sales Contact</h4>
+              
+              <mat-form-field class="width-75">
+                <input matInput formControlName="contactPersonName" type="text" placeholder="Full Name - Optional">
+                <div *ngIf="createHotelForm.controls['contactPersonName'].errors && !createHotelForm.controls['contactPersonName'].pristine"
+                  class="error-msg">
+                  <div [hidden]="!createHotelForm.controls['contactPersonName'].errors.required">Name is required.</div>
+                </div>
+              </mat-form-field>
+              <mat-form-field class="width-75">
+                <input matInput formControlName="contactPersonEmail" type="email" placeholder="Email Address - Optional">
+                <div *ngIf="createHotelForm.controls['contactPersonEmail'].errors && !createHotelForm.controls['contactPersonEmail'].pristine"
+                  class="error-msg">
+                  <div [hidden]="!createHotelForm.controls['contactPersonEmail'].errors.required">Email Address is required.</div>
+                  <div [hidden]="!createHotelForm.controls['contactPersonEmail'].errors.pattern">Email is invalid.</div>
+                </div>
+              </mat-form-field>
+              <mat-form-field class="width-75">
+                <input matInput formControlName="contactPersonMobile" type="number" placeholder="Phone Number - Optional">
+                <div *ngIf="createHotelForm.controls['contactPersonMobile'].errors && !createHotelForm.controls['contactPersonMobile'].pristine"
+                  class="error-msg">
+                  <div [hidden]="!createHotelForm.controls['contactPersonMobile'].errors.required">Phone Number is required.</div>
+                </div>
+              </mat-form-field>
+              <mat-form-field class="width-75">
+                <input matInput formControlName="contactPersonFax" type="number" placeholder="Fax - Optional">
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <h4>Hotel Owner Contact</h4>
+              <mat-form-field class="width-75">
+                <input matInput formControlName="ownerPersonName" type="text" placeholder="Full Name">
+              </mat-form-field>
+              <mat-form-field class="width-75">
+                <input matInput formControlName="ownerPersonEmail" type="email" placeholder="Email Address">
+                <div *ngIf="createHotelForm.controls['ownerPersonEmail'].errors && !createHotelForm.controls['ownerPersonEmail'].pristine"
+                  class="error-msg">
+                  <div [hidden]="!createHotelForm.controls['ownerPersonEmail'].errors.pattern">Email is invalid.</div>
+                </div>
+              </mat-form-field>
+              <mat-form-field class="width-75">
+                <input matInput formControlName="ownerPersonMobile" type="number" placeholder="Phone Number">
+              </mat-form-field>
+              <mat-form-field class="width-75">
+                <input matInput formControlName="ownerPersonFax" type="number" placeholder="Fax - Optional">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="submit-button-area">
+      <button mat-button class="md-primary" type="submit" [disabled]="createHotelForm.invalid" >Submit</button>
+    </div>
+
+  </form>
+
+</div>

@@ -39,6 +39,7 @@
                             <li *ngIf="invoice.status != 'PAID'" (click)="changeStatus(invoice.invoiceId,'PAID',invoice.status);actionMenu[i] = !actionMenu[i]">Change to Paid</li>
                             <li *ngIf="invoice.status != 'UNPAID'" (click)="changeStatus(invoice.invoiceId,'UNPAID',invoice.status);actionMenu[i] = !actionMenu[i]">Change to Unpaid</li>
                             <li *ngIf="invoice.status == 'UNPAID'" (click)="changeStatus(invoice.invoiceId,'DELETED',invoice.status);actionMenu[i] = !actionMenu[i]">Delete Invoice</li>
+                            <li (click)="sendInvoice(invoice.invoiceId);actionMenu[i] = !actionMenu[i]">Send Invoice</li>
                         </ul>
                     </span>
 

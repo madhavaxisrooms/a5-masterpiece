@@ -1,0 +1,42 @@
+.personal-details .info {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.personal-details .info p, .personal-details .info h3 {
+    margin: 0;
+}
+
+.personal-details .info .title {
+    flex-basis: 150px;
+}
+
+.hotel-details .header {
+    display: flex;
+    margin-top: 10px; 
+    justify-content: space-between
+}
+
+.hotel-details .header button {
+    margin-left: 20px;
+    align-self: center;
+}
+
+.material-icons {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.pointer{
+    color: green;
+}
+
+table {
+    width: 100%;
+    margin: 20px 0;
+}
+
+thead th, tr td {
+    border: 1px solid grey;
+}

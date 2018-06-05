@@ -5,34 +5,59 @@
       <h1>Lorem Ipsum</h1>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, aliquam culpa molestias eos at sit in eum, laborum
         excepturi ut minima eveniet cumque aliquid quos cum? Amet rerum sed libero!</p>
-      <button>More Details</button>
+      <button type="button">More Details</button>
     </div>
   </div>
 
   <div class="signup-segment">
     <div class="form-area">
-      <h2 class="text-center" >Welcome</h2>
+      <h2 class="text-center">Welcome</h2>
       <p>Create an Account</p>
       <small>Aleadry have an account?
         <a href="">Sign In Here</a>
       </small>
-      <form>
+      <form [formGroup]="signupForm" (ngSubmit)="createSupplier()">
         <mat-form-field>
-          <input matInput placeholder="Hotel Name">
+          <input matInput placeholder="Name" formControlName="name">
+          <div *ngIf="signupForm.controls['name'].errors && !signupForm.controls['name'].pristine" class="error-msg">
+            <div [hidden]="!signupForm.controls['name'].errors.required">Name is required.</div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="emailId">
+          <div *ngIf="signupForm.controls['emailId'].errors && !signupForm.controls['emailId'].pristine" class="error-msg">
+            <div [hidden]="!signupForm.controls['emailId'].errors.required">Email is required.</div>
+            <div [hidden]="!signupForm.controls['emailId'].errors.pattern">Email is invalid.</div>
+          </div>
+        </mat-form-field>
+
+
+        <mat-form-field>
+          <mat-icon (click)="togglePwVisibilty()">remove_red_eye</mat-icon>
+          <input matInput type="{{pwHidden}}" placeholder="Password" formControlName="password">
+          <div *ngIf="signupForm.controls['password'].errors && !signupForm.controls['password'].pristine" class="error-msg">
+            <div [hidden]="!signupForm.controls['password'].errors.required">Password is required.</div>
+            <div class="password-policy" [hidden]="!signupForm.controls['password'].errors.pattern">Password Must be atleast 8 digit long and have one or more Special Characters, Numbers, Uppercase and Lowercase
+              Alphabets</div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-icon (click)="togglePwVisibilty()">remove_red_eye</mat-icon>
+          <input matInput type="{{pwHidden}}" placeholder="Confirm Password" formControlName="confirmPassword">
+          <div *ngIf="signupForm.controls['password'].valid && !signupForm.controls['confirmPassword'].pristine" class="error-msg">
+            <div [hidden]="signupForm.controls['password'].value === signupForm.controls['confirmPassword'].value">Passwords do not match.</div>
+          </div>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Email">
+          <input matInput placeholder="Mobile Number" type="text" formControlName="mobile">
+          <div *ngIf="signupForm.controls['mobile'].errors && !signupForm.controls['mobile'].pristine" class="error-msg">
+            <div [hidden]="!signupForm.controls['mobile'].errors.required">Mobile is required.</div>
+            <div [hidden]="!signupForm.controls['mobile'].errors.pattern">Mobile Number should atleast be 10 digits long.</div>
+          </div>
         </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Password">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Confirm Password">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Mobile Number">
-        </mat-form-field>
-        <button mat-button>Create Your Account</button>
+        <button mat-button type="submit" [disabled]="signupForm.invalid">Create Your Account</button>
       </form>
     </div>
   </div>

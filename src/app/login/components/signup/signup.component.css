@@ -1,6 +1,6 @@
 .custom-container {
     display: flex;
-    height: calc(100vh - 100px);
+    height: 100vh;
 }
 
 .info-segment {
@@ -43,6 +43,7 @@
 
 .info-segment .information p{
     width: 50%;
+    color: white;
 }
 
 .info-segment .information button{
@@ -86,4 +87,28 @@
 .signup-segment form button{
     margin-top: 20px;
     width: 100%;
+}
+
+.error-msg{
+    position: absolute;
+    bottom: -15px;
+    color: red;
+    font-size: 12px;
+}
+
+.password-policy{
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    background: white;
+    width: 200px;
+    z-index: 4;
+    padding: 20px;
+    line-height: 20px;
+}
+.mat-icon{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
 }

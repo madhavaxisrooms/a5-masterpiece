@@ -137,7 +137,26 @@ export class FormService {
    */
   sendInvoices(date) {
     const url = "https://billing-service.axisrooms.com/v1/api/invoice/dateRun/" + date;
-    return this.http.get(url).map(
+    return this.http.post(url, null).map(
+      res => {
+        return res;
+      },
+      err => {
+        return err;
+      }
+    );
+  }
+
+  /**
+   * Sending Invoices based on Id
+   * 
+   * @param {any} date 
+   * @returns 
+   * @memberof FormService
+   */
+  sendInvoicesById(id) {
+    const url = "https://billing-service.axisrooms.com//v1/api/generate/invoice/" + id;
+    return this.http.post(url, null).map(
       res => {
         return res;
       },

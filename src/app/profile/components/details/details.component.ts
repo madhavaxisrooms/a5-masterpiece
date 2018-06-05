@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HotelDetailsService } from '../../services/hotel-details.service';
 
 @Component({
   selector: 'app-details',
@@ -7,9 +8,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor() { }
+  public hotelDetails;
+
+  constructor(
+    private hotelDetailsService: HotelDetailsService
+  ) { }
 
   ngOnInit() {
+    this.getHotelDetails();
+  }
+
+  getHotelDetails() {
+    this.hotelDetailsService.getHotelDetails(1101).subscribe(
+      res => {
+        console.log(res);
+        this.hotelDetails = res;
+      },
+      err =>{
+        console.log(err);
+      }
+    );
+  }
+
+  requestedForTrail(hoteId){
+    this.hotelDetailsService.requestedForTial(hoteId).subscribe(
+      res => {
+        console.log(res);
+        // this.hotelDetails = res;
+      },
+      err =>{
+        console.log(err);
+      }
+    );
   }
 
 }

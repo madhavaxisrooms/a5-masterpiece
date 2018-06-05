@@ -95,4 +95,16 @@ export class HomeComponent implements OnInit {
     this.formService.toggleForm(false);
   }
 
+  sendInvoicesById(id){
+    this.formService.sendInvoicesById(id).subscribe(
+      res =>{
+        this.toasterService.displayToaster(res['_body'], 'info');
+      },
+      err => {
+        this.toasterService.displayToaster("Something went wrong.", 'error');
+      }
+    );
+  }
+
+
 }

@@ -59,4 +59,17 @@ export class InvoiceService {
   }
 
 
+  sendInvoice(id){
+    const url = 'https://billing-service.axisrooms.com/v1/api/generate/invoice?invoiceNo='+ id;
+    return this.http.post(url, null).map(
+      (res) => {
+        return res;
+      },
+      err => {
+        return err;
+      }
+    );
+  }
+
+  
 }

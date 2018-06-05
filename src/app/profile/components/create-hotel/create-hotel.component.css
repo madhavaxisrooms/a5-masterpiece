@@ -1,0 +1,75 @@
+.page-title-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.submit-button-area {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+}
+
+.width-75 {
+    width: 75%;
+    margin: auto;
+}
+
+form{
+    margin-top: 80px;
+}
+
+.amenities-selection{
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;   
+}
+
+.choose-amenities p,
+.amenities-selection p{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #efefef;
+    margin: 5px;
+}
+
+.selected{
+    background-color: #6a7170 !important;
+    color: white;
+}
+
+.choose-amenities{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    background: white;
+    padding: 20px 10px;
+    top: 0px;
+    right: 0;
+    z-index: 3;
+}
+
+.choose-amenities > *{
+    align-items: center;
+}
+
+.col-md-6{
+    margin-top: 10px;
+}
+
+.error-msg{
+    position: absolute;
+    bottom: -15px;
+    color: red;
+    font-size: 12px;
+}
+button:disabled {
+    background-color: grey !important;
+    color: white !important;
+    border-color: grey !important;
+}
