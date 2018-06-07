@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/Rx';
 import { WindowRefService } from '../../../shared/services/window-ref.service';
 import { ToasterService } from '../../../shared/services/toaster.service';
@@ -78,6 +78,9 @@ export class FormService {
    * @memberof FormService
    */
   getAllTemplates(): Observable<any> {
+
+
+
     const url = 'https://billing-service.axisrooms.com//v1/api/getTemplate';
     return this.http.post(url, null).map(
       (res) => {

@@ -34,7 +34,7 @@ export class DetailsComponent implements OnInit {
     this.hotelDetailsService.requestedForTial(hoteId).subscribe(
       res => {
         console.log(res);
-        // this.hotelDetails = res;
+        this.hotelDetails = res;
       },
       err =>{
         console.log(err);

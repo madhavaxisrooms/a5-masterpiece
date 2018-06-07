@@ -17,6 +17,5 @@ export class HotelDetailsService {
     const url = "http://192.168.0.62:8888/api/be/requestHotelTrial/" + hotelId;
     return this.http.get(url);
   }
-
   
 }

@@ -3,7 +3,7 @@
     <h1>
       Hotel Ceation
     </h1>
-    <button type="button" mat-button class="md-primary">Back</button>
+    <a routerLink="/profile/details"> <button type="button" mat-button class="md-primary">Back</button></a>
   </div>
   <ng4geo-autocomplete (componentCallback)="autoCompleteCallback($event)"></ng4geo-autocomplete>
   <form [formGroup]="createHotelForm" (ngSubmit)="CreateHotel()">
@@ -169,7 +169,7 @@
             <button type="button" class="align-self-center" (click)="amenitiesVisible = !amenitiesVisible">Add Amenities</button>
             <div *ngIf="amenitiesVisible" class="overlay" (click)="amenitiesVisible = !amenitiesVisible"></div>
             <div *ngIf="amenitiesVisible" class="choose-amenities container box-shadow ">
-              <p *ngFor="let am of amentiesList" class="pointer" (click)="amenitySelected(am)" [ngClass]="{'selected': am.selected}">{{am.amenityName}}</p>
+              <p *ngFor="let am of amentiesList" class="pointer" (click)="amenitySelected(am)" [ngClass]="{'selected': am.selected }">{{am.amenityName}}</p>
 
               <button type="button" class="align-self-center" (click)="amenitiesVisible = !amenitiesVisible">Close</button>
             </div>

@@ -9,16 +9,20 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor(private injector: Injector) {}
+  constructor(private injector: Injector) { }
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    alert(1);
+    // alert("VIJAY");
+    
     const authService = this.injector.get(AuthService);
-    const tokenizedReq = req.clone(
-      {
-        headers: req.headers.set('accessToken', 'bearer ' + authService.getToken())
-      }
-    );
-    console.log("req", req);
-    return next.handle(req);
+    console.log(authService.getToken());
+    
+    const tokenizedReq = req.clone({
+      setHeaders: {
+        'Content-Type' : 'application/json; charset=utf-8',
+        'Accept'       : 'application/json',
+        'Authorization': 'authService.getToken()',
+      },
+    });
+    return next.handle(tokenizedReq);
   }
 }

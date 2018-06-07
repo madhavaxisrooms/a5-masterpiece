@@ -25,7 +25,7 @@ import { HotelDetailsService } from "./services/hotel-details.service";
     ReactiveFormsModule,
     MatChipsModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   declarations: [DetailsComponent, CreateHotelComponent],
   providers:[
