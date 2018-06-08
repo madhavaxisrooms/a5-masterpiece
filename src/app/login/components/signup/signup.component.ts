@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
         window.open('https://app.axisrooms.com', '_self');
       },
       err => {
-        this.toaster.displayToaster('err', 'error')
+        this.toaster.displayToaster('Something went wrong please contact support team.', 'error')
       }
     );
   }

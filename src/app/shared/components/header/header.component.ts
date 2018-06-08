@@ -12,19 +12,10 @@ export class HeaderComponent implements OnInit {
   public showProductSwitcher: boolean = false;
   public header;
   constructor(
-    private headerService: HeaderService
+    private headerService: HeaderService,
   ) { }
 
   ngOnInit() {
-    // this.headerService.getHeaderData().subscribe(
-    //   res => {
-    //     console.log(123);
-    //     console.log(res);
-    //   },
-    //   err => {
-    //     alert(err);
-    //   }
-    // );
   }
 
 }

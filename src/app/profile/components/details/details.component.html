@@ -55,10 +55,14 @@
           </thead>
           <tbody>
             <tr *ngFor="let hotel of hotelDetails">
-              <td>{{hotel.hotelName}}</td>
-              <td> <button *ngIf="!hotel.isTrialRequested" (click)="requestedForTrail(hotelId)" >Request Trial</button> </td>
+              <td>{{hotel.hotelName}}
+                <mat-icon [routerLink]="['/profile', 'create-hotel', hotel.hotelId]">edit</mat-icon>
+              </td>
+              <td>
+                <button *ngIf="!hotel.isTrialRequested" (click)="requestedForTrail(hotel.hotelId)">Request Trial</button>
+                <p *ngIf="hotel.isTrialRequested">Hotel Trial Requested</p>
+              </td>
             </tr>
-
           </tbody>
         </table>
 

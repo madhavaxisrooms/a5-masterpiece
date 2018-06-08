@@ -12,10 +12,19 @@ export class CreateHotelService {
 
   createHotel(hotel) {
     const url = "http://192.168.0.62:8888/api/be/createHotel";
-    return this.http.post(url, hotel,{
+    return this.http.post(url, hotel, {
       headers: new HttpHeaders().set('Authorization', this.authService.getToken())
     });
   }
+
+  updateHotel(hotel) {
+    const url = "http://192.168.0.62:8888/api/be/updateHotel";
+    return this.http.put(url, hotel, {
+      headers: new HttpHeaders().set('Authorization', this.authService.getToken())
+    });
+  }
+
+  
 
 
   getCurrencyAndTimeZone(country) {
@@ -26,10 +35,9 @@ export class CreateHotelService {
   }
 
   getAmenitiesList() {
-
     const url = "http://192.168.0.62:8888/api/be/fetchAmenities";
     return this.http.get(url, {
-      headers: new HttpHeaders().set('Authorization', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOiIyMDE4LTA2LTA3IiwiZXhwIjoxNTI4MzUzNTcxNzMzLCJlbWFpbCI6ImFAYS5hIiwidXNlcklkIjoxOCwicGFzc3dvcmQiOiJ6cm5YazhZVFpxZGQ0R1dqcTV6cHFpU1Q4bk9ZMHFGNXR5blpHRUJKQSt4MmFMRE1aNW9JOVhnQUp3NkpTaGU4aVBxaHVUaFUwaFBZOXloVmlSeE43d1x1MDAzZFx1MDAzZCJ9.xX-CL05JfMJo0rYhI9YqNnVZ9Mc7CRaKmV0xXgzcZ-E')
+      headers: new HttpHeaders().set('Authorization', this.authService.getToken())
     });
   }
 

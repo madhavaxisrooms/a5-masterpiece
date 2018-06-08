@@ -3,6 +3,8 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
 import { Title } from '@angular/platform-browser';
 import { CreateHotelService } from '../../services/create-hotel.service';
+import { LoadingIndicatorService } from '../../../shared/services/loading-indicator.service';
+import { ToasterService } from '../../../shared/services/toaster.service';
 
 @Component({
   selector: 'app-create-hotel',
@@ -29,7 +31,9 @@ export class CreateHotelComponent implements OnInit {
     private titleService: Title,
     private createHotelService: CreateHotelService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private loader: LoadingIndicatorService,
+    private toaster: ToasterService
   ) { }
 
   ngOnInit() {
@@ -39,9 +43,10 @@ export class CreateHotelComponent implements OnInit {
     this.getCountries();
 
     this.createHotelForm = this.formBuilder.group({
-      userId: [1101, [Validators.required]],
+      hotelId:[-1],
+      userId: [JSON.parse(localStorage.getItem('userDetails')).userId, [Validators.required]],
       name: [, [Validators.required]],
-      chainName: [],
+      chainName: [, [Validators.required]],
       propertyType: [[Validators.required]],
       rating: [],
       country: [, [Validators.required]],
@@ -63,16 +68,16 @@ export class CreateHotelComponent implements OnInit {
       bankAccountId: [, [Validators.required]],
       bankIfscCode: [, [Validators.required]],
       hotelPanNumber: [, [Validators.required]],
-      ownerPersonName: [, [Validators.required]],
-      ownerPersonEmail: [, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.]+.[a-z]{2,4}$")]],
-      ownerPersonMobile: [, [Validators.required]],
+      ownerPersonName: [],
+      ownerPersonEmail: [, [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.]+.[a-z]{2,4}$")]],
+      ownerPersonMobile: [],
       ownerPersonFax: [],
-      contactPersonName: [],
-      contactPersonEmail: [, [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.]+.[a-z]{2,4}$")]],
+      contactPersonName: [, [Validators.required]],
+      contactPersonEmail: [, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.]+.[a-z]{2,4}$")]],
       contactPersonFax: [],
-      contactPersonMobile: [],
-      timeZone: [, [Validators.required]],
-      currency: [],
+      contactPersonMobile: [, [Validators.required]],
+      timeZone: [null],
+      currency: [null],
       amenties: [],
       imageURL: []
     });
@@ -92,22 +97,22 @@ export class CreateHotelComponent implements OnInit {
 
     // console.log(hotelDetails);
 
-    
+    this.loader.displayLoadingIndicator();
     this.createHotelService.getHotelDetails(this.hotelId).subscribe(res => {
       console.log(res);
       this.pupulateForm(res);
     }),
-    err => {
-      console.error(err);
-    }
+      err => {
+        console.error(err);
+      }
   }
 
-  pupulateForm(hotelDetails){
+  pupulateForm(hotelDetails) {
     this.createHotelForm.controls.name.setValue(hotelDetails.name);
     this.createHotelForm.controls.chainName.setValue(hotelDetails.chainName);
     this.createHotelForm.controls.propertyType.setValue(hotelDetails.propertyType);
     this.createHotelForm.controls.rating.setValue(hotelDetails.rating);
-    
+
     this.createHotelForm.controls.rating.value = hotelDetails.rating;
     console.log(hotelDetails.rating);
     this.createHotelForm.controls.country.setValue(hotelDetails.country);
@@ -143,7 +148,7 @@ export class CreateHotelComponent implements OnInit {
     this.createHotelForm.controls.amenties.setValue(hotelDetails.amenties);
     this.amentiesList = hotelDetails.amenties;
     this.createHotelForm.controls.imageURL.setValue(hotelDetails.imageURL);
-
+    this.loader.hideLoadingIndicator();
   }
 
   autoCompleteCallback(selectedData: any) {
@@ -245,16 +250,44 @@ export class CreateHotelComponent implements OnInit {
 
   CreateHotel() {
     this.createHotelForm.controls.amenties.setValue(this.selectedAmenities);
-    console.log(this.createHotelForm.value);
-    this.createHotelService.createHotel(this.createHotelForm.value).subscribe(
-      res => {
-        console.log(res);
-        this.router.navigateByUrl('/profile/details');
-      },
-      err => {
-        console.log(err)
-      }
-    );
+
+    if (this.hotelId) {
+      this.createHotelForm.controls.hotelId.setValue(this.hotelId);
+      this.createHotelService.updateHotel(this.createHotelForm.value).subscribe(
+        res => {
+          console.log(res);
+          if (res['status'] === 'success') {
+            this.toaster.displayToaster('Hotel Updated', 'success');
+            this.router.navigateByUrl('/profile/details');
+          } else {
+            this.toaster.displayToaster('Something went wrong. Please contact Support Team', 'error');
+          }
+
+        },
+        err => {
+          console.log(err)
+        }
+      );
+    } else {
+      console.log(this.createHotelForm.value);
+      this.createHotelService.createHotel(this.createHotelForm.value).subscribe(
+        res => {
+          console.log(res);
+          if (res['status'] === 'success') {
+            this.toaster.displayToaster('Hotel Created', 'success');
+            this.router.navigateByUrl('/profile/details');
+          } else {
+            this.toaster.displayToaster('Something went wrong. Please contact Support Team', 'error');
+          }
+
+        },
+        err => {
+          console.log(err)
+        }
+      );
+    }
+
+
   }
 
   amenitySelected(am) {

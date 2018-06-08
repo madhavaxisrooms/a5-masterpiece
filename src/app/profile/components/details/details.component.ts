@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelDetailsService } from '../../services/hotel-details.service';
+import { ToasterService } from '../../../shared/services/toaster.service';
+import { LoadingIndicatorService } from '../../../shared/services/loading-indicator.service';
+import { AuthService } from '../../../auth.service';
 
 @Component({
   selector: 'app-details',
@@ -11,7 +14,10 @@ export class DetailsComponent implements OnInit {
   public hotelDetails;
 
   constructor(
-    private hotelDetailsService: HotelDetailsService
+    private hotelDetailsService: HotelDetailsService,
+    private toaster: ToasterService,
+    private loader: LoadingIndicatorService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -19,25 +25,33 @@ export class DetailsComponent implements OnInit {
   }
 
   getHotelDetails() {
-    this.hotelDetailsService.getHotelDetails(1101).subscribe(
+
+    this.loader.displayLoadingIndicator()
+    this.hotelDetailsService.getHotelDetails(JSON.parse(localStorage.getItem('userDetails')).userId).subscribe(
       res => {
-        console.log(res);
         this.hotelDetails = res;
+        this.loader.hideLoadingIndicator();
       },
-      err =>{
-        console.log(err);
+      err => {
+        this.loader.hideLoadingIndicator();
       }
     );
   }
 
-  requestedForTrail(hoteId){
-    this.hotelDetailsService.requestedForTial(hoteId).subscribe(
+  requestedForTrail(hotelId) {
+    this.loader.displayLoadingIndicator()
+
+    this.hotelDetailsService.requestedForTial(hotelId).subscribe(
       res => {
-        console.log(res);
-        this.hotelDetails = res;
+        this.toaster.displayToaster(res['message'], "success");
+        this.getHotelDetails();
+        this.loader.hideLoadingIndicator();
+
       },
-      err =>{
-        console.log(err);
+      err => {
+        this.toaster.displayToaster(err['message'], "error");
+        this.loader.hideLoadingIndicator();
+
       }
     );
   }

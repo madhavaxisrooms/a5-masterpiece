@@ -45,7 +45,7 @@
         </div>
         <div class="col-md-3">
           <mat-form-field>
-            <input matInput formControlName="chainName" type="text" placeholder="Chain Name - Optional">
+            <input matInput formControlName="chainName" type="text" placeholder="Chain Name">
           </mat-form-field>
         </div>
         <div class="col-md-3">
@@ -102,14 +102,14 @@
             </div>
           </mat-form-field>
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <mat-form-field>
             <input matInput formControlName="timeZone" type="text" placeholder="Time-Zone">
             <div *ngIf="createHotelForm.controls['timeZone'].errors && !createHotelForm.controls['timeZone'].pristine" class="error-msg">
               <div [hidden]="!createHotelForm.controls['timeZone'].errors.required">Time Zone is required.</div>
             </div>
           </mat-form-field>
-        </div>
+        </div> -->
         <div class="col-md-3">
           <mat-form-field>
             <mat-select formControlName="rating" placeholder="Hotel Class - Optional">
@@ -140,14 +140,14 @@
             </div>
           </mat-form-field>
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <mat-form-field>
             <input matInput formControlName="currency" type="text" placeholder="Currency">
             <div *ngIf="createHotelForm.controls['currency'].errors && !createHotelForm.controls['currency'].pristine" class="error-msg">
               <div [hidden]="!createHotelForm.controls['currency'].errors.required">Currency is required.</div>
             </div>
           </mat-form-field>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -250,48 +250,48 @@
                 <h4>Hotel Sales Contact</h4>
               
               <mat-form-field class="width-75">
-                <input matInput formControlName="contactPersonName" type="text" placeholder="Full Name - Optional">
-                <div *ngIf="createHotelForm.controls['contactPersonName'].errors && !createHotelForm.controls['contactPersonName'].pristine"
+                <input matInput formControlName="ownerPersonName" type="text" placeholder="Full Name - Optional">
+                <div *ngIf="createHotelForm.controls['ownerPersonName'].errors && !createHotelForm.controls['ownerPersonName'].pristine"
                   class="error-msg">
-                  <div [hidden]="!createHotelForm.controls['contactPersonName'].errors.required">Name is required.</div>
+                  <div [hidden]="!createHotelForm.controls['ownerPersonName'].errors.required">Name is required.</div>
                 </div>
               </mat-form-field>
               <mat-form-field class="width-75">
-                <input matInput formControlName="contactPersonEmail" type="email" placeholder="Email Address - Optional">
-                <div *ngIf="createHotelForm.controls['contactPersonEmail'].errors && !createHotelForm.controls['contactPersonEmail'].pristine"
+                <input matInput formControlName="ownerPersonEmail" type="email" placeholder="Email Address - Optional">
+                <div *ngIf="createHotelForm.controls['ownerPersonEmail'].errors && !createHotelForm.controls['ownerPersonEmail'].pristine"
                   class="error-msg">
-                  <div [hidden]="!createHotelForm.controls['contactPersonEmail'].errors.required">Email Address is required.</div>
-                  <div [hidden]="!createHotelForm.controls['contactPersonEmail'].errors.pattern">Email is invalid.</div>
+                  <div [hidden]="!createHotelForm.controls['ownerPersonEmail'].errors.required">Email Address is required.</div>
+                  <div [hidden]="!createHotelForm.controls['ownerPersonEmail'].errors.pattern">Email is invalid.</div>
                 </div>
               </mat-form-field>
               <mat-form-field class="width-75">
-                <input matInput formControlName="contactPersonMobile" type="number" placeholder="Phone Number - Optional">
-                <div *ngIf="createHotelForm.controls['contactPersonMobile'].errors && !createHotelForm.controls['contactPersonMobile'].pristine"
+                <input matInput formControlName="ownerPersonMobile" type="number" placeholder="Phone Number - Optional">
+                <div *ngIf="createHotelForm.controls['ownerPersonMobile'].errors && !createHotelForm.controls['ownerPersonMobile'].pristine"
                   class="error-msg">
-                  <div [hidden]="!createHotelForm.controls['contactPersonMobile'].errors.required">Phone Number is required.</div>
+                  <div [hidden]="!createHotelForm.controls['ownerPersonMobile'].errors.required">Phone Number is required.</div>
                 </div>
               </mat-form-field>
               <mat-form-field class="width-75">
-                <input matInput formControlName="contactPersonFax" type="number" placeholder="Fax - Optional">
+                <input matInput formControlName="ownerPersonFax" type="number" placeholder="Fax - Optional">
               </mat-form-field>
             </div>
             <div class="col-md-6">
               <h4>Hotel Owner Contact</h4>
               <mat-form-field class="width-75">
-                <input matInput formControlName="ownerPersonName" type="text" placeholder="Full Name">
+                <input matInput formControlName="contactPersonName" type="text" placeholder="Full Name">
               </mat-form-field>
               <mat-form-field class="width-75">
-                <input matInput formControlName="ownerPersonEmail" type="email" placeholder="Email Address">
-                <div *ngIf="createHotelForm.controls['ownerPersonEmail'].errors && !createHotelForm.controls['ownerPersonEmail'].pristine"
+                <input matInput formControlName="contactPersonEmail" type="email" placeholder="Email Address">
+                <div *ngIf="createHotelForm.controls['contactPersonEmail'].errors && !createHotelForm.controls['contactPersonEmail'].pristine"
                   class="error-msg">
-                  <div [hidden]="!createHotelForm.controls['ownerPersonEmail'].errors.pattern">Email is invalid.</div>
+                  <div [hidden]="!createHotelForm.controls['contactPersonEmail'].errors.pattern">Email is invalid.</div>
                 </div>
               </mat-form-field>
               <mat-form-field class="width-75">
-                <input matInput formControlName="ownerPersonMobile" type="number" placeholder="Phone Number">
+                <input matInput formControlName="contactPersonMobile" type="number" placeholder="Phone Number">
               </mat-form-field>
               <mat-form-field class="width-75">
-                <input matInput formControlName="ownerPersonFax" type="number" placeholder="Fax - Optional">
+                <input matInput formControlName="contactPersonFax" type="number" placeholder="Fax - Optional">
               </mat-form-field>
             </div>
           </div>
@@ -300,7 +300,8 @@
     </section>
 
     <div class="submit-button-area">
-      <button mat-button class="md-primary" type="submit" [disabled]="createHotelForm.invalid" >Submit</button>
+      <button *ngIf="!hotelId"  mat-button class="md-primary" type="submit" [disabled]="createHotelForm.invalid" >Submit</button>
+      <button *ngIf="hotelId"  mat-button class="md-primary" type="submit" [disabled]="createHotelForm.invalid" >Update</button>
     </div>
 
   </form>
