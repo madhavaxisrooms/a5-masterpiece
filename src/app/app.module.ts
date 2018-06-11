@@ -1,7 +1,9 @@
 import { AuthGuard } from './shared/guards/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TokenInterceptorService } from './token-interceptor.service';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatMenuModule, MatInputModule, MatSelectModule, MatFormFieldModule, MatFormFieldControl, MatIconModule } from '@angular/material';
 import { AppComponent } from './app.component';
@@ -17,12 +19,12 @@ import { LoadingIndicatorService } from './shared/services/loading-indicator.ser
 import { SupportHeaderComponent } from './shared/components/support-header/support-header.component';
 import { HeaderService } from './shared/services/header.service';
 import { AuthService } from './auth.service';
-import { TokenInterceptorService } from './token-interceptor.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TempHeaderComponent } from './shared/components/temp-header/temp-header.component';
 
-import {MasterReportsService} from './analytics/services/master-reports.service';
+import { MasterReportsService } from './analytics/services/master-reports.service';
 import { HttpModule } from '@angular/http';
+import { HomeComponent } from './shared/components/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { HttpModule } from '@angular/http';
     FooterComponent,
     ToasterComponent,
     SupportHeaderComponent,
-    TempHeaderComponent
+    TempHeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

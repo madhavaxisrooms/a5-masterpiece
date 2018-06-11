@@ -1,0 +1,73 @@
+<div class="container">
+  <!-- <div class="personal-details">
+    <h1>Personal Details</h1>
+    <div class="info">
+      <p class="title">Name:</p>
+      <p class="content">
+        Madhav Sharma
+        <mat-icon>edit</mat-icon>
+      </p>
+    </div>
+    <div class="info">
+      <p class="title">Email:</p>
+      <p class="content">
+        testname@bighotelname.com
+        <mat-icon>edit</mat-icon>
+      </p>
+    </div>
+    <div class="info">
+      <p class="title">Mobile:</p>
+      <p class="content">
+        +91 172837354
+        <mat-icon class="green-color">check_circle</mat-icon>
+      </p>
+    </div>
+    <div class="info">
+      <p class="title">Bank Details:</p>
+      <p class="content">
+        Not Specified
+        <mat-icon class="green-color">check_circle</mat-icon>
+      </p>
+    </div>
+    <div class="info">
+      <p class="title">Contact Person:</p>
+      <p class="content">
+        Not Specified
+        <mat-icon>edit</mat-icon>
+      </p>
+    </div>
+  </div> -->
+
+  <div class="hotel-details">
+    <div class="header">
+      <h1>Hotel Details</h1>
+      <a routerLink="/profile/create-hotel">
+        <button>Create Hotel</button>
+      </a>
+    </div>
+    <div class="hotel-specs">
+      <div class="hotel">
+
+        <table>
+          <thead>
+            <th>Hotel Name</th>
+            <th>Trail</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hotel of hotelDetails">
+              <td>{{hotel.hotelName}}
+                <mat-icon [routerLink]="['/profile', 'create-hotel', hotel.hotelId]">edit</mat-icon>
+              </td>
+              <td>
+                <button *ngIf="!hotel.isTrialRequested" (click)="requestedForTrail(hotel.hotelId)">Request Trial</button>
+                <p *ngIf="hotel.isTrialRequested">Hotel Trial Requested</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</div>
