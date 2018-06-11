@@ -10,12 +10,12 @@ const routes: Routes = [
   { path: 'login', loadChildren: 'app/login/login.module#LoginModule' },
   {
     path: '', component:HomeComponent, children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule' },
-      { path: 'billing', loadChildren: 'app/billing/billing.module#BillingModule'},
-      { path: 'activity-report', loadChildren: 'app/activity-report/activity-report.module#ActivityReportModule'},
-      { path: 'analytics', loadChildren: 'app/analytics/analytics.module#AnalyticsModule'},
-      { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full', canLoad:[AuthGuard] },
+      { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule', canLoad:[AuthGuard]  },
+      { path: 'billing', loadChildren: 'app/billing/billing.module#BillingModule', canLoad:[AuthGuard] },
+      { path: 'activity-report', loadChildren: 'app/activity-report/activity-report.module#ActivityReportModule', canLoad:[AuthGuard] },
+      { path: 'analytics', loadChildren: 'app/analytics/analytics.module#AnalyticsModule', canLoad:[AuthGuard] },
+      { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule' , canLoad:[AuthGuard] },
     ]
   },
   { path: '**', component: PageNotFoundComponent },
