@@ -2,10 +2,13 @@
 <mat-card class="filter-div padding-top-15">
   <div class="container-fluid">
     <div class="row">
-      <mat-form-field>
-        <input matInput placeholder="Select Date" ame="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)"
-          readonly>
-      </mat-form-field>
+      <div class="calendar">
+        <mat-form-field>
+          <input matInput placeholder="Select Date" ame="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)"
+            readonly>
+        </mat-form-field>
+        <mat-icon class="calendar-icon">date_range</mat-icon>
+      </div>
       <mat-form-field>
         <mat-select placeholder="Search Type" [value]="defaultDate" formControlName="dateType">
           <mat-option [value]="date.id" *ngFor="let date of getDate">{{date.name}}</mat-option>
@@ -22,13 +25,13 @@
           <mat-option *ngFor="let product of productType" [value]="product.id">{{product.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field>
+      <!-- <mat-form-field [hidden]="!userType">
         <mat-select placeholder="Supplier Type" #supplierTypes value="-1"  formControlName="supplierType" (change)="supplierTypeChange(supplierTypes.value)">
           <mat-option value="-1">All</mat-option>
           <mat-option [value]="supplier.id" *ngFor="let supplier of supplierType">{{supplier.name}}</mat-option>
         </mat-select>
-      </mat-form-field>
-      <mat-form-field>
+      </mat-form-field> -->
+      <mat-form-field [hidden]="!userType">
         <mat-select placeholder="Supplier"  formControlName="supplierId">
 <mat-option [value]="supplier.id" *ngFor="let supplier of supplierList">{{supplier.name}}</mat-option>
 
@@ -44,22 +47,22 @@
           <mat-option [value]="status.id" *ngFor="let status of bookingStatus">{{status.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <div (clickOutside)="outsideCity($event)">
-        <mat-form-field>
-          <input matInput placeholder="Select City" #city (focus)="cityFocus()" [value]="citValue" (keyup)="cityComplete(city.value)">
-        </mat-form-field>
-        <mat-list class="select-channel" [hidden]="cityShow">
-          <mat-list-item>
-            <mat-checkbox (change)="cityAll(allCity, city)" #allCity [checked]="false" value="all">Select All</mat-checkbox>
-          </mat-list-item>
-          <mat-list-item *ngFor="let city of cityShown">
-            <mat-checkbox (change)="citySelectedFn(city, citySelected, allCity)" [checked]="isChecked(city.id, citySelected)" [value]="city.id">{{city.name}}</mat-checkbox>
-          </mat-list-item>
-        </mat-list>
-      </div>
+      <!--<div (clickOutside)="outsideCity($event)">-->
+        <!--<mat-form-field>-->
+          <!--<input matInput placeholder="Select City" #city (focus)="cityFocus()" [value]="citValue" (keyup)="cityComplete(city.value)">-->
+        <!--</mat-form-field>-->
+        <!--<mat-list class="select-channel" [hidden]="cityShow">-->
+          <!--<mat-list-item>-->
+            <!--<mat-checkbox (change)="cityAll(allCity, city)" #allCity [checked]="false" value="all">Select All</mat-checkbox>-->
+          <!--</mat-list-item>-->
+          <!--<mat-list-item *ngFor="let city of cityShown">-->
+            <!--<mat-checkbox (change)="citySelectedFn(city, citySelected, allCity)" [checked]="isChecked(city.id, citySelected)" [value]="city.id">{{city.name}}</mat-checkbox>-->
+          <!--</mat-list-item>-->
+        <!--</mat-list>-->
+      <!--</div>-->
       <div (clickOutside)="outsideHotel($event)">
         <mat-form-field>
-          <input matInput placeholder="Hotel Chain" [value]="hotValue" #hotel (focus)="hotelFocus()" (keyup)="hotelComplete(hotel.value)">
+          <input matInput placeholder="Select Hotel" [value]="hotValue" #hotel (focus)="hotelFocus()" (keyup)="hotelComplete(hotel.value)">
         </mat-form-field>
         <mat-list [hidden]="hotelShow" class="select-channel">
           <mat-list-item>

@@ -1,10 +1,10 @@
 <div class="container-fluid master-reports-div">
   <div class="row">
     <div class="col-md-4">
-      <a mat-button [href]="configUrl" class="back-cm"><mat-icon>keyboard_arrow_left</mat-icon>Back To CM</a>
+      <!--<a mat-button [href]="configUrl" class="back-cm"><mat-icon>keyboard_arrow_left</mat-icon>Back To CM</a>-->
     </div>
     <div class="col-md-4">
-      <h1 class="text-center">Analytical Reports</h1>
+      <h1 class="text-center">Master report</h1>
     </div>
     <div class="col-md-4"></div>
     <div class="col-md-9">
@@ -12,7 +12,7 @@
         <div class="col-md-3">
           <div class="total-details">
             <p (click)="showBooking()">Total Bookings: {{totalCount}}
-              <mat-icon>keyboard_arrow_down</mat-icon>
+              <!-- <mat-icon>keyboard_arrow_down</mat-icon> -->
             </p>
             <!-- <ul [hidden]="showbooking">
               <li>Total Room Nights: 123</li>
@@ -33,16 +33,16 @@
           </div>
         </div>
         <div class="col-md-1">
-          <a href="javascript:void(0)" (click)="clearFilter()" class="clear-button" [hidden]="clear">clear</a>
+          <a href="javascript:void(0)" (click)="clearFilter(bookingId)" class="clear-button" [hidden]="clear">clear</a>
         </div>
         <div class="col-md-1">
           <button mat-button class="table-column-display" (click)="showColumn()">
             <mat-icon>list</mat-icon>
           </button>
           <mat-card class="table-column-drop" [hidden]="showColumns">
-            <mat-list *ngFor="let checkItem of columnData">
+            <mat-list *ngFor="let checkItem of columnData; let i = index;">
               <mat-list-item>
-                <mat-checkbox name="table-column" [checked]="checkItem.checked" [value]="checkItem.value" (change)="tableColumn(checkItem.value) ">{{checkItem.name}}</mat-checkbox>
+                <mat-checkbox name="table-column" [checked]="checkItem.checked" [value]="checkItem.value" (change)="tableColumn(checkItem.value, i) " >{{checkItem.name}}</mat-checkbox>
               </mat-list-item>
             </mat-list>
           </mat-card>
@@ -56,8 +56,7 @@
           <mat-icon>file_download</mat-icon>
         </button>
       </div>
-      <app-analytics-filter (productTypeValue) = "productType($event)" (filterResult)="filterResult($event)"
-      (selectDate)="masterCount($event)" ></app-analytics-filter>
+      <app-analytics-filter (productTypeValue) = "productType($event)" (filterResult)="filterResult($event)"  (masterCount)="masterCountFilter($event)"></app-analytics-filter>
     </div>
   </div>
 </div>

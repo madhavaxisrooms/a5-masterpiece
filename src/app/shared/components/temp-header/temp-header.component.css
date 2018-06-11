@@ -4,10 +4,13 @@ header{
     background: #009688;
     justify-content: center;
     position: relative;
+  height: 45px;
 }
 header .logo {
-    max-height: 70px;
-    padding: 10px;
+    /*max-height: 70px;*/
+    width: 120px;
+    height: 22px;
+    margin-top: 10px;
 }
 
 

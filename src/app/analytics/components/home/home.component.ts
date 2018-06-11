@@ -9,6 +9,7 @@ import * as moment from 'moment';
 import {FilterComponent} from '../filter/filter.component';
 import {config} from './../../../config';
 import {LoadingIndicatorService} from './../../../shared/services/loading-indicator.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-analytics-home',
   templateUrl: './home.component.html',
@@ -28,13 +29,15 @@ export class HomeComponent implements OnInit {
   @ViewChild(MasterReportsComponent)masterComp: MasterReportsComponent;
   @ViewChild('bookingId')bookingId: ElementRef;
   @ViewChild(FilterComponent)filterComp: FilterComponent;
-  constructor(private homeService: HomeService, private masterService: MasterReportsService, private loader: LoadingIndicatorService) { }
+  constructor(private homeService: HomeService, private masterService: MasterReportsService,
+    private loader: LoadingIndicatorService, private titleServie: Title) { }
 
   ngOnInit() {
-    this.displayedColumns = ['channelId', 'otaReferenceId', 'status',
-      'hotelName', 'city', 'roomName', 'source', 'bookingDateAndTime', 'checkinDate'];
+    this.displayedColumns = ['channelName', 'otaReferenceId', 'statusName',
+      'hotelName', 'city', 'roomName', 'source', 'bookingDateAndTime', 'checkinDate', 'modeOfPayment', 'noOfRooms', 'totalAmountFinal'];
     this.columnData = columns;
     this.masterCount(moment().format('YYYY-MM-DD'));
+    this.titleServie.setTitle('Master Report');
   }
   /**
    * @ Used to show and hide the show booking dropdown above the master reports table.
@@ -64,12 +67,13 @@ export class HomeComponent implements OnInit {
    * @ return array of [displayCOlumns]
    * @memeber of HomeComponent
    */
-  tableColumn(obj: any): any {
+  tableColumn(obj: any, index1): any {
+    console.log(index1);
     const index: number = this.displayedColumns.indexOf(obj);
     if (index !== -1) {
       this.displayedColumns.splice(index, 1);
     } else {
-      this.displayedColumns.push(obj);
+      this.displayedColumns.splice(index1, 0, obj);
     }
   }
   /**
@@ -78,14 +82,20 @@ export class HomeComponent implements OnInit {
    * memeber of home component
    */
   searchByBookingId() {
-    this.loader.displayLoadingIndicator()
+    this.loader.displayLoadingIndicator();
     this.homeService.searchByBookingId(this.productTypes, this.bookingId.nativeElement.value).subscribe((result) => {
-      //this.dataSource1 = result;
+      // this.dataSource1 = result;
       this.loader.hideLoadingIndicator();
       this.masterComp.searchById(result);
+      this.masterCountById();
       this.clear = false;
     }, (err: HttpErrorResponse) => {
       this.loader.hideLoadingIndicator();
+    });
+  }
+  masterCountById() {
+    this.homeService.masterCountById(this.bookingId.nativeElement.value, this.productTypes).subscribe(result => {
+      this.totalCount = result;
     });
   }
   filterResult(result) {
@@ -100,17 +110,20 @@ export class HomeComponent implements OnInit {
   productType(event) {
     this.productTypes = event;
   }
-  clearFilter() {
-    this.masterService.getList().subscribe(result => {
+  clearFilter(id) {
+    this.loader.displayLoadingIndicator();
+    this.masterService.getFilterResults(this.filterComp.filterForms.value).subscribe(result => {
       this.clear = true;
       this.masterComp.searchById(result);
+      this.masterCountFilter(this.filterComp.filterForms.value);
+      id.value = '';
     }, err => {
       console.log(err);
     });
   }
   masterCount($data) {
-    let $startDate = '2018-01-01';
-    let $endDate = '2018-03-25';
+    let $startDate;
+    let $endDate;
     if (typeof $data === 'string') {
       $startDate = $data;
       $endDate = $data;
@@ -118,8 +131,25 @@ export class HomeComponent implements OnInit {
       $startDate = $data.start;
       $endDate = $data.end;
     }
-    this.homeService.masterCount($startDate, $endDate).subscribe( (result) => {
+    const $params = {
+      startDate: $startDate,
+      endDate: $endDate
+    };
+    this.homeService.masterCount($params).subscribe( (result) => {
       this.totalCount = result;
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        console.log('Client Side Error');
+      } else {
+        console.log('Server Side Error');
+      }
+    });
+  }
+  masterCountFilter($data) {
+    // console.log($data);
+    this.homeService.masterCount($data).subscribe((result) => {
+      this.totalCount = result;
+        this.loader.hideLoadingIndicator();
     }, (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
         console.log('Client Side Error');

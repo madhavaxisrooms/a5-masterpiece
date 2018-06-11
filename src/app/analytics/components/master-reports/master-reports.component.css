@@ -25,15 +25,56 @@ mat-card {
 }
 
 .master-reports {
-  display: block;
-  width: 100%;
-    overflow-x: auto;
+    display: block;
+    width: 100%;
+    overflow: auto;
+    position: relative;
+    max-height: 600px;
+    margin-bottom: 5px;
 }
 
 .prevNext {
-  background: #E0E0E0;
-  color: #009688;
+    background: #E0E0E0;
+    color: #009688;
 }
+
 .prevNext:nth-of-type(2) {
-  float: right;
+    float: right;
 }
+
+.no-data-div {
+    height: 300px;
+    text-align: center;
+    padding-top: 125px;
+}
+
+.no-data-div .mat-icon {
+    font-size: 40px;
+    margin-left: -20px;
+}
+
+.no-data-div p {
+    font-size: 16px;
+}
+
+.information {
+    font-size: 12px;
+}
+
+/* .master-reports {
+    position: relative;
+    margin-top: 50px;
+}
+
+.master-reports .mat-table {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+.master-reports .mat-table .mat-header-row {
+    position: absolute;
+    top: -50px;
+    left: 0px;
+    right: 18px;
+    background: #fff;
+} */

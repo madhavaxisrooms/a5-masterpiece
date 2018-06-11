@@ -9,7 +9,7 @@ import {LoadingIndicatorService} from './../../../shared/services/loading-indica
   selector: 'app-analytics-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css'],
-  providers: [FilterService]
+  providers: [FilterService, MasterReportsService]
 })
 export class FilterComponent implements OnInit {
   channelValue;
@@ -39,15 +39,18 @@ export class FilterComponent implements OnInit {
   productDefault;
   supplierList: Object;
   filterForms: FormGroup;
-  startValue:number = 0;
-  dataLength:number = 500;
+  startValue: any = 0;
+  dataLength: any = 500;
+  userType: Boolean = false;
   @Output() productTypeValue: EventEmitter<Number> = new EventEmitter<Number>();
   @Output() filterResult: any = new EventEmitter();
   @Output() selectDate: EventEmitter<String> = new EventEmitter<String>();
+  @Output() masterCount: EventEmitter<Object> = new EventEmitter<Object>();
   public options: any = {
+    locale: { format: 'DD/MM/YYYY' },
     alwaysShowCalendars: true,
     opens: 'left',
-    defaultDate: [moment(), moment()],
+    defaultDate: [moment().format('DD/MM/YYYY'), moment().format('DD/MM/YYYY')],
     ranges: {
       'Today': [moment(), moment()],
       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -56,8 +59,11 @@ export class FilterComponent implements OnInit {
       'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
     }
   };
-  constructor(private filterService: FilterService, private _eref: ElementRef,
-    private fb: FormBuilder, private masterServie: MasterReportsService, private loader: LoadingIndicatorService) {
+  constructor(private filterService: FilterService,
+    private _eref: ElementRef,
+    private fb: FormBuilder,
+    private masterServie: MasterReportsService,
+    private loader: LoadingIndicatorService) {
     this.filterForms = this.fb.group({
       dateType    : new FormControl([-1]),
       productType   : new FormControl([-1]),
@@ -75,12 +81,19 @@ export class FilterComponent implements OnInit {
     this.getChannel();
     this.getPaymentType();
     this.getDateType();
-    this.getSupplierType();
+    // this.getSupplierType();
     this.getHotel();
-    this.getCity();
-    this.getSupplier();
+    // this.getCity();
+    this.getSupplier(-1);
+    this.getUserType();
   }
-
+  getUserType() {
+    this.filterService.getUserType().subscribe((result: Boolean) => {
+      this.userType = result;
+    }, (err: HttpErrorResponse) => {
+      console.log(err);
+    });
+  }
   channelComplete(a) {
     const values = a.split(',');
     if (values[values.length - 1] !== '') {
@@ -225,11 +238,12 @@ export class FilterComponent implements OnInit {
     filterValues.channelId = this.selectedValue.toString();
     filterValues.productId = this.hotelSelected.toString();
     filterValues.startRowNumber = this.startValue;
-    filterValues.endRowNumber = this.dataLength
+    filterValues.endRowNumber = this.dataLength;
     this.masterServie.getFilterResults(filterValues).subscribe(result => {
-      this.loader.hideLoadingIndicator();
+      // this.loader.hideLoadingIndicator();
       this.filterResult.emit(result);
-      this.selectDate.emit(this.daterange);
+      // this.selectDate.emit(this.daterange);
+      this.masterCount.emit(filterValues);
     }, (err: HttpErrorResponse) => {
       this.loader.hideLoadingIndicator();
     });
@@ -319,12 +333,12 @@ export class FilterComponent implements OnInit {
       }
     });
   }
-  getCity() {
-    this.filterService.getCity().subscribe(result => {
-      this.cityShown = result;
-      this.cityValue = result;
-    });
-  }
+  // getCity() {
+  //   this.filterService.getCity().subscribe(result => {
+  //     this.cityShown = result;
+  //     this.cityValue = result;
+  //   });
+  // }
   productTypeChange(obj) {
     this.productDefault =  obj.value;
     this.productTypeValue.emit(obj.value);
@@ -335,8 +349,8 @@ export class FilterComponent implements OnInit {
       this.bookingStatus = result;
     });
   }
-  getSupplier() {
-    this.filterService.getSupplier().subscribe(result => {
+  getSupplier($supplier) {
+    this.filterService.getSupplier($supplier).subscribe(result => {
       this.supplierList = result;
     });
   }
@@ -359,7 +373,8 @@ export class FilterComponent implements OnInit {
 
   supplierTypeChange(supplierType) {
     this.filterService.getSupplier(supplierType).subscribe((result => {
-      console.log(result);
+      this.supplierList = result;
+      // this.supplierList = result;
     }));
   }
 }

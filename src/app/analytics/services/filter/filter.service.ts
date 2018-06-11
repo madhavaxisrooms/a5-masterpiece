@@ -81,12 +81,20 @@ export class FilterService {
       }
     });
   }
-  getSupplier(supplier = '') {
+  getSupplier(supplier = '-1') {
     const url = config.analytics_ip + '/cm/filters/getSuppliers';
     return this.http.get(url, {
       params: {
         accessToken: this.authService.access_token,
         supplierType: supplier
+      }
+    });
+  }
+  getUserType() {
+    const url = config.analytics_ip + '/cm/filters/checkIfSupport';
+    return this.http.get( url, {
+      params: {
+        accessToken: this.authService.access_token,
       }
     });
   }

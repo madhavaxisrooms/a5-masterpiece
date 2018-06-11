@@ -14,13 +14,19 @@ export class HomeService {
       }
     });
   }
-  masterCount($startDate, $endDate) {
+  masterCount($params) {
+    const params = $params;
+    params.accessToken = this.authService.access_token;
     const url = config.analytics_ip + '/cm/reports/masterCount';
     return this.http.get(url, {
+      params: params
+    });
+  }
+  masterCountById(bookingId, productId) {
+    const url = config.analytics_ip + '/cm/reports/masterCount/' + bookingId + '/' + productId;
+    return this.http.get(url, {
       params: {
-        accessToken: this.authService.access_token,
-        startDate: $startDate,
-        endDate: $endDate
+        accessToken: this.authService.access_token
       }
     });
   }

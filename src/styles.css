@@ -21,17 +21,27 @@ h2, h3 {
     font-size: 16px;
 }
 
-h4, th, td {
+h4,
+th,
+td {
     font-size: 13px;
 }
 
-p, li {
+p,
+li {
     font-size: 13px;
     font-family: lato, 'Montserrat', Arial, sans-serif;
     color: #707070;
 }
 
-h1, h2, h3, h4, h5, li, input, select {
+h1,
+h2,
+h3,
+h4,
+h5,
+li,
+input,
+select {
     color: #333;
 }
 
@@ -84,7 +94,8 @@ input:checked[type="checkbox"]:before {
     left: 15px;
 } */
 
-input, select {
+input,
+select {
     border-radius: 2px;
     height: 35px;
 }
@@ -107,7 +118,19 @@ input, select {
     color: #B6B6B6;
 }
 
-button, ul li, a, p, h1, h2, h3, h4, h5, h6, th, td, input {
+button,
+ul li,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th,
+td,
+input {
     font-family: lato, 'Montserrat', Arial, sans-serif;
 }
 
@@ -115,12 +138,17 @@ td {
     font-family: lato, 'Montserrat', Arial, sans-serif;
 }
 
-a, a:focus, a:hover, a:visited {
+a,
+a:focus,
+a:hover,
+a:visited {
     text-decoration: none;
     color: inherit;
 }
 
-.icon, button, select {
+.icon,
+button,
+select {
     cursor: pointer;
 }
 
@@ -169,7 +197,8 @@ select {
     outline: none;
 }
 
-button.active, button:hover {
+button.active,
+button:hover {
     color: #4dbc9c;
     background: #fff;
     border-color: #4dbc9c;
@@ -278,6 +307,7 @@ button.active, button:hover {
 .green-color{
     color:green; 
 }
+/* icons */
 
 /* Modal */
 
@@ -341,7 +371,8 @@ button.active, button:hover {
     border: none;
 }
 
-.modal-wrapper .modal-content .modal-body-content, .modal-wrapper .modal-content .modal-form-content {
+.modal-wrapper .modal-content .modal-body-content,
+.modal-wrapper .modal-content .modal-form-content {
     padding: 10px;
 }
 
@@ -393,16 +424,19 @@ button.active, button:hover {
     color: #545454;
 }
 
-.modal-wrapper .modal-content .modal-form .form-element input, .modal-wrapper .modal-content .modal-form .form-element select {
+.modal-wrapper .modal-content .modal-form .form-element input,
+.modal-wrapper .modal-content .modal-form .form-element select {
     width: 49%;
     display: inline-block;
 }
 
-.modal-wrapper .modal-content .save-button, .modal-wrapper .modal-content .next-button {
+.modal-wrapper .modal-content .save-button,
+.modal-wrapper .modal-content .next-button {
     overflow: auto;
 }
 
-.modal-wrapper .modal-content .save-button button, .modal-wrapper .modal-content .next-button button {
+.modal-wrapper .modal-content .save-button button,
+.modal-wrapper .modal-content .next-button button {
     float: right;
 }
 
@@ -621,7 +655,8 @@ button.active, button:hover {
     color: #3d464d;
 }
 
-th, td {
+th,
+td {
     padding: 15px 10px;
 }
 
@@ -753,7 +788,8 @@ table .action-dropdown-rel .action-dropdown li {
     padding-left: 30px;
 }
 
-.supplier-content-area .menu ul .active, .supplier-content-area .menu ul li:hover {
+.supplier-content-area .menu ul .active,
+.supplier-content-area .menu ul li:hover {
     background: #4dbc9c;
 }
 
@@ -917,7 +953,16 @@ table .action-dropdown-rel .action-dropdown li {
     background-color: #009688;
 }
 
-.mat-button[disabled], .mat-flat-button[disabled], .mat-icon-button[disabled], .mat-stroked-button[disabled] {
+.mat-button[disabled], .mat-flat-button[disabled], .mat-icon-button[disabled], .mat-stroked-button[disabled] ,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #009688;
+}
+
+.mat-button[disabled],
+.mat-flat-button[disabled],
+.mat-icon-button[disabled],
+.mat-stroked-button[disabled] {
     background: transparent !important;
     cursor: default !important;
 }
@@ -948,7 +993,24 @@ input[type="checkbox"].cdk-visually-hidden {
 
 /*-----------------Date Range Picker css -------------------------*/
 
-.daterangepicker .table-condensed>tbody>tr>td, .daterangepicker .table-condensed>tbody>tr>th, .daterangepicker .table-condensed>tfoot>tr>td, .daterangepicker .table-condensed>tfoot>tr>th, .daterangepicker .table-condensed>thead>tr>td, .daterangepicker .table-condensed>thead>tr>th {
+.daterangepicker .off.available {
+    visibility: hidden;
+}
+.daterangepicker.ltr .calendar.left {
+  padding-right: 5px;
+}
+.daterangepicker.ltr .calendar.right {
+    /* margin-left: 5px !important; */
+    padding-left: 5px;
+    border-left: 1px solid #ccc;
+}
+
+.daterangepicker .table-condensed>tbody>tr>td,
+.daterangepicker .table-condensed>tbody>tr>th,
+.daterangepicker .table-condensed>tfoot>tr>td,
+.daterangepicker .table-condensed>tfoot>tr>th,
+.daterangepicker .table-condensed>thead>tr>td,
+.daterangepicker .table-condensed>thead>tr>th {
     padding: 10px;
 }
 
@@ -957,7 +1019,7 @@ input[type="checkbox"].cdk-visually-hidden {
     color: #fff !important;
 }
 
-.daterangepicker td.start-date {
+.daterangepicker.ltr .calendar.right .daterangepicker td.start-date {
     border-radius: 20px 0 0 20px !important;
 }
 
@@ -965,7 +1027,8 @@ input[type="checkbox"].cdk-visually-hidden {
     border-radius: 0 20px 20px 0 !important;
 }
 
-.daterangepicker td.active, .daterangepicker td.active:hover {
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
     background-color: #009688 !important;
 }
 
@@ -978,7 +1041,8 @@ input[type="checkbox"].cdk-visually-hidden {
     color: #009688;
 }
 
-.daterangepicker .ranges li.active, .daterangepicker .ranges li:hover {
+.daterangepicker .ranges li.active,
+.daterangepicker .ranges li:hover {
     background-color: #009688 !important;
     border: 1px solid #009688 !important;
     color: #fff;
